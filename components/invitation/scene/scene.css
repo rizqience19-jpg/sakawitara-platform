@@ -1422,6 +1422,13 @@
   clip-path: inset(100% 0 0 0 round 200px 200px 16px 16px);
   transform: translateY(40px);
 }
+/* posisi akhir: harus lebih spesifik dari .sx .rv-* di atas, kalau tidak elemen
+   tetap tergeser/miring/blur setelah muncul */
+.sx .rv.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
 .sx .rv-curtain.is-visible {
   clip-path: inset(0 0 0 0 round 200px 200px 16px 16px);
 }
