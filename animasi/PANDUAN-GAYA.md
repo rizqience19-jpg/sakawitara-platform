@@ -21,6 +21,7 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
   - kalau tokoh tidak muat di jendela/kendaraan, **perbesar kendaraannya**, jangan kecilkan tokohnya;
   - perbedaan ukuran hanya boleh karena jarak (perspektif), dan harus terlihat jelas sebagai jauh/dekat.
 - Cek ukuran sebelum render: buat satu bingkai per adegan dan bandingkan tinggi kepala antartokoh.
+- **Benda tidak bergerak sendiri.** Setiap benda yang berpindah (toples, gelas, bola, dsb.) harus dibawa tangan: tangan menjangkau benda dulu, baru benda ikut tangan; saat diletakkan, tangan membawanya sampai ke tempatnya lalu kembali. Benda yang tidak dipegang tetap diam di tempat terakhirnya (meja, pangkuan, lantai) — tidak boleh menghilang atau muncul tiba-tiba antaradegan. Cek dengan beberapa bingkai berurutan dalam satu adegan.
 
 ## 2. Pola cerita
 
