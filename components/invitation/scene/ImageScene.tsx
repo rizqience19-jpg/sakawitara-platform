@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Layer, type Enter, type Exit, type Idle } from "./Scenes";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -11,7 +11,8 @@ import { Layer, type Enter, type Exit, type Idle } from "./Scenes";
 
 /** Kotak efek dalam % gambar: [top, right, bottom, left] (seperti CSS inset). */
 type Box = [number, number, number, number];
-type Fx = { kind: "fall" | "ripple" | "splash" | "mist"; box: Box };
+/** `mask`: gambar alpha yang menandai piksel air saja (agar batu/tanaman tidak ikut bergerak) */
+type Fx = { kind: "fall" | "ripple" | "splash" | "mist"; box: Box; mask?: string };
 
 export type ImgLayer = {
   src: string;
@@ -34,27 +35,87 @@ export type ImgLayer = {
 /** lokasi ilustrasi; bisa diarahkan ke CDN / Supabase Storage lewat env */
 export const A = process.env.NEXT_PUBLIC_SCENE_ASSETS ?? "/scene/nusantara";
 
+/** Potongan gambar seukuran kotak `box`, isinya gambar penuh yang digeser —
+ *  supaya filter/animasi hanya bekerja di area air (ringan di HP). */
+function Window({ box, className, children }: { box: Box; className: string; children: ReactNode }) {
+  const [t, r, b, l] = box;
+  const w = 100 - l - r;
+  const h = 100 - t - b;
+  return (
+    <span
+      className={`fx ${className}`}
+      style={{
+        top: `${t}%`,
+        left: `${l}%`,
+        width: `${w}%`,
+        height: `${h}%`,
+        ["--iw" as string]: `${(100 / w) * 100}%`,
+        ["--ih" as string]: `${(100 / h) * 100}%`,
+        ["--il" as string]: `${(-l / w) * 100}%`,
+        ["--it" as string]: `${(-t / h) * 100}%`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
 function Img({ l }: { l: ImgLayer }) {
+  const src = `url(${l.src})`;
   return (
     <div className="img-wrap" style={l.flip ? { transform: "scaleX(-1)" } : undefined}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={l.src} alt="" draggable={false} decoding="async" className={l.full ? "img-full" : "img"} />
       {l.fx && (
         <span className="fx-box">
-      {l.fx.map((f, i) => (
-        <span
-          key={i}
-          className={`fx fx-${f.kind}`}
-          style={{
-            clipPath: `inset(${f.box[0]}% ${f.box[1]}% ${f.box[2]}% ${f.box[3]}%)`,
-            WebkitMaskImage: f.kind === "mist" ? undefined : `url(${l.src})`,
-            maskImage: f.kind === "mist" ? undefined : `url(${l.src})`,
-          }}
-        />
-      ))}
+          {l.fx.map((f, i) => {
+            if (f.kind === "fall")
+              // air terjun: tekstur air dari lukisan itu sendiri terus mengalir ke bawah
+              return (
+                <Window key={i} box={f.box} className="fx-flow">
+                  <i style={{ backgroundImage: src, WebkitMaskImage: f.mask ? `url(${f.mask})` : src, maskImage: f.mask ? `url(${f.mask})` : src }} />
+                  <i style={{ backgroundImage: src, WebkitMaskImage: f.mask ? `url(${f.mask})` : src, maskImage: f.mask ? `url(${f.mask})` : src }} />
+                </Window>
+              );
+            if (f.kind === "ripple")
+              // danau / sungai: permukaan air lukisan dibuat beriak (distorsi turbulensi)
+              return (
+                <Window key={i} box={f.box} className="fx-wave">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={l.src} alt="" draggable={false} />
+                </Window>
+              );
+            return (
+              <span
+                key={i}
+                className={`fx fx-${f.kind}`}
+                style={{ clipPath: `inset(${f.box[0]}% ${f.box[1]}% ${f.box[2]}% ${f.box[3]}%)` }}
+              />
+            );
+          })}
         </span>
       )}
     </div>
+  );
+}
+
+/** Filter SVG untuk riak air — dipasang sekali per scene. */
+function WaterFilters() {
+  return (
+    <svg className="fx-defs" width="0" height="0" aria-hidden focusable="false">
+      <filter id="sx-ripple" x="-2%" y="-2%" width="104%" height="104%" colorInterpolationFilters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.006 0.045" numOctaves="2" seed="4" result="noise">
+          <animate attributeName="baseFrequency" dur="7s" values="0.006 0.045;0.009 0.06;0.006 0.045" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="sx-fallwobble" x="-2%" y="-2%" width="104%" height="104%" colorInterpolationFilters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.008" numOctaves="1" seed="9" result="noise">
+          <animate attributeName="baseFrequency" dur="2.5s" values="0.05 0.008;0.06 0.011;0.05 0.008" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
   );
 }
 
@@ -147,8 +208,7 @@ const JOGLO: ImgLayer[] = [
     src: `${A}/waterfall.webp`, pos: { bottom: "33%", left: "-22%", width: "144%" }, stage: true,
     enter: "rise", at: 1600, dur: 2800, depth: 0.4, exit: { y: -6, s: 0.12 },
     fx: [
-      { kind: "fall", box: [12, 62, 24, 17] },
-      { kind: "fall", box: [24, 22, 18, 53] },
+      { kind: "fall", box: [8, 15, 16, 12], mask: `${A}/waterfall-water.webp` },
       { kind: "ripple", box: [80, 18, 2, 20] },
       { kind: "splash", box: [64, 58, 14, 22] },
       { kind: "splash", box: [70, 24, 10, 56] },
@@ -167,6 +227,7 @@ const JOGLO: ImgLayer[] = [
 export function SceneJogloImg() {
   return (
     <div className="cam">
+      <WaterFilters />
       {renderLayers(JOGLO, false).slice(0, 1)}
       <div className="sun" />
       <div className="stage">{renderLayers(JOGLO, true)}</div>
@@ -207,6 +268,7 @@ const SAWAH: ImgLayer[] = [
 export function SceneSawahImg() {
   return (
     <div className="cam">
+      <WaterFilters />
       {renderLayers(SAWAH, false).slice(0, 1)}
       <div className="sun" />
       <div className="stage">{renderLayers(SAWAH, true)}</div>
