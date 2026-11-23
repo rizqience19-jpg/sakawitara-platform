@@ -7,7 +7,18 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - Tegak **9:16**, render **Full HD 1080×1920, 30 fps, CRF 16** (kanvas kerja 450×800).
 - Durasi **± 1,5–2 menit**, **30–40 baris** naskah.
 - **Satu baris naskah = satu adegan.** Ganti adegan tiap 1–4 detik (potongan cepat ala TikTok).
+- **Judul di awal (wajib)**: tampil ± 2,5 detik di atas adegan pertama (tidak menambah durasi). Baris kecil = nama seri/kanal bila ada (mis. "Kisah Nyempil"), baris besar = judul episode. Pakai judul yang ditulis pengguna.
 - Penutup: layar gelap transparan + **"Tamat"** (Georgia italic) + satu ajakan singkat.
+
+## 1a. Aturan tetap (dari masukan pengguna)
+
+- **Tanpa musik latar.** Jangan menambah musik apa pun kecuali pengguna memintanya; musik ditambahkan pengguna sendiri.
+- **Efek suara**: tanyakan dulu ke pengguna apakah mau dipakai (belum ada keputusan tetap). Bila dipakai, hanya bunyi yang memang disebut/terjadi di cerita.
+- **Satu patokan ukuran tokoh.** Semua orang dewasa memakai skala yang sama dalam satu adegan dan antaradegan pada jarak yang sama; anak-anak lebih kecil secara konsisten. Kendaraan dan properti mengikuti ukuran orang, bukan sebaliknya:
+  - tinggi orang dewasa ± setinggi atap kabin mobil/pikap; kepala tokoh di dalam kendaraan sama besar dengan kepala tokoh yang berdiri di sebelahnya;
+  - kalau tokoh tidak muat di jendela/kendaraan, **perbesar kendaraannya**, jangan kecilkan tokohnya;
+  - perbedaan ukuran hanya boleh karena jarak (perspektif), dan harus terlihat jelas sebagai jauh/dekat.
+- Cek ukuran sebelum render: buat satu bingkai per adegan dan bandingkan tinggi kepala antartokoh.
 
 ## 2. Pola cerita
 
