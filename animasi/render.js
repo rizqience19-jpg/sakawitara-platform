@@ -1,17 +1,17 @@
 // Merender animasi menjadi MP4 9:16 bingkai demi bingkai.
-// Pemakaian: node animasi/render.js <keluaran.mp4> [rekaman-suara] [lebar=1080] [fps=30]
+// Pemakaian: node animasi/render.js <keluaran.mp4> [rekaman-suara] [lebar=1080] [fps=30] [html relatif ke animasi/]
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const path = require('path');
 
 (async () => {
-  const [out = 'animasi/output/sumur-mbah-darmi.mp4', audio, width = '1080', fps = '30'] = process.argv.slice(2);
+  const [out = 'animasi/output/sumur-mbah-darmi.mp4', audio, width = '1080', fps = '30', html = 'sumur-mbah-darmi.html'] = process.argv.slice(2);
   const w = Number(width), f = Number(fps);
   const browser = await chromium.launch();
   const page = await browser.newPage();
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
-  await page.goto('file://' + path.resolve(__dirname, 'sumur-mbah-darmi.html'));
+  await page.goto('file://' + path.resolve(__dirname, html));
   if (errors.length) throw new Error(errors.join('\n'));
   const duration = await page.evaluate(() => window.SAKA.duration);
   const total = Math.ceil(duration * f);
