@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { templates } from "@/components/invitation/data";
+import { sceneTemplates, templates } from "@/components/invitation/data";
+import { BatikPanel, FlowerBed, Joglo, Mansion } from "@/components/invitation/scene/Art";
 import "./katalog.css";
 
 export const metadata: Metadata = {
@@ -16,6 +17,37 @@ export default function Katalog() {
         <h1>Contoh Undangan Digital</h1>
         <p className="kat-sub">Pilih tema, lalu ketuk “Buka Undangan” untuk melihat animasi pembukanya.</p>
       </header>
+      <h2 className="kat-group">3D Motion</h2>
+      <section className="kat-grid">
+        {sceneTemplates.map((t, i) => (
+          <article key={t.slug} className={`kat-card kat-${t.scene}`} style={{ animationDelay: `${i * 120}ms` }}>
+            <div className="kat-preview" aria-hidden>
+              {t.scene === "istana" ? (
+                <div className="pv pv-scene">
+                  <div className="pv-mansion"><Mansion /></div>
+                  <div className="pv-flowers"><FlowerBed roses={[["#e9a27f", "#c86f4c"], ["#f3d9c4", "#d9aa86"]]} leaves={["#8a9a6a", "#6f7f52"]} seed={7} count={8} /></div>
+                  <i className="pv-leafcurtain" />
+                </div>
+              ) : (
+                <div className="pv pv-scene">
+                  <div className="pv-joglo"><Joglo /></div>
+                  <div className="pv-bdoor pv-bdoor-l"><BatikPanel className="pv-batik" /></div>
+                  <div className="pv-bdoor pv-bdoor-r"><BatikPanel className="pv-batik" /></div>
+                </div>
+              )}
+            </div>
+            <div className="kat-body">
+              <span className="kat-badge">{t.openingLabel}</span>
+              <h2>{t.name}</h2>
+              <p>{t.tagline}</p>
+              <Link className="btn" href={`/contoh/${t.slug}?to=Tamu+Undangan`}>
+                Lihat Contoh
+              </Link>
+            </div>
+          </article>
+        ))}
+      </section>
+      <h2 className="kat-group">Klasik</h2>
       <section className="kat-grid">
         {templates.map((t, i) => (
           <article key={t.slug} className={`kat-card kat-${t.opening}`} style={{ animationDelay: `${i * 120}ms` }}>

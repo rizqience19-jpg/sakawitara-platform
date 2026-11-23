@@ -1,6 +1,8 @@
 export type OpeningStyle = "gerbang" | "amplop" | "lingkar";
+export type SceneStyle = "istana" | "joglo";
 
 export type Template = {
+  kind: "classic";
   slug: string;
   name: string;
   tagline: string;
@@ -12,8 +14,46 @@ export type Template = {
   heroDelay: number;
 };
 
+export type SceneTemplate = {
+  kind: "scene";
+  slug: string;
+  name: string;
+  tagline: string;
+  scene: SceneStyle;
+  openingLabel: string;
+  /** kapan kartu nama muncul & scroll dibuka (ms sejak tombol ditekan) */
+  titleAt: number;
+  unlockAt: number;
+};
+
+export type AnyTemplate = Template | SceneTemplate;
+
+export const sceneTemplates: SceneTemplate[] = [
+  {
+    kind: "scene",
+    slug: "graha-asri",
+    name: "Graha Asri",
+    tagline: "Taman istana klasik — 3D Motion",
+    scene: "istana",
+    openingLabel: "3D Motion · tirai daun & scene bertingkat",
+    titleAt: 3900,
+    unlockAt: 4700,
+  },
+  {
+    kind: "scene",
+    slug: "joglo-tirta",
+    name: "Joglo Tirta",
+    tagline: "Nuansa Jawa, air terjun & batik — 3D Motion",
+    scene: "joglo",
+    openingLabel: "3D Motion · pintu batik & pepohonan tumbuh",
+    titleAt: 4100,
+    unlockAt: 4900,
+  },
+];
+
 export const templates: Template[] = [
   {
+    kind: "classic",
     slug: "royal-noir",
     name: "Royal Noir",
     tagline: "Hitam & emas, mewah dan klasik",
@@ -23,6 +63,7 @@ export const templates: Template[] = [
     heroDelay: 900,
   },
   {
+    kind: "classic",
     slug: "blush-letter",
     name: "Blush Letter",
     tagline: "Romantis, lembut, bernuansa surat cinta",
@@ -32,6 +73,7 @@ export const templates: Template[] = [
     heroDelay: 1900,
   },
   {
+    kind: "classic",
     slug: "sage-garden",
     name: "Sage Garden",
     tagline: "Hijau sage, natural dan teduh",
@@ -42,8 +84,10 @@ export const templates: Template[] = [
   },
 ];
 
-export function getTemplate(slug: string) {
-  return templates.find((t) => t.slug === slug);
+export const allTemplates: AnyTemplate[] = [...sceneTemplates, ...templates];
+
+export function getTemplate(slug: string): AnyTemplate | undefined {
+  return allTemplates.find((t) => t.slug === slug);
 }
 
 /** Data contoh — nanti diganti data undangan dari Supabase. */
@@ -93,6 +137,22 @@ export const sampleWedding = {
     { name: "Salsabila", attend: "Hadir", text: "Ikut bahagia banget! Lancar sampai hari H ya kalian." },
     { name: "Om Bambang", attend: "Tidak hadir", text: "Mohon maaf belum bisa hadir, doa terbaik untuk kalian berdua." },
   ],
+  /** URL foto (Supabase Storage). null = placeholder. */
+  photos: {
+    cover: null as string | null,
+    couple: null as string | null,
+    groom: null as string | null,
+    bride: null as string | null,
+    saveDate: null as string | null,
+    closing: null as string | null,
+    gallery: [null, null, null, null, null, null] as (string | null)[],
+    story: [null, null, null] as (string | null)[],
+  },
+  dresscode: {
+    text: "Kami dengan hormat mengharapkan tamu undangan mengenakan warna-warna berikut untuk hari istimewa kami.",
+    colors: ["#8a6a4a", "#d9c6a5", "#f3ece0"],
+  },
+  liveStream: { text: "Bagi keluarga & sahabat yang berhalangan hadir, saksikan momen kami secara virtual melalui tautan berikut.", url: "https://youtube.com" },
   /** isi URL mp3 untuk mengaktifkan tombol musik */
   musicUrl: null as string | null,
 };

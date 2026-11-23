@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Invitation from "@/components/invitation/Invitation";
-import { getTemplate, sampleWedding, templates } from "@/components/invitation/data";
+import SceneInvitation from "@/components/invitation/scene/SceneInvitation";
+import { allTemplates, getTemplate, sampleWedding } from "@/components/invitation/data";
 
 type Params = { slug: string };
 type Search = { to?: string | string[] };
 
 export function generateStaticParams() {
-  return templates.map((t) => ({ slug: t.slug }));
+  return allTemplates.map((t) => ({ slug: t.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
@@ -28,5 +29,6 @@ export default async function ContohUndangan({ params, searchParams }: { params:
   const raw = Array.isArray(to) ? to[0] : to;
   const guest = raw?.trim().slice(0, 80) || "Tamu Undangan";
 
+  if (template.kind === "scene") return <SceneInvitation template={template} wedding={sampleWedding} guest={guest} />;
   return <Invitation template={template} wedding={sampleWedding} guest={guest} />;
 }

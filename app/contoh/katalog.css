@@ -72,6 +72,77 @@
   color: #f0c68d;
 }
 
+.kat-group {
+  margin: 40px 0 16px;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #f0c68d;
+}
+.kat-istana .kat-preview { background: #f2ebdd; }
+.kat-joglo .kat-preview { background: #e9d6bb; }
+.pv-scene {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.pv-mansion,
+.pv-joglo {
+  position: absolute;
+  left: 15%;
+  width: 70%;
+  bottom: 18%;
+  animation: pvRise 5s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+.pv-joglo { bottom: 10%; animation-delay: 0.3s; }
+.pv-flowers {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8%;
+  animation: pvRise 5s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s infinite;
+}
+.pv-scene svg { width: 100%; display: block; }
+.pv-leafcurtain {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, #bda986 20%, transparent 21%) 0 0 / 40px 40px, #a8936f;
+  animation: pvCurtain 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+.pv-bdoor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  border: 2px solid #c9a36a;
+  animation: pvDoorSlideL 5s cubic-bezier(0.77, 0, 0.18, 1) infinite;
+}
+.pv-bdoor-l { left: 0; }
+.pv-bdoor-r { right: 0; animation-name: pvDoorSlideR; }
+.pv-batik { width: 100%; height: 100%; display: block; }
+@keyframes pvRise {
+  0%, 30% { opacity: 0; transform: translateY(40%) scale(0.9); }
+  55%, 92% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+@keyframes pvCurtain {
+  0% { transform: translateY(100%); opacity: 1; }
+  15% { transform: translateY(0); opacity: 1; }
+  30% { transform: translateY(0); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+@keyframes pvDoorSlideL {
+  0%, 10% { transform: none; }
+  30%, 90% { transform: translateX(-102%); }
+  100% { transform: none; }
+}
+@keyframes pvDoorSlideR {
+  0%, 10% { transform: none; }
+  30%, 90% { transform: translateX(102%); }
+  100% { transform: none; }
+}
+
 /* pratinjau mini */
 .pv {
   position: relative;
