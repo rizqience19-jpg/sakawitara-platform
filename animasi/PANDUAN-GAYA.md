@@ -15,7 +15,8 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 ## 1a. Aturan tetap (dari masukan pengguna)
 
 - **Tanpa musik latar.** Jangan menambah musik apa pun kecuali pengguna memintanya; musik ditambahkan pengguna sendiri.
-- **Efek suara**: tanyakan dulu ke pengguna apakah mau dipakai (belum ada keputusan tetap). Bila dipakai, hanya bunyi yang memang disebut/terjadi di cerita.
+- **Narasi diputar UTUH, persis seperti Mbah Darmi.** Jangan memotong narasi per baris, jangan menyisipkan jeda buatan di antara potongan, dan jangan mengubah tempo (`atempo`) — hasilnya terdengar terbata-bata. Jeda komedi dibuat oleh narator sendiri lewat `[pause]`/`[long pause]` di teks ElevenLabs. Adegan dan caption yang menyesuaikan waktu narasi (pakai transkripsi per kata), bukan sebaliknya. Kalau terlalu panjang, perpendek naskahnya.
+- **Efek suara: bawaan TIDAK ADA** (Mbah Darmi tanpa efek suara). Hanya bila pengguna memintanya, dan maksimal beberapa bunyi penting, jauh lebih pelan dari narasi (± −18 dB di bawah suara narator) sehingga dialog selalu terdengar jelas.
 - **Satu patokan ukuran tokoh.** Semua orang dewasa memakai skala yang sama dalam satu adegan dan antaradegan pada jarak yang sama; anak-anak lebih kecil secara konsisten. Kendaraan dan properti mengikuti ukuran orang, bukan sebaliknya:
   - tinggi orang dewasa ± setinggi atap kabin mobil/pikap; kepala tokoh di dalam kendaraan sama besar dengan kepala tokoh yang berdiri di sebelahnya;
   - kalau tokoh tidak muat di jendela/kendaraan, **perbesar kendaraannya**, jangan kecilkan tokohnya;
