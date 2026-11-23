@@ -64,3 +64,6 @@ save("klik", rng.standard_normal(len(t)) * np.exp(-t * 180))
 # Dentum rendah pendek untuk "Empat."
 t = secs(0.9)
 save("dum", (np.sin(2 * np.pi * 55 * t) + 0.4 * np.sin(2 * np.pi * 82 * t)) * np.exp(-t * 4))
+
+# Tiga langkah mundur pelan.
+save("mundur", steps(3, 0.26))

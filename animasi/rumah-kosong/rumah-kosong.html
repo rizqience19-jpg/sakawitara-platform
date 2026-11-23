@@ -489,7 +489,7 @@ function audioEvents(){
   add('derit',S('masuk')-.1,.16);
   add('langkah',S('pencar')+.3,.1);
   add('klik',E('senter_mati')+.05,.16);
-  add('langkah-cepat',S('lari'),.13);add('langkah-cepat',S('lari2'),.13);
+  add('langkah-cepat',S('lari'),.13);add('mundur',S('teriak2')+.55,.1);add('langkah-cepat',S('lari2'),.13);
   add('dum',S('empat')-.05,.18);
   add('angin',S('rumah_akhir'),.12);add('derit',S('pintu_lebar')+.4,.16);
   return ev
@@ -556,11 +556,12 @@ function paintScene(key,t,dt,len){
       if(ga>0){g.save();g.globalAlpha=ga*.92;P('anak',420,Y,A*KID,{mood:key==='hitung'?'calm':'happy',look:-1,hand:-1,gesture:key==='anak_ajak'?1:0,wiggle:key==='anak_ajak'?1:0,whisper:true});g.restore()}
       darkness(DARK_OUT,[MOON,lampLight(240),...(ga>0?[ghostGlow(420,Y,A*KID)]:[])]);break}
     case 'teriak2':{exterior(t,{lampX:240,hx:90,hs:1.4});
-      for(const [id,x] of [['tika',130],['bagas',220],['rehan',310]])P(id,x,Y,A,Object.assign({mood:'wow',talk:true,shake:.7,look:1,both:true,gesture:1},id==='tika'?{handPos:{1:[30,-96]},tools:[['senter',1]],lightA:.2,gesture:0,both:false}:{}));
+      const back=48*ease(clamp((p-.3)/.62)),stepping=p>.3&&p<.92?1:0;
+      for(const [id,x] of [['tika',130],['bagas',220],['rehan',310]])P(id,x-back,Y,A,Object.assign({mood:'wow',talk:true,shake:stepping?.2:.7,look:1,both:true,gesture:1,walk:stepping,pace:.8,dir:1},id==='tika'?{handPos:{1:[30,-96]},tools:[['senter',1]],lightA:.2,gesture:0,both:false}:{}));
       g.save();g.globalAlpha=.9;P('anak',420,Y,A*KID,{mood:'happy',look:-1,hand:-1,gesture:1,wiggle:1});g.restore();
       darkness(DARK_OUT,[MOON,lampLight(240),ghostGlow(420,Y,A*KID)]);break}
     case 'lari2':{exterior(t,{lampX:240,hx:90,hs:1.4});const k=ease(p);
-      for(const [id,x0,d] of [['tika',130,0],['bagas',220,.06],['rehan',310,.12]])P(id,mix(x0,x0-460,clamp(k*1.3-d)),Y,A,Object.assign({walk:1,pace:1.6,dir:-1,mood:'scared'},id==='tika'?{handPos:{1:[30,-96]},tools:[['senter',1]],lightA:2.8}:{}));
+      for(const [id,x0,d] of [['tika',130,0],['bagas',220,.06],['rehan',310,.12]])P(id,mix(x0-48,x0-500,clamp(k*1.3-d)),Y,A,Object.assign({walk:1,pace:1.6,dir:-1,mood:'scared'},id==='tika'?{handPos:{1:[30,-96]},tools:[['senter',1]],lightA:2.8}:{}));
       g.save();g.globalAlpha=.9;P('anak',420,Y,A*KID,{mood:'happy',look:-1,hand:-1,gesture:.8,wiggle:1});g.restore();
       for(let i=0;i<8;i++){const f=(t*2+i/8)%1;ellipse(mix(330,-130,k)+f*80,Y-6-f*20,8+f*10,5+f*5,'rgba(120,110,100,'+(.4*(1-f)).toFixed(2)+')')}
       darkness(DARK_OUT,[MOON,lampLight(240),ghostGlow(420,Y,A*KID)]);break}
