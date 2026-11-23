@@ -36,8 +36,8 @@ export const sceneTemplates: SceneTemplate[] = [
     tagline: "Taman istana klasik — 3D Motion",
     scene: "istana",
     openingLabel: "3D Motion · tirai daun & scene bertingkat",
-    titleAt: 3900,
-    unlockAt: 4700,
+    titleAt: 5300,
+    unlockAt: 6100,
   },
   {
     kind: "scene",
@@ -46,8 +46,8 @@ export const sceneTemplates: SceneTemplate[] = [
     tagline: "Nuansa Jawa, air terjun & batik — 3D Motion",
     scene: "joglo",
     openingLabel: "3D Motion · pintu batik & pepohonan tumbuh",
-    titleAt: 4100,
-    unlockAt: 4900,
+    titleAt: 5500,
+    unlockAt: 6300,
   },
 ];
 

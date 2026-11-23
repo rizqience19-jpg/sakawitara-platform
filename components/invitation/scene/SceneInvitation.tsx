@@ -34,7 +34,8 @@ export default function SceneInvitation({ template, wedding, guest }: { template
     let my = 0;
     const apply = () => {
       raf = 0;
-      root.style.setProperty("--sy", String(sy));
+      // --p: progres scroll 0 → 1 selama layar pertama; dipakai layer untuk "terbelah" ke luar
+      root.style.setProperty("--p", sy.toFixed(4));
       root.style.setProperty("--mx", mx.toFixed(3));
       root.style.setProperty("--my", my.toFixed(3));
     };
@@ -42,19 +43,29 @@ export default function SceneInvitation({ template, wedding, guest }: { template
       if (!raf) raf = requestAnimationFrame(apply);
     };
     const onScroll = () => {
-      sy = Math.min(window.scrollY, window.innerHeight * 1.5);
+      sy = Math.min(window.scrollY / window.innerHeight, 1.3);
       queue();
     };
     const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
       mx = (e.clientX / window.innerWidth - 0.5) * 2;
       my = (e.clientY / window.innerHeight - 0.5) * 2;
       queue();
     };
+    // HP: miringkan layar → scene ikut bergeser (Android langsung; iOS butuh izin, diabaikan)
+    const onTilt = (e: DeviceOrientationEvent) => {
+      if (e.gamma == null || e.beta == null) return;
+      mx = Math.max(-1, Math.min(1, e.gamma / 25));
+      my = Math.max(-1, Math.min(1, (e.beta - 45) / 25));
+      queue();
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("deviceorientation", onTilt, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("deviceorientation", onTilt);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -159,7 +170,7 @@ function CoupleIntro({ wedding }: { wedding: Wedding }) {
   const mono2 = `${wedding.bride.nick[0]}`;
   return (
     <section className="sx-sec sx-panel">
-      <Reveal variant="zoom">
+      <Reveal variant="curtain">
         <div className="frame-arch">
           <Photo src={wedding.photos.couple} label={`${wedding.groom.nick} & ${wedding.bride.nick}`} className="ph-arch" />
         </div>
@@ -448,7 +459,7 @@ function WishesBox({ wedding }: { wedding: Wedding }) {
 function ThankYou({ wedding }: { wedding: Wedding }) {
   return (
     <section className="sx-sec sx-panel sx-end">
-      <Reveal variant="zoom">
+      <Reveal variant="curtain">
         <div className="frame-arch">
           <Photo src={wedding.photos.closing} label={`${wedding.groom.nick} & ${wedding.bride.nick}`} className="ph-arch" />
         </div>

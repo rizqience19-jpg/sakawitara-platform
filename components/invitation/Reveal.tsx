@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
-export type RevealVariant = "up" | "down" | "left" | "right" | "zoom" | "blur" | "flip";
+export type RevealVariant = "up" | "down" | "left" | "right" | "zoom" | "blur" | "flip" | "curtain";
 
 /** Elemen yang muncul dengan animasi saat masuk viewport. */
 export function Reveal({
