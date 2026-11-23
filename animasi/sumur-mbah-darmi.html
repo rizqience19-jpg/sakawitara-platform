@@ -34,7 +34,8 @@ button:focus-visible,input:focus-visible,.pick:focus-within{outline:3px solid #e
 // Animasi "Sumur Mbah Darmi". Semua waktu dalam detik; satu baris naskah = satu adegan.
 // TIMES: isi dengan [mulai, selesai_bicara] per baris setelah rekaman suara dicocokkan.
 // Selama masih null, waktu diperkirakan dari panjang teks.
-const TIMES=null;
+// Dicocokkan dengan narasi ElevenLabs (suara Gunawan), animasi/narasi-gunawan.mp3.
+const TIMES=[[0.0,3.41],[4.17,6.51],[7.19,10.83],[11.49,12.94],[13.54,16.4],[16.79,19.79],[20.25,22.77],[23.22,25.63],[26.08,29.41],[29.74,32.64],[33.12,35.18],[35.63,37.81],[38.2,41.08],[41.46,43.92],[44.33,46.88],[47.2,50.44],[50.83,52.69],[53.06,56.86],[57.19,60.63],[60.97,62.68],[63.02,65.49],[65.78,69.59],[69.93,70.86],[71.19,74.32],[74.57,78.22],[78.5,81.71],[81.96,85.45],[85.79,88.8],[89.19,90.31],[90.55,92.84],[93.13,96.54],[96.79,99.57],[99.83,101.89],[102.24,105.73],[106.09,108.47],[108.82,111.3]];
 
 const W=450,H=800;
 const canvas=document.querySelector('#screen'),g=canvas.getContext('2d');
