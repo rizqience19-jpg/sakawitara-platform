@@ -8,7 +8,9 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - Durasi **± 1,5–2 menit**, **30–40 baris** naskah.
 - **Satu baris naskah = satu adegan.** Ganti adegan tiap 1–4 detik (potongan cepat ala TikTok).
 - **Judul di awal (wajib)**: tampil ± 2,5 detik di atas adegan pertama (tidak menambah durasi). Baris kecil = nama seri/kanal bila ada (mis. "Kisah Nyempil"), baris besar = judul episode. Pakai judul yang ditulis pengguna.
-- Penutup: layar gelap transparan + **"Tamat"** (Georgia italic) + satu ajakan singkat.
+- **Penutup (wajib)**: layar gelap transparan, **tanpa tulisan "Tamat"**. Isinya dua baris dengan **gaya huruf caption** (800 system-ui, putih, garis hitam tebal — sama seperti `caption()`):
+  - "Sampai jumpa di Kisah Nyempil berikutnya" (besar, boleh dua baris)
+  - "@kisah.nyempil" (lebih kecil, di bawahnya)
 
 ## 1a. Aturan tetap (dari masukan pengguna)
 
