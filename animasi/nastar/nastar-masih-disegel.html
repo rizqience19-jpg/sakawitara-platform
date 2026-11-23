@@ -307,7 +307,9 @@ function heriState(st,p,t){
   const hold=()=>{o.handL=holdJar[0];o.handR=holdJar[1]};
   switch(id){
     case 'judul':o.mood='happy';o.handR=[30,-96+sin(t*1.5)*3];break;
-    case 'ambil':hold();o.mood='happy';break;
+    case 'ambil':{const k1=ease(clamp(p/.4)),k2=ease(clamp((p-.4)/.6));
+      o.handL=[mix(mix(-30,-71,k1),-26,k2),mix(mix(-72,-23,k1),-70,k2)];o.handR=[mix(mix(30,-19,k1),26,k2),mix(mix(-72,-23,k1),-70,k2)];
+      o.lean=-.1*Math.sin(clamp(p/.7)*Math.PI);o.mood='happy';o.lookY=1;break}
     case 'putar1':hold();o.mood=p>.5?'serious':'calm';o.handR=[26,-70+sin(t*18)*3];break;
     case 'kilau':case 'l1':hold();o.mood='wide';o.lookY=1;break;
     case 'raba':case 'putarpenuh':hold();o.mood=p>.5?'confused':'serious';o.lookY=1;break;
@@ -316,7 +318,11 @@ function heriState(st,p,t){
     case 'korek':case 'lidah':hold();o.mood='tongue';o.lookY=1;o.headX=-2;break;
     case 'gores':hold();o.mood='flat';break;
     case 'tatap':hold();o.mood='squint';o.look=1.4;break;
-    case 'remas':o.mood='happy';o.handR=[20,-92+sin(t*12)*2];o.handL=[-6,-90];break;
+    case 'remas':{o.mood='happy';const d=ease(clamp(p/.15));
+      if(p<.15){o.handL=[-26,mix(-70,-40,d)];o.handR=[26,mix(-70,-40,d)]}
+      else if(p<.6){o.handR=[20,-92+sin(t*12)*2];o.handL=[-6,-90]}
+      else{const k=ease(clamp((p-.6)/.25)),b=ease(clamp((p-.85)/.15));o.handL=[-26,-40];o.handR=[mix(mix(20,30,k),30,b),mix(mix(-92,-4,k),-72,b)];o.lookY=1}
+      break}
     case 'kreek':hold();o.mood='happy';break;
     case 'yakin':hold();o.mood=p<.4?'happy':'annoyed';o.handR=[22,-82+sin(t*25)*2*(p>.3?1:0)];break;
     case 'lagi':hold();o.mood='annoyed';o.sweat=true;o.sweatT=t;o.handR=[22,-82+sin(t*30)*3];break;
@@ -340,15 +346,16 @@ function deniState(st,p,t){
   if(['coba2','kreek','remas','yakin','lagi'].includes(id)){o.mood=id==='lagi'?'wide':'happy';o.look=-1;o.handL=[-20,-96];o.handR=[4,-96]}
   if(id==='hening'){const k=ease(clamp(p*1.2));o.mood='flat';o.look=-1;o.handL=[mix(-20,-30,k),mix(-96,-70,k)];o.handR=[mix(4,28,k),mix(-96,-70,k)]}
   if(['buPeriksa','l8','napas'].includes(id)){o.mood='flat';o.look=-1}
-  if(['bola','l9'].includes(id)){o.mood=id==='l9'?'happy':'calm';o.look=-1;o.handL=[-30,-128]}
-  if(id==='lelah'){o.mood='happy';o.look=-1;o.handL=[-30,-128]}
+  if(['bola','l9','lelah'].includes(id)){o.pose='stand';o.look=-1;o.mood=id==='bola'?'calm':'happy';
+    if(id==='bola'){const k1=ease(clamp(p/.4)),k2=ease(clamp((p-.4)/.6));o.handL=[mix(mix(-30,-40,k1),-34,k2),mix(mix(-72,-130,k1),-172,k2)];o.lookY=p<.4?-1:0}
+    else o.handL=[-34,-172]}
   return o
 }
 function deniPos(st,p){
   const id=st.id;
   if(['kumpul'].includes(id))return [mix(DENI_FLOOR[0],300,ease(p)),DENI_FLOOR[1]];
   if(after('kumpul')&&!['bola','l9','lelah'].includes(id))return [300,705];
-  if(['bola','l9','lelah'].includes(id))return [300,705];
+  if(['bola','l9','lelah'].includes(id))return [285,690];
   return DENI_FLOOR
 }
 
@@ -361,7 +368,7 @@ function drawWorld(st,p,t){
   let hx=HERI_SOFA[0],hy=HERI_SOFA[1],hpose='sit',walk=0;
   if(id==='kejendela'){const k=ease(p);hx=mix(225,110,k);hy=mix(560,600,k);hpose='stand';walk=k<1?1:0}
   else if(atWindow){hx=110;hy=600;hpose='stand'}
-  coffeeTable({t,tea:true,ball:after('remas')&&!['bola','l9','lelah'].includes(id)&&!(id==='remas'&&p<.8)});
+  coffeeTable({t,tea:true,ball:(after('remas')&&!['bola','l9','lelah'].includes(id)&&!(id==='remas'&&p<.85))||(id==='bola'&&p<.4)});
   // toples di meja sebelum diambil
   if(id==='judul')jar(JAR_TABLE[0],JAR_TABLE[1],1,t,{});
   // Bu Heri
@@ -378,23 +385,23 @@ function drawWorld(st,p,t){
   person('heri',hx,hy,t,ho);
   // toples di tangan
   const P=PEOPLE.heri;
-  if(id!=='judul'&&!['remas','sobek','pandangi','l7'].includes(id)||id==='remas'&&false){
+  if(id==='remas'){const d=ease(clamp(p/.15));jar(hx,hy+38+mix(-70,-40,d),1,t,{tapes:1})}
+  if(id!=='judul'&&!['remas','sobek','pandangi','l7'].includes(id)){
     let jx=hx,jy=hy+(hpose==='sit'?38:0)-70,rot=t*.02,tilt=0;
     if(atWindow){jx=hx+28;jy=hy-214;tilt=sin(t*1.3)*.45;rot=t*.25}
-    if(id==='ambil'){const k=ease(p);jx=mix(JAR_TABLE[0],hx,k);jy=mix(JAR_TABLE[1],hy+38-70,k)}
+    if(id==='ambil'){const k=ease(clamp((p-.4)/.6));jx=mix(JAR_TABLE[0],hx,k);jy=mix(JAR_TABLE[1],hy+38-70,k)}
     if(id==='putarpenuh')rot=p*2;
     if(id==='kreek')rot=p*1.2;
     if(id==='yakin'||id==='lagi')tilt=sin(t*20)*.03;
     jar(jx,jy,1,t,{rot,tilt,tapes:after('kreek')&&!(id==='kreek'&&p<.9)?1:2});
     if(id==='kreek'){const L=ease(p);g.save();g.strokeStyle='rgba(255,255,255,.85)';g.lineWidth=2;g.beginPath();g.moveTo(jx+30,jy-20);g.quadraticCurveTo(jx+60+L*30,jy-40-L*20,hx+26+L*40,jy-50-L*40);g.stroke();g.restore()}
   }
-  if(id==='remas'){const k=clamp(p/.75);if(k<1)tapeBall(hx+mix(30,6,k)*1,hy+38-92,mix(1.6,1,k));else tapeBall(mix(hx,255,clamp((p-.75)*4)),mix(hy+38-92,594,clamp((p-.75)*4)),1)}
+  if(id==='remas'&&p>=.15){if(p<.6)tapeBall(hx+8,hy+38-96,mix(1.8,1,clamp((p-.15)/.45)));else if(p<.85){const k=ease(clamp((p-.6)/.25));tapeBall(hx+mix(20,30,k),hy+38+mix(-92,-4,k)-6,1)}}
   if(['sobek','pandangi','l7'].includes(id)){jar(hx-26,hy+38-70,1,t,{tapes:2});tapeBall(hx+10,hy+38-114,.35)}
   // Deni
   const [dx,dy]=deniPos(st,p),dO=deniState(st,p,t);dO.talk=E.talking==='deni'?E.mouth:0;
-  if(['bola','l9','lelah'].includes(id)){if(id==='bola'&&p<.4)tapeBall(255,594,1);}
   person('deni',dx,dy,t,dO);
-  if(['bola','l9','lelah'].includes(id)&&!(id==='bola'&&p<.4)){const s=PEOPLE.deni.scale;tapeBall(dx-30*s,dy+(62-128)*s-9,1.1)}
+  if(['bola','l9','lelah'].includes(id)&&!(id==='bola'&&p<.4)){const s=PEOPLE.deni.scale,h=dO.handL;tapeBall(dx+h[0]*s,dy+h[1]*s-7,1.1)}
   tvGlow(t);
 }
 const CAM={wide:[225,520,1],med:[225,520,1.75],face:[225,388,3.1],two:[275,560,1.45],deni:[330,610,2.4],window:[150,470,1.45],closeBu:[260,470,1.7]};
