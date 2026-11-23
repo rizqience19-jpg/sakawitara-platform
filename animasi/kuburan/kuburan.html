@@ -387,6 +387,7 @@ function ghostGlow(x,y,s){return {x,y:y-120*s,r:120*s,col:'rgba(200,220,255,.25)
 // ---------- Pegangan: senter, gulali ----------
 function tool(type,hx,hy,t,o){
   if(type==='senter'){g.save();g.translate(hx,hy);g.rotate(o.lightA??-.2);box(-12,-4,20,8,3,'#2a2a30');box(6,-5.5,8,11,3,'#44454c');ellipse(14,0,2,4.6,'#fff6cc');g.restore()}
+  if(type==='botol'){box(hx-5,hy-26,10,26,3,'#7fd0f0');box(hx-4,hy-32,8,7,2,'#2e86c1');box(hx-5,hy-18,10,8,1,'#f2f2f2')}
   if(type==='gulali'){line([[hx,hy+4],[hx+2,hy-40]],'#e8dcc0',2);orb(hx+2,hy-52,15,14,'#ffd0e4','#f59cc4','#d66c9e')}
 }
 // ---------- Latar ----------
@@ -485,14 +486,14 @@ const SCRIPT=[
   ['"Namanya juga koperasi, Gas. Melayani semua warga."','rehan_koperasi',2.1,2.2,240,520,'rehan'],
   ['"Semua warga… termasuk yang di sini?"','bagas_warga',2.0,2.15,150,520,'bagas'],
   ['Rehan tidak menjawab. Dia malah masuk, mau beli minum.','rehan_masuk',1.0,1.08,225,500],
-  ['Di depan kasir sudah ada yang antre. Putih. Diikat. Melompat-lompat pelan.','antre',1.0,1.06,225,480],
-  ['Pocong.','pocong_close',2.5,2.75,265,500],
-  ['Tiba-tiba pocong itu melompat… menyerobot ke depan Rehan.','serobot',1.05,1.1,200,490],
+  ['Rehan langsung antre di kasir. Lalu pintu berbunyi. Ada yang masuk. Putih. Diikat. Melompat-lompat pelan.','antre',.96,1.0,195,480],
+  ['Pocong.','pocong_close',2.5,2.75,2,500],
+  ['Tiba-tiba pocong itu melompat… menyerobot ke depan Rehan.','serobot',.96,1.0,195,490],
   ['"Mas, antre ya. Jangan nyelonong."','rehan_tegur',1.9,2.0,215,520,'rehan'],
   ['Pocongnya diam… lalu mengangguk, dan melompat mundur ke paling belakang.','pocong_mundur',1.05,1.1,190,490],
   ['"Han… barusan kamu negur pocong," bisik Tika.','tika_bisik',2.0,2.1,150,520,'tika'],
   ['"Antre ya antre, Tik. Mau manusia atau bukan."','rehan_santai',2.1,2.2,200,520,'rehan'],
-  ['Akhirnya giliran pocong sampai di kasir. Dia diam lama sekali.','giliran',1.4,1.5,320,500],
+  ['Rehan sudah bayar. Harusnya mereka langsung pulang. Tapi Tika penasaran… pocong mau beli apa? Giliran pocong sampai di kasir. Dia diam lama sekali.','giliran',1.1,1.22,215,500],
   ['"Mbak… talinya tolong dibukain. Saya mau ambil kembalian."','pocong_minta',2.0,2.1,300,520,'pocong'],
   ['Kasirnya menoleh pelan. Rambutnya panjang, menutupi seluruh wajah.','kasir_noleh',2.2,2.5,380,500],
   ['"Maaf, Mas. Saya juga nggak punya tangan."','kasir_tangan',1.35,1.45,300,490,'kasir'],
@@ -501,7 +502,7 @@ const SCRIPT=[
   ['Mereka selamat. Tapi Bagas lupa satu hal… kenapa tadi dia buru-buru.','rumah',1.2,1.45,225,520],
   ['Malam itu, Bagas selamat dari pocong. Tapi tidak selamat dari celananya sendiri.','akhir',1.3,1.45,225,560]
 ];
-const TIMES=[[0.08, 4.04], [4.6, 6.82], [7.43, 11.44], [12.03, 16.96], [17.27, 19.92], [20.5, 22.64], [23.16, 26.48], [26.86, 29.36], [29.73, 32.64], [33.0, 35.28], [35.57, 38.88], [38.95, 44.0], [44.22, 45.04], [45.15, 48.32], [48.39, 50.48], [50.61, 54.8], [54.87, 57.84], [58.04, 60.8], [60.93, 64.96], [65.03, 68.32], [68.45, 72.48], [72.61, 74.96], [75.11, 76.08], [76.4, 80.88], [80.99, 85.36], [86.0, 91.28]],WORDS=[[0.08, 0.28, 0.56, 1.28, 1.6, 1.76, 2.08, 2.64, 2.76, 3.04, 3.2, 3.36, 3.68], [4.6, 5.64, 5.76, 6.08], [7.43, 7.88, 8.48, 9.16, 9.6, 9.76, 10.24, 10.56, 10.8, 11.04], [12.03, 12.32, 13.12, 13.52, 13.96, 14.08, 14.32, 14.96, 15.28, 16.04, 16.32, 16.48], [17.27, 17.52, 18.24, 18.44, 19.24, 19.48], [20.5, 21.6, 21.84, 22.24], [23.16, 23.36, 24.16, 24.48, 25.36, 25.76], [26.86, 27.08, 27.4, 27.68, 27.88, 28.64, 28.88], [29.73, 29.96, 30.2, 31.0, 31.36, 31.84, 32.04], [33.0, 33.2, 34.16, 34.52, 34.64, 34.8], [35.57, 35.84, 36.08, 36.88, 37.04, 37.28, 37.88, 38.08, 38.24], [38.95, 39.04, 39.4, 39.72, 40.0, 40.16, 40.32, 41.2, 41.92, 42.72, 43.44], [44.22], [45.15, 45.6, 45.92, 46.08, 46.88, 47.4, 47.52, 47.76], [48.39, 48.92, 49.2, 49.56, 49.72], [50.61, 50.96, 51.64, 51.88, 52.72, 52.88, 53.4, 53.68, 53.92, 54.16], [54.87, 55.36, 55.76, 56.0, 56.36, 57.04, 57.28], [58.04, 58.24, 58.44, 58.76, 59.17, 59.36, 59.84, 60.04], [60.93, 61.36, 61.76, 62.16, 62.56, 62.76, 63.48, 63.68, 64.0, 64.4], [65.03, 65.6, 65.92, 66.12, 66.92, 67.16, 67.4, 67.57], [68.45, 68.88, 69.2, 69.88, 70.44, 71.04, 71.6, 71.88], [72.61, 72.88, 73.36, 73.6, 73.8, 74.0, 74.24], [75.11], [76.4, 76.88, 77.52, 78.08, 78.32, 78.96, 79.2, 79.52, 79.92, 80.32], [80.99, 81.2, 82.03, 82.32, 82.68, 82.96, 83.32, 83.76, 84.2, 84.48, 84.64], [86.0, 86.24, 86.88, 87.28, 87.68, 87.92, 88.69, 89.2, 89.44, 89.92, 90.08, 90.6]],AUDIO_END=91.28;
+const TIMES=[[0.08, 4.04], [4.6, 6.82], [7.43, 11.44], [12.03, 16.96], [17.27, 19.92], [20.5, 22.64], [23.16, 26.48], [26.86, 29.36], [29.73, 32.64], [33.0, 35.28], [35.57, 38.75], [38.98, 46.98], [47.4, 48.22], [48.33, 51.5], [51.57, 53.66], [53.79, 57.98], [58.05, 61.02], [61.22, 63.9], [64.23, 75.19], [75.62, 78.91], [79.04, 83.07], [83.2, 85.55], [85.7, 86.67], [86.99, 91.47], [91.58, 95.95], [96.59, 101.84]],WORDS=[[0.08, 0.28, 0.56, 1.28, 1.6, 1.76, 2.08, 2.64, 2.76, 3.04, 3.2, 3.36, 3.68], [4.6, 5.64, 5.76, 6.08], [7.43, 7.88, 8.48, 9.16, 9.6, 9.76, 10.24, 10.56, 10.8, 11.04], [12.03, 12.32, 13.12, 13.52, 13.96, 14.08, 14.32, 14.96, 15.28, 16.04, 16.32, 16.48], [17.27, 17.52, 18.24, 18.44, 19.24, 19.48], [20.5, 21.6, 21.84, 22.24], [23.16, 23.36, 24.16, 24.48, 25.36, 25.76], [26.86, 27.08, 27.4, 27.68, 27.88, 28.64, 28.88], [29.73, 29.96, 30.2, 31.0, 31.36, 31.84, 32.04], [33.0, 33.2, 34.16, 34.52, 34.64, 34.8], [35.57, 35.84, 36.08, 36.88, 37.04, 37.28, 37.88, 38.08, 38.24], [38.98, 39.5, 39.78, 40.18, 40.42, 41.38, 41.86, 42.18, 43.06, 43.3, 43.5, 44.18, 44.98, 45.78, 46.5], [47.4], [48.33, 48.78, 49.1, 49.26, 50.06, 50.58, 50.7, 50.94], [51.57, 52.1, 52.38, 52.74, 52.9], [53.79, 54.14, 54.82, 55.06, 55.9, 56.06, 56.58, 56.86, 57.1, 57.34], [58.05, 58.54, 58.94, 59.18, 59.54, 60.22, 60.46], [61.22, 61.42, 61.62, 61.94, 62.35, 62.54, 63.02, 63.22], [64.23, 64.55, 64.91, 65.59, 66.31, 66.67, 66.95, 67.74, 68.23, 68.55, 69.83, 70.19, 70.39, 70.63, 71.51, 71.99, 72.47, 72.71, 72.91, 73.59, 73.83, 74.15, 74.63], [75.62, 76.19, 76.51, 76.71, 77.51, 77.75, 77.99, 78.16], [79.04, 79.47, 79.79, 80.47, 81.03, 81.63, 82.19, 82.47], [83.2, 83.47, 83.95, 84.19, 84.39, 84.59, 84.83], [85.7], [86.99, 87.47, 88.11, 88.67, 88.91, 89.55, 89.79, 90.11, 90.51, 90.91], [91.58, 91.79, 92.62, 92.91, 93.27, 93.55, 93.91, 94.35, 94.79, 95.07, 95.23], [96.59, 96.83, 97.47, 97.87, 98.27, 98.51, 99.28, 99.79, 100.03, 100.51, 100.67, 101.19]],AUDIO_END=101.84;
 const LINES=[];{
   let T=.5;
   SCRIPT.forEach(([text],i)=>{
@@ -519,7 +520,7 @@ function audioEvents(){
   const S=k=>LINES[KI(k)].start,E=k=>LINES[KI(k)].end,add=(f,t,v)=>ev.push(['sfx/'+f+'.wav',t,v]);
   add('angin',S('sign'),.1);add('angin',S('masuk'),.11);
   add('langkah',S('masuk')+.2,.09);
-  add('ting',S('rehan_masuk')+1.2,.12);
+  add('ting',S('rehan_masuk')+1.2,.12);add('ting',LINES[KI('antre')].words.find(w=>w[1]==='berbunyi')[0]+.5,.1);
   add('hop',S('serobot')+1.0,.12);add('hop',S('pocong_mundur')+1.6,.1);
   add('dum',S('kasir_tangan')+.5,.16);
   add('mundur',S('teriak')+.55,.1);add('langkah-cepat',S('kabur'),.12);
@@ -559,16 +560,16 @@ function paintScene(key,t,dt,len){
     case 'rehan_masuk':{graveyard(t,{kopdes:1,kx:240,ky:600,ks:2.1,treeX:-20});const k=ease(p);
       P('rehan',mix(150,275,k),Y+20,A,{walk:k<1?1:0,dir:.6});P('bagas',mix(60,150,clamp(k*1.3-.3)),Y+30,A,{walk:1,dir:.6,mood:'scared'});P('tika',mix(20,90,clamp(k*1.3-.3)),Y+30,A,{walk:1,dir:.6});
       nightLights([kopdesGlow(240,600,2.1)]);break}
-    case 'antre':{shop(t);const k=ease(clamp(p*1.6));
+    case 'antre':{shop(t);const k=ease(clamp(p*2.2));
       kasir(395,560,A,t,{});counter();
-      pocong(285,Y,A,t,{back:1,hop:Math.sin(t*1.2)>.3});
-      P('rehan',mix(60,190,k),Y,A,{walk:k<1?1:0,dir:.5,look:1});P('bagas',mix(-10,110,k),Y,A,{walk:k<1?1:0,dir:.5,mood:'scared',look:1});P('tika',mix(-60,40,k),Y,A,{walk:k<1?1:0,dir:.5,look:1});
+      P('rehan',mix(60,200,k),Y,A,{walk:k<1?1:0,dir:.5,look:1});P('bagas',mix(-10,125,k),Y,A,{walk:k<1?1:0,dir:.5,mood:'scared',look:p>.35?-1:1});P('tika',mix(-60,62,k),Y,A,{walk:k<1?1:0,dir:.5,look:p>.35?-1:1});
+      const q=clamp((p-.38)/.45),qx=mix(-90,2,q);pocong(qx,Y,A,t,{back:false,hop:q>0&&q<1});
       darkness(SHOP,[]);break}
-    case 'pocong_close':shop(t);kasir(395,560,A,t,{});counter();pocong(285,Y,A,t,{blink:Math.sin(t*3)>.95});darkness(SHOP,[]);break;
+    case 'pocong_close':shop(t);kasir(395,560,A,t,{});counter();pocong(2,Y,A,t,{blink:Math.sin(t*3)>.95});darkness(SHOP,[]);break;
     case 'serobot':{shop(t);kasir(395,560,A,t,{});counter();
-      P('tika',40,Y,A,{look:1});P('bagas',105,Y,A,{mood:'scared',look:1});
-      const k=clamp((p-.15)/.6);const px=mix(60,265,ease(k)),jump=Math.sin(Math.PI*k)*70;
-      if(k<=0||k>=1)pocong(k<=0?60:265,Y,A,t,{back:k>=1});
+      P('tika',62,Y,A,{look:1});P('bagas',125,Y,A,{mood:'scared',look:1});
+      const k=clamp((p-.15)/.6);const px=mix(2,265,ease(k)),jump=Math.sin(Math.PI*k)*80;
+      if(k<=0||k>=1)pocong(k<=0?2:265,Y,A,t,{back:k>=1});
       P('rehan',190,Y,A,{look:1,mood:k>.5?'frown':'calm'});
       if(k>0&&k<1)pocong(px,Y-jump,A,t,{back:true});
       darkness(SHOP,[]);break}
@@ -584,13 +585,20 @@ function paintScene(key,t,dt,len){
     case 'tika_bisik':case 'rehan_santai':shop(t);kasir(395,560,A,t,{});counter();
       P('bagas',30,Y,A,{mood:'scared',look:1});P('tika',105,Y,A,{mood:key==='tika_bisik'?'wow':'calm',look:1,whisper:key==='tika_bisik'});P('rehan',190,Y,A,{mood:'flat',look:key==='rehan_santai'?-.8:0});
       pocong(-50,Y,A,t,{back:1});darkness(SHOP,[]);break;
-    case 'giliran':case 'pocong_minta':shop(t);kasir(395,560,A,t,{});counter();
-      P('bagas',90,Y,A,{mood:'scared',look:1});P('tika',150,Y,A,{look:1});P('rehan',210,Y,A,{mood:'flat',look:1});
-      pocong(300,Y,A,t,{back:key==='giliran',wiggle:key==='pocong_minta',talk:key==='pocong_minta',sweat:key==='pocong_minta'});
+    case 'giliran':{shop(t);kasir(395,560,A,t,{});counter();
+      const m=ease(clamp((p-.22)/.18)),q=clamp((p-.48)/.3),hopping=q>0&&q<1;
+      P('bagas',mix(30,90,m),Y,A,{mood:'scared',look:1});
+      P('tika',mix(105,150,m),Y,A,{look:1,mood:p>.4?'suspicious':'calm',lean:p>.4?.1:0});
+      P('rehan',mix(265,210,m),Y,A,Object.assign({mood:'flat',look:p>.4?1:.6},p>.18?{handPos:{1:[30,-96]},tools:[['botol',1]]}:{}));
+      pocong(mix(-50,300,ease(q)),Y-(hopping?Math.abs(Math.sin(q*Math.PI*5))*24:0),A,t,{back:q>=1});
+      darkness(SHOP,[]);break}
+    case 'pocong_minta':shop(t);kasir(395,560,A,t,{});counter();
+      P('bagas',90,Y,A,{mood:'scared',look:1});P('tika',150,Y,A,{look:1,mood:'suspicious',lean:.1});P('rehan',210,Y,A,{mood:'flat',look:1,handPos:{1:[30,-96]},tools:[['botol',1]]});
+      pocong(300,Y,A,t,{wiggle:1,talk:1,sweat:1});
       darkness(SHOP,[]);break;
     case 'kasir_noleh':shop(t);kasir(395,560,A,t,{turn:1});counter();pocong(300,Y,A,t,{back:1});darkness(SHOP,[]);break;
     case 'kasir_tangan':{shop(t);kasir(395,560,A,t,{raise:ease(clamp(p*2.5))});counter();
-      P('bagas',90,Y,A,{mood:'wow',look:1,shake:.4});P('tika',150,Y,A,{mood:'wow',look:1});P('rehan',210,Y,A,{mood:'wow',look:1});
+      P('bagas',90,Y,A,{mood:'wow',look:1,shake:.4});P('tika',150,Y,A,{mood:'wow',look:1});P('rehan',210,Y,A,{mood:'wow',look:1,handPos:{1:[30,-96]},tools:[['botol',1]]});
       pocong(300,Y,A,t,{back:1});darkness(SHOP,[]);break}
     case 'teriak':{shop(t);kasir(395,560,A,t,{raise:1});counter();
       const back=48*ease(clamp((p-.3)/.62)),stepping=p>.3&&p<.92?1:0;
