@@ -1,11 +1,11 @@
 // Merender animasi menjadi MP4 9:16 bingkai demi bingkai.
-// Pemakaian: node animasi/render.js <keluaran.mp4> [rekaman-suara] [lebar=720] [fps=30]
+// Pemakaian: node animasi/render.js <keluaran.mp4> [rekaman-suara] [lebar=1080] [fps=30]
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const path = require('path');
 
 (async () => {
-  const [out = 'animasi/output/sumur-mbah-darmi.mp4', audio, width = '720', fps = '30'] = process.argv.slice(2);
+  const [out = 'animasi/output/sumur-mbah-darmi.mp4', audio, width = '1080', fps = '30'] = process.argv.slice(2);
   const w = Number(width), f = Number(fps);
   const browser = await chromium.launch();
   const page = await browser.newPage();
@@ -18,7 +18,7 @@ const path = require('path');
 
   const args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(f), '-i', '-'];
   if (audio) args.push('-i', audio, '-c:a', 'aac', '-b:a', '160k');
-  args.push('-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-preset', 'medium', '-crf', '20', '-movflags', '+faststart', '-t', String(duration), out);
+  args.push('-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-preset', 'medium', '-crf', '16', '-movflags', '+faststart', '-t', String(duration), out);
   const ff = spawn('ffmpeg', args, { stdio: ['pipe', 'inherit', 'inherit'] });
 
   for (let i = 0; i < total; i++) {

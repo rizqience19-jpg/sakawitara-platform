@@ -72,9 +72,9 @@ function pill(txt,x,y,size=13,bg='#fff4d6',fg='#4a3524'){
 
 // ---------- Lingkungan ----------
 const PAL={
-  day:{sky:['#8ccece','#d7e2bd','#ffe0a4'],hills:['#a2b89b','#8caa77','#779c64'],water:['#c4d6a6','#b7d9c4','#8ebdb4'],grass:['#5b8b47','#739d44'],dike:['#a7bd6a','#749956'],bank:['#abc46e','#d9d79c','#c1a675','#a78a64'],soil:['#b69468','#946c4d']},
-  dry:{sky:['#e6bf7c','#f2d8a0','#fbe8bf'],hills:['#c8b588','#b39e6e','#9c885b'],water:['#d9b98a','#c9a476','#b38a5d'],grass:['#a8954f','#bfa95c'],dike:['#c9b77a','#a8955c'],bank:['#cdb77a','#e0cf9c','#c7a676','#a98760'],soil:['#c9a372','#a57d54']},
-  night:{sky:['#18233f','#2e3d63','#55607f'],hills:['#38465b','#304357','#2a3d4c'],water:['#4b6580','#425e78','#38546c'],grass:['#3d5f4e','#4a6c55'],dike:['#4e6a58','#3e5a4a'],bank:['#5d7357','#6f7a5d','#5f5545','#4b4236'],soil:['#6b5641','#4f3e2e']},
+  day:{sky:['#4fb0e2','#b8e2ea','#ffe4a8'],hills:['#7fb868','#62a052','#4a8844'],water:['#b2dca6','#93d0bf','#62b3ad'],grass:['#3a8a3a','#57a83a'],dike:['#9cc65a','#5f9a44'],bank:['#abc46e','#d9d79c','#c1a675','#a78a64'],soil:['#b69468','#946c4d']},
+  dry:{sky:['#5aa6d6','#b6d8e4','#ffd99a'],hills:['#b89c58','#9b8444','#7f6e38'],water:['#e0b06a','#c88a4c','#a8683a'],grass:['#b0852e','#d0a43c'],dike:['#d2a860','#a87a3e'],bank:['#d9ae5e','#f0cf8a','#c8924f','#9e6a3a'],soil:['#cf9558','#a86a3a']},
+  night:{sky:['#0a1433','#1b2b5e','#3a4a86'],hills:['#26385e','#1f3352','#1a2c45'],water:['#2c5680','#244c72','#1c3f60'],grass:['#2a6e50','#3a8460'],dike:['#3d7a54','#2a5c42'],bank:['#4a7c4c','#62784a','#5a4630','#433322'],soil:['#6e4a30','#4a3020']},
   dusk:{sky:['#e48a66','#f2b98a','#ffdca6'],hills:['#ad8875','#8c8366','#6e7c5b'],water:['#e5bf9c','#d6b69c','#aaa89a'],grass:['#5e8546','#77984a'],dike:['#a3a56a','#7d8e55'],bank:['#abb96e','#d9cf9c','#c1a675','#a78a64'],soil:['#b69468','#946c4d']}
 };
 function house(x,y,s,mode){
@@ -139,14 +139,14 @@ function bank(top,bottom,mode){
 function cracks(n,x0,x1,y0,y1,seed=0){
   for(let i=0;i<n;i++){
     const x=mix(x0,x1,random(i+31+seed)),y=mix(y0,y1,random(i+11+seed)),s=.6+(y-y0)/(y1-y0+1)*1.4;
-    line([[x,y],[x-6*s,y+4*s],[x+5*s,y+9*s],[x-1*s,y+16*s]],'#6e5238a0',1.3*s);
+    line([[x,y],[x-6*s,y+4*s],[x+5*s,y+9*s],[x-1*s,y+16*s]],'#6a3e1eb0',1.4*s);
     line([[x+5*s,y+9*s],[x+15*s,y+6*s]],'#6e523880',1*s)
   }
 }
 function fields(t,mode='day',soil=false){
   sky(t,mode);const P=PAL[mode];
   if(mode==='dry'){
-    g.fillStyle=gradient(0,318,0,850,[[0,'#dcc08f'],[.5,'#cba673'],[1,'#ad8558']]);g.fillRect(-240,319,940,650);
+    g.fillStyle=gradient(0,318,0,850,[[0,'#e8bf78'],[.5,'#d29a58'],[1,'#ad6f3c']]);g.fillRect(-240,319,940,650);
     cracks(70,-60,520,330,800,3);
     for(let row=0;row<15;row++){const f=row/14,y=326+f*f*540,s=.35+1.7*f;
       for(let j=-5;j<31;j++){if(random(row*31+j)>.22)continue;const x=(j-11)*(7+f*37)+183;if(x>-130&&x<580)grass(x,y,s,t*.3,P.grass)}}
@@ -209,7 +209,7 @@ function person(id,x,y,s,t,o={}){
     g.rotate(o.lean||0);
     const body=gradient(-24,-81,26,-78,[[0,p.shirt[0]],[.46,p.shirt[1]],[1,p.shirt[2]]]);
     box(-22,-75,44,28,11,p.skirt||'#3e464b');
-    box(-24,-109,48,50,11,body);
+    box(-24,-109,48,50,11,body);g.strokeStyle='rgba(40,24,14,.4)';g.lineWidth=1.5;g.stroke();
     if(p.kind==='elder'){polygon([[-10,-108],[0,-91],[10,-108]],'#f0d9aa');line([[0,-91],[0,-62]],'#55513d',1.4);for(let n=0;n<3;n++)ellipse(3,-85+n*9,1.2,1.2,'#d7be7d')}
     if(id==='darmi'){line([[-6,-106],[0,-80],[6,-106]],'#f1d7b0',2);for(let n=0;n<3;n++)ellipse(0,-90+n*10,1.5,1.5,'#f3d58b')}
     const gesture=typeof o.gesture==='number'?o.gesture:0;
@@ -226,7 +226,7 @@ function person(id,x,y,s,t,o={}){
     g.save();g.translate(dir*2,-139+wave(t*2.3+seed)*.55);g.rotate((o.tilt||0)+wave(t*1.9+seed)*.018);
     if(p.kind==='scarf'){const c=p.scarf||['#544a48','#383b3c','#45423d'];orb(0,5,34,36,...c)}
     for(const side of [-1,1])orb(side*28,2,5.4,7,...p.skin);
-    orb(0,0,30.5,32.5,...p.skin);
+    orb(0,0,30.5,32.5,...p.skin);g.beginPath();g.ellipse(0,0,30.5,32.5,0,0,TAU);g.strokeStyle='rgba(58,30,16,.5)';g.lineWidth=1.7;g.stroke();
     if(p.cap){
       g.save();g.beginPath();g.moveTo(-32,-9);g.bezierCurveTo(-28,-40,22,-48,31,-14);g.quadraticCurveTo(7,-17,-32,-9);g.clip();
       orb(-1,-13,33,26,...p.cap);g.restore();curve(-31,-9,-4,-18,31,-13,p.cap[2],2.2);
@@ -339,20 +339,20 @@ function worm(x,y,s,t,ang=0,phase=0){
 
 // ---------- Warung ----------
 function shop(t){
-  sky(t,'dry');g.fillStyle='#c7b394';g.fillRect(-200,319,850,550);
+  sky(t,'dry');g.fillStyle='#d6ad72';g.fillRect(-200,319,850,550);
   g.fillStyle=gradient(0,620,0,840,[[0,'#918b80'],[1,'#5e6967']]);g.fillRect(-200,620,850,290);
   line([[-150,624],[640,624]],'#e0d4b8',5);for(let i=-2;i<7;i++)line([[i*94,701],[i*94+45,701]],'#ddd4ac',3);
-  for(let x=-38;x<520;x+=18){box(x,233,18,254,1,['#a38b64','#ad9268','#a48d67'][Math.abs(Math.round(x/18))%3]);line([[x,237],[x,489]],'#92785d',1)}
-  box(-35,177,520,83,4,'#4f6b5c');box(-28,180,506,68,2,'#f4e3b0');
+  for(let x=-38;x<520;x+=18){box(x,233,18,254,1,['#b97f45','#c48c4f','#b27a42'][Math.abs(Math.round(x/18))%3]);line([[x,237],[x,489]],'#8a5a30',1)}
+  box(-35,177,520,83,4,'#2c6656');box(-28,180,506,68,2,'#f4e3b0');
   label('WARUNG MBAK SRI',225,207,30,'#2f5a48','center',800);label('KOPI  •  TEH  •  GORENGAN',225,235,10,'#6b5a3c');
   polygon([[-60,260],[504,260],[528,281],[-81,281]],'#7b5a43');line([[-60,282],[510,282]],'#4f3a2c',5);
-  box(17,287,416,126,3,'#536b62');
+  box(17,287,416,126,3,'#2c6656');
   for(let j=0;j<2;j++){const yy=320+39*j;line([[25,yy+21],[427,yy+21]],'#ba9b70',4);
     for(let i=0;i<19;i++){const x=31+i*21.4,h=9+random(i*4+j)*11;box(x,yy+20-h,7,h,2,['#a18655','#b96149','#d5b667','#97a585','#758e92'][i%5]);box(x+2,yy+15-h,3,6,1,'#d7d2b4')}}
   box(174,299,105,46,2,'#eadcbc');label('BAYAR DULU',226,312,11,'#7a3f2f');label('BARU NGOPI',226,330,11,'#7a3f2f');
   for(const x of [31,59,382,410])for(let i=0;i<5;i++){const yy=291+i*15;box(x,yy,14,13,2,i%2?'#d49a4e':'#6f9a7e');line([[x+3,yy+6],[x+11,yy+6]],'#e9daa5',1)}
-  box(3,413,446,73,3,'#b08e64');box(-3,410,456,11,3,'#73583c');
-  box(39,428,370,42,2,'#e3cda0');label('GOSIP GRATIS  ·  KOPI BAYAR',224,450,16,'#7a4a33');
+  box(3,413,446,73,3,'#b9783f');box(-3,410,456,11,3,'#6e4122');
+  box(39,428,370,42,2,'#f2d48e');label('GOSIP GRATIS  ·  KOPI BAYAR',224,450,16,'#7a4a33');
   for(const x of [4,439])line([[x,280],[x,539]],'#766047',7)
 }
 
@@ -540,6 +540,17 @@ function paintScene(key,t,dt,len){
     case 'closing':human('darmi',190,560,.9,{dir:.6,mood:'happy'});human('slamet',265,562,.92,{dir:-.6,mood:'happy',gesture:.5,hand:-1});break;
   }
 }
+// Koreksi warna akhir: warna lebih hidup + vignette, sebelum caption digambar.
+const GRADE={saturate:1.18,contrast:1.1,brightness:1.02,vignette:.3};
+function grade(scale){
+  g.save();g.setTransform(1,0,0,1,0,0);
+  g.filter='saturate('+GRADE.saturate+') contrast('+GRADE.contrast+') brightness('+GRADE.brightness+')';
+  g.globalCompositeOperation='copy';g.drawImage(canvas,0,0);g.restore();
+  g.save();g.setTransform(scale,0,0,scale,0,0);
+  const v=g.createRadialGradient(W/2,H*.46,H*.28,W/2,H*.46,H*.72);
+  v.addColorStop(0,'rgba(20,12,6,0)');v.addColorStop(1,'rgba(20,12,6,'+GRADE.vignette+')');
+  g.fillStyle=v;g.fillRect(0,0,W,H);g.restore()
+}
 function caption(word){
   if(!word)return;g.save();
   g.font='800 40px system-ui, sans-serif';g.textAlign='center';g.textBaseline='middle';
@@ -557,6 +568,7 @@ function paintAt(t){
   g.save();g.translate(W/2+wave(t*.48)*1.5,H/2);g.scale(z,z);g.translate(-fx,-fy);paintScene(key,t,dt,len);g.restore();
   g.setTransform(scale,0,0,scale,0,0);
   if(key==='xs_rain'&&dt<.6){g.fillStyle='rgba(8,6,4,'+(1-dt/.6)+')';g.fillRect(0,0,W,H)}
+  grade(scale);
   let word='';if(t>=L.start&&t<OUTRO)for(const [s,w] of L.words)if(t>=s)word=w;
   if(t<OUTRO)caption(word);
   if(t>=OUTRO){const f=clamp((t-OUTRO)/.8);g.fillStyle='rgba(24,40,31,'+f*.82+')';g.fillRect(0,0,W,H);
@@ -594,6 +606,6 @@ function resize(){const w=Math.min(900,Math.max(360,Math.round(canvas.getBoundin
 window.addEventListener('resize',resize);resize();buttonState();
 
 // Dipakai oleh render.js untuk membuat MP4 bingkai demi bingkai.
-window.SAKA={duration:DURATION,lines:LINES,frame(t,w){if(w&&canvas.width!==w){canvas.width=w;canvas.height=Math.round(w*H/W)}paintAt(t);return canvas.toDataURL('image/jpeg',.9)}};
+window.SAKA={duration:DURATION,lines:LINES,frame(t,w){if(w&&canvas.width!==w){canvas.width=w;canvas.height=Math.round(w*H/W)}paintAt(t);return canvas.toDataURL('image/jpeg',.96)}};
 </script>
 </body></html>
