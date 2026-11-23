@@ -60,7 +60,7 @@ Nada: santai, lucu, sedikit dramatis; edukasinya jelas dan benar. Tokoh, nama, d
   - penutup: `[softly]`
   - "Ternyata..." selalu `[dramatically]`.
 - **Dialog tokoh** ditulis dalam tanda kutip, tetap dibacakan narator yang sama.
-- **Biaya**: ± 2.400 kredit per versi untuk naskah ± 1.700 karakter (default 2 versi ≈ 4.800). Cek dulu dengan `estimate_only`.
+- **Biaya**: ± 2.400 kredit per versi untuk naskah ± 1.700 karakter. **Selalu buat 1 versi saja (`generations_count: 1`)** — keputusan pengguna untuk menghemat kredit. Kalau ada kalimat yang kurang pas, buat ulang kalimat itu saja, bukan seluruh naskah. Kuota paket Creator 131.000 kredit/bulan, reset otomatis tiap bulan (sekitar tanggal 14).
 - Hasil: ± 15–18 huruf per detik; jeda `[pause]` ± 0,3–0,7 detik.
 
 ## 5. Alur kerja cerita baru
