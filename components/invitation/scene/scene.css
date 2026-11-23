@@ -1641,7 +1641,8 @@
 .cs-sky {
   position: absolute;
   inset: 0;
-  background: url(/scene/nusantara/sky.webp) center / cover;
+  background-position: center;
+  background-size: cover;
   animation: idSky 22s ease-in-out infinite alternate;
   transition: transform 1.6s cubic-bezier(0.7, 0, 0.3, 1), filter 1.2s, opacity 1s ease 0.8s;
 }

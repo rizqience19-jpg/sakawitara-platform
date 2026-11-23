@@ -31,7 +31,8 @@ export type ImgLayer = {
   fx?: Fx[];
 };
 
-const A = "/scene/nusantara";
+/** lokasi ilustrasi; bisa diarahkan ke CDN / Supabase Storage lewat env */
+export const A = process.env.NEXT_PUBLIC_SCENE_ASSETS ?? "/scene/nusantara";
 
 function Img({ l }: { l: ImgLayer }) {
   return (

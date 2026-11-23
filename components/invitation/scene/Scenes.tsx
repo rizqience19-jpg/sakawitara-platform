@@ -3,7 +3,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { Wedding } from "../data";
 import { BatikPanel, Birds, Butterfly, FlowerBed, Foliage, FoliageCurtain, Fountain, Mansion, Swan } from "./Art";
-import { Deco } from "./ImageScene";
+import { A, Deco } from "./ImageScene";
 
 export type ScenePhase = "cover" | "go" | "open";
 
@@ -272,7 +272,7 @@ export function CoverJoglo({ wedding, guest, phase, onOpen }: { wedding: Wedding
 export function CoverSawah({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
   return (
     <div className={`sc-cover cover-sawah is-${phase}`}>
-      <div className="cs-sky" />
+      <div className="cs-sky" style={{ backgroundImage: `url(${A}/sky.webp)` }} />
       <Deco src="lilac" className="cs-lilac-l" idle="swing" origin="0% 20%" />
       <Deco src="lilac" className="cs-lilac-r" idle="swing" origin="0% 20%" flip />
       <Deco src="bouquet-red" className="cs-bq-l" />
