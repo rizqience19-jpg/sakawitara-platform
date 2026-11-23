@@ -2,7 +2,7 @@
 
 Horor dengan celetukan lucu. Gaya Mbah Darmi: satu narator (Gunawan, eleven_v4, 1 versi), narasi diputar utuh, caption satu kata, efek suara pendek & pelan (angin, derit pintu, langkah), tanpa musik. ± 2 menit.
 
-Tokoh (nama baru): **Bagas** (penakut), **Rehan** (tukang nyeletuk), **Tika** (paling berani). Latar: Desa Kalibening, rumah tua keluarga Hardjo, malam Jumat. Hantu: anak kecil berbaju putih (tampil samar, tidak sadis).
+Tokoh (nama baru): **Bagas** (penakut), **Rehan** (tukang nyeletuk), **Tika** (cewek, paling berani; rambut dikuncir dua). Latar: Desa Kalibening, rumah tua keluarga Hardjo, malam Jumat. Hantu: anak kecil berbaju putih (tampil samar, tidak sadis).
 
 | # | Tag | Narasi | Adegan |
 |---|-----|--------|--------|
@@ -38,6 +38,7 @@ Tokoh (nama baru): **Bagas** (penakut), **Rehan** (tukang nyeletuk), **Tika** (p
 | 30 | [whispers] | Di ujung barisan, ada anak kecil berbaju putih. Dia tersenyum. | Anak berbaju putih, wajah pucat samar |
 | 31 | [whispers] | "Kak… besok main lagi, ya?" | Anak itu melambai |
 | 32 | [flatly] | Rehan menjawab pelan, "Besok aku ada les, Dik." | Rehan kaku |
-| 33 | [excited] | Lalu mereka lari, kali ini jauh lebih kencang. | Lari terbirit-birit |
+| 32b | [shouting] | "LARIII!" | Ketiganya teriak (teriakan baris 24 disambung ulang, `suara/narasi.mp3` = `narasi-utama.mp3` + sisipan) |
+| 33 | [excited] | Lalu mereka lari, kali ini jauh lebih kencang. | Lari terbirit-birit menjauhi hantu |
 | 34 | [whispers] | Sejak malam itu, pintu rumah keluarga Hardjo tidak pernah sedikit terbuka lagi. | Rumah tua |
 | 35 | [whispers] | Pintunya terbuka lebar… seperti menunggu tamu. | Pintu terbuka lebar, gelap di dalam |
