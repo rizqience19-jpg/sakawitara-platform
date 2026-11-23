@@ -1,5 +1,5 @@
 export type OpeningStyle = "gerbang" | "amplop" | "lingkar";
-export type SceneStyle = "istana" | "joglo";
+export type SceneStyle = "istana" | "joglo" | "sawah";
 
 export type Template = {
   kind: "classic";
@@ -43,11 +43,21 @@ export const sceneTemplates: SceneTemplate[] = [
     kind: "scene",
     slug: "joglo-tirta",
     name: "Joglo Tirta",
-    tagline: "Nuansa Jawa, air terjun & batik — 3D Motion",
+    tagline: "Joglo, air terjun & pegunungan — ilustrasi lukis, 3D Motion",
     scene: "joglo",
-    openingLabel: "3D Motion · pintu batik & pepohonan tumbuh",
-    titleAt: 5500,
-    unlockAt: 6300,
+    openingLabel: "3D Motion · pintu batik & scene ilustrasi",
+    titleAt: 5600,
+    unlockAt: 6400,
+  },
+  {
+    kind: "scene",
+    slug: "sawah-lestari",
+    name: "Sawah Lestari",
+    tagline: "Sawah, sungai & danau saat senja — ilustrasi lukis, 3D Motion",
+    scene: "sawah",
+    openingLabel: "3D Motion · bunga terbang & scene ilustrasi",
+    titleAt: 5400,
+    unlockAt: 6200,
   },
 ];
 

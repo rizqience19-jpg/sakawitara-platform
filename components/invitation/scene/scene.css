@@ -26,17 +26,30 @@
   --ph2: #8f7a5c;
 }
 .sx-joglo {
-  --bg: #f3e6d3;
-  --panel: #6e4a2f;
-  --panel-ink: #f3e3c9;
-  --card: #f7eee2;
-  --ink: #5b3d26;
-  --muted: #8b6c52;
-  --accent: #9a6a3c;
-  --accent-d: #6e4a2f;
-  --line: rgba(154, 106, 60, 0.4);
-  --ph1: #b8946b;
-  --ph2: #6e4a2f;
+  --bg: #f4c98c;
+  --panel: #4a2016;
+  --panel-ink: #f6dca6;
+  --card: #fff6e6;
+  --ink: #4a2016;
+  --muted: #86553a;
+  --accent: #a8402a;
+  --accent-d: #7b2a1b;
+  --line: rgba(196, 140, 60, 0.55);
+  --ph1: #c98a4b;
+  --ph2: #6b2a1a;
+}
+.sx-sawah {
+  --bg: #f6cf92;
+  --panel: #fbf0da;
+  --panel-ink: #6b3f12;
+  --card: #fffaf0;
+  --ink: #4a2f17;
+  --muted: #8a6238;
+  --accent: #9b3a52;
+  --accent-d: #6f2238;
+  --line: rgba(155, 58, 82, 0.35);
+  --ph1: #d7a25a;
+  --ph2: #8b3c46;
 }
 
 /* ═════════════════ ENGINE LAYER ═════════════════ */
@@ -157,9 +170,14 @@
 .en-grow { --anim: enGrow; transform-origin: 50% 100%; }
 .en-zoom { transform-origin: 50% 70%; }
 .en-zoomout { --anim: enZoomout; }
-.id-sway { animation: idSway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+.en-riseSoft { --anim: enRiseSoft; }
+.en-bloom { --anim: enBloom; transform-origin: var(--origin, 50% 100%); }
+.en-swingIn { --anim: enSwingIn; transform-origin: var(--origin, 0% 0%); }
+.id-sway { animation: idSway 5s ease-in-out infinite; transform-origin: var(--origin, 50% 100%); }
+.id-swing { animation: idSwing 4.6s ease-in-out infinite; transform-origin: var(--origin, 50% 0%); }
+.id-sky { animation: idSky 26s ease-in-out infinite alternate; transform-origin: 50% 40%; }
 .id-float { animation: idFloat 3.6s ease-in-out infinite; }
-.id-breathe { animation: idBreathe 4s ease-in-out infinite; transform-origin: 50% 100%; }
+.id-breathe { animation: idBreathe 4s ease-in-out infinite; transform-origin: var(--origin, 50% 100%); }
 .id-drift { animation: idDrift 12s ease-in-out infinite alternate; }
 .ly:nth-child(even) .id-sway { animation-duration: 6.3s; animation-direction: reverse; }
 
@@ -512,11 +530,11 @@
   -webkit-backdrop-filter: blur(3px);
 }
 .sx-joglo .title-card {
-  background: rgba(94, 60, 33, 0.9);
-  border-color: rgba(226, 192, 132, 0.7);
+  background: rgba(74, 28, 18, 0.88);
+  border-color: #d9a959;
   box-shadow:
-    0 0 0 6px rgba(94, 60, 33, 0.5),
-    0 0 0 7px rgba(226, 192, 132, 0.5),
+    0 0 0 6px rgba(74, 28, 18, 0.45),
+    0 0 0 7px rgba(217, 169, 89, 0.7),
     0 30px 60px -30px #000;
   --accent: #f0d49c;
   --accent-d: #f0d49c;
@@ -1438,3 +1456,266 @@
 .sx .rv.is-visible .card > :nth-child(3) { transition-delay: 0.55s; }
 .sx .rv.is-visible .card > :nth-child(4) { transition-delay: 0.7s; }
 .sx .rv.is-visible .card > :nth-child(n + 5) { transition-delay: 0.85s; }
+
+
+/* ═════════════════ LAYER ILUSTRASI (PNG/WebP) ═════════════════ */
+.img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.img-full {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* efek baru muncul setelah layernya sampai (dan gambar mask sudah termuat) */
+.fx-box {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.sx.is-go .fx-box {
+  animation: fxIn 1.2s ease calc(var(--at) + var(--dur) * 0.75) forwards;
+}
+@keyframes fxIn {
+  to { opacity: 1; }
+}
+.fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+/* air terjun: garis air mengalir ke bawah */
+.fx-fall {
+  background:
+    repeating-linear-gradient(180deg, transparent 0 9px, rgba(255, 255, 255, 0.85) 13px, transparent 19px),
+    repeating-linear-gradient(178deg, transparent 0 14px, rgba(255, 255, 255, 0.5) 18px, transparent 26px);
+  background-size: 100% 38px, 100% 52px;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  animation: fallFlow 0.55s linear infinite;
+}
+/* danau / sungai: kilau riak bergeser */
+.fx-ripple {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(255, 250, 230, 0.75) 34px, transparent 46px),
+    repeating-linear-gradient(0deg, transparent 0 5px, rgba(255, 255, 255, 0.35) 6px, transparent 9px);
+  background-size: 92px 100%, 100% 18px;
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  animation: ripple 3.2s linear infinite;
+}
+/* buih di kaki air terjun */
+.fx-splash {
+  background: radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.95), transparent 65%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  animation: splash 1.1s ease-in-out infinite alternate;
+}
+/* kabut melayang di pegunungan */
+.fx-mist {
+  inset: -10% -20%;
+  background:
+    radial-gradient(ellipse 22% 30% at 15% 60%, rgba(255, 252, 240, 0.9), transparent 70%),
+    radial-gradient(ellipse 18% 26% at 45% 45%, rgba(255, 252, 240, 0.8), transparent 70%),
+    radial-gradient(ellipse 24% 30% at 78% 65%, rgba(255, 252, 240, 0.85), transparent 70%);
+  background-size: 50% 100%;
+  filter: blur(6px);
+  opacity: 0.75;
+  animation: mistDrift 22s linear infinite;
+}
+.sun {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  width: 90vmin;
+  height: 90vmin;
+  margin-left: -45vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 246, 214, 0.95), rgba(255, 214, 140, 0.35) 35%, transparent 65%);
+  opacity: 0;
+  pointer-events: none;
+}
+.sx.is-go .sun {
+  animation: enFade 2.5s ease 0.8s forwards, sunPulse 6s ease-in-out 3.3s infinite alternate;
+}
+
+/* kawanan burung (sprite terpisah) */
+.flock-img {
+  position: absolute;
+  left: 0;
+  width: min(78vw, 420px);
+  aspect-ratio: 1317 / 784;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.sx.is-go .flock-img,
+.sx-savedate .flock-img {
+  animation: flockImg var(--fd, 18s) linear var(--at) infinite;
+}
+.bird-sp {
+  position: absolute;
+  animation: birdBob 2.4s ease-in-out infinite alternate;
+}
+.bird-sp img {
+  display: block;
+  width: 100%;
+  transform-origin: 50% 60%;
+  animation: spriteFlap 0.6s ease-in-out infinite alternate;
+}
+@keyframes spriteFlap {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0.72) translateY(4%); }
+}
+.drift-lilac span {
+  background: radial-gradient(circle at 40% 40%, #f3b6dc, #b0418a);
+  border-radius: 60% 40% 60% 40%;
+  opacity: 0.85;
+}
+.drift-gold span {
+  background: linear-gradient(135deg, #ffd27a, #e0873a);
+  border-radius: 150% 0 150% 0;
+  opacity: 0.85;
+}
+
+/* ═════════════════ ORNAMEN BERGOYANG DI KONTEN ═════════════════ */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+.deco > div {
+  transform-origin: var(--origin, 50% 100%);
+}
+.deco img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sx-sec > .rv {
+  position: relative;
+  z-index: 3;
+}
+.d-intro-r { right: -14%; top: 12%; width: min(42vw, 230px); }
+.d-intro-l { left: -6%; top: 0; width: min(30vw, 170px); }
+.d-bg-lilac { right: -30%; top: -40px; width: min(95vw, 560px); }
+.d-sd-l { left: -8%; bottom: -30px; width: min(48vw, 260px); z-index: 2; }
+.d-sd-r { right: -14%; bottom: -24px; width: min(70vw, 380px); z-index: 2; }
+.d-story-l { left: -26%; top: 4%; width: min(58vw, 320px); opacity: 0.9; }
+.d-story-r { right: -14%; bottom: 6%; width: min(40vw, 220px); }
+.d-gift { left: -10%; bottom: -10px; width: min(70vw, 380px); }
+.d-end-l { left: -10%; bottom: 0; width: min(46vw, 260px); }
+.d-end-r { right: -8%; bottom: 0; width: min(42vw, 240px); }
+.d-end-top { left: -24%; top: -30px; width: min(95vw, 560px); }
+.sx-savedate .flock-img { z-index: 1; }
+
+/* medali cover joglo */
+.md-flower { width: 70%; bottom: -16%; }
+.md-flower-l { left: -32%; }
+.md-flower-r { right: -32%; }
+.medallion { overflow: visible; }
+.medallion > .deco { animation: none; }
+
+/* cover sawah */
+.cover-sawah {
+  --accent: #9b3a52;
+  --accent-d: #6f2238;
+  --ink: #4a2f17;
+  --muted: #8a6238;
+}
+.cs-sky {
+  position: absolute;
+  inset: 0;
+  background: url(/scene/nusantara/sky.webp) center / cover;
+  animation: idSky 22s ease-in-out infinite alternate;
+  transition: transform 1.6s cubic-bezier(0.7, 0, 0.3, 1), filter 1.2s, opacity 1s ease 0.8s;
+}
+.cover-sawah .sc-cover-body {
+  background: radial-gradient(ellipse at center, rgba(255, 248, 232, 0.88), rgba(255, 248, 232, 0.55) 60%, transparent 75%);
+  border-radius: 50%;
+  padding: 40px 30px;
+}
+.cs-lilac-l { top: -4%; left: -34%; width: min(100vw, 560px); transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1); }
+.cs-lilac-r { top: -6%; right: -34%; width: min(100vw, 560px); transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1) 0.05s; }
+.cs-bq-l { bottom: -6%; left: -10%; width: min(52vw, 300px); transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1) 0.1s; }
+.cs-fc-r { bottom: -5%; right: -16%; width: min(80vw, 440px); transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1) 0.1s; }
+.cover-sawah .deco { animation: cvRise 1.4s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.cover-sawah.is-go .cs-lilac-l { transform: translate(-70vw, -50vh) rotate(-30deg); }
+.cover-sawah.is-go .cs-lilac-r { transform: translate(70vw, -50vh) rotate(30deg); }
+.cover-sawah.is-go .cs-bq-l { transform: translate(-60vw, 60vh) rotate(-20deg); }
+.cover-sawah.is-go .cs-fc-r { transform: translate(60vw, 60vh) rotate(20deg); }
+.cover-sawah.is-go .cs-sky { transform: scale(1.6); filter: blur(4px); opacity: 0; }
+.cover-sawah.is-go {
+  animation: hideLater 0.01s linear 1.9s forwards;
+}
+
+@keyframes enRiseSoft {
+  0% { opacity: 0; transform: translateY(28vh) scale(0.9); }
+  40% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes enBloom {
+  0% { opacity: 1; transform: scale(0) rotate(-25deg); }
+  60% { transform: scale(1.08) rotate(3deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes enSwingIn {
+  0% { opacity: 1; transform: translate(-40vw, -35vh) rotate(-35deg); }
+  65% { transform: rotate(5deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes idSwing {
+  0%, 100% { transform: rotate(-3.5deg); }
+  50% { transform: rotate(3.5deg); }
+}
+@keyframes idSky {
+  0% { transform: scale(1.04) translate(0, 0); }
+  100% { transform: scale(1.14) translate(-3%, 2%); }
+}
+@keyframes fallFlow {
+  to { background-position: 0 38px, 0 52px; }
+}
+@keyframes ripple {
+  to { background-position: 92px 0, 0 18px; }
+}
+@keyframes splash {
+  from { opacity: 0.45; transform: scale(0.9, 0.85); }
+  to { opacity: 0.95; transform: scale(1.1, 1.05); }
+}
+@keyframes mistDrift {
+  from { background-position: 0 0; }
+  to { background-position: 200% 0; }
+}
+@keyframes sunPulse {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(1.12); opacity: 1; }
+}
+@keyframes flockImg {
+  0% { transform: translate(-85vw, 26vh) scale(0.7); opacity: 0; }
+  6% { opacity: 1; }
+  62% { opacity: 1; }
+  72% { transform: translate(105vw, -18vh) scale(1); opacity: 0; }
+  100% { transform: translate(105vw, -18vh) scale(1); opacity: 0; }
+}
+@keyframes birdBob {
+  from { transform: translateY(-6px) rotate(-3deg); }
+  to { transform: translateY(6px) rotate(3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx, .flock-img, .sun { display: none; }
+}

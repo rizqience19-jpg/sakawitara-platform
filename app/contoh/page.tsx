@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { sceneTemplates, templates } from "@/components/invitation/data";
-import { BatikPanel, FlowerBed, Joglo, Mansion } from "@/components/invitation/scene/Art";
+import { FlowerBed, Mansion } from "@/components/invitation/scene/Art";
 import "./katalog.css";
 
 export const metadata: Metadata = {
@@ -29,10 +29,13 @@ export default function Katalog() {
                   <i className="pv-leafcurtain" />
                 </div>
               ) : (
-                <div className="pv pv-scene">
-                  <div className="pv-joglo"><Joglo /></div>
-                  <div className="pv-bdoor pv-bdoor-l"><BatikPanel className="pv-batik" /></div>
-                  <div className="pv-bdoor pv-bdoor-r"><BatikPanel className="pv-batik" /></div>
+                /* eslint-disable @next/next/no-img-element */
+                <div className="pv pv-scene pv-img">
+                  <img className="pvi-sky" src="/scene/nusantara/sky.webp" alt="" />
+                  <img className="pvi-mtn" src="/scene/nusantara/mountains.webp" alt="" />
+                  <img className="pvi-main" src={`/scene/nusantara/${t.scene === "joglo" ? "joglo" : "ricefield"}.webp`} alt="" />
+                  <img className="pvi-tree" src="/scene/nusantara/banana.webp" alt="" />
+                  <img className="pvi-fl" src="/scene/nusantara/flower-corner.webp" alt="" />
                 </div>
               )}
             </div>

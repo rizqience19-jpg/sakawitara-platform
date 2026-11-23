@@ -2,13 +2,14 @@
 
 import type { CSSProperties, ReactNode } from "react";
 import type { Wedding } from "../data";
-import { BatikPanel, Birds, Butterfly, CarvedBand, FlowerBed, Foliage, FoliageCurtain, Fountain, Joglo, Lily, Mansion, Swan, Waterfall } from "./Art";
+import { BatikPanel, Birds, Butterfly, FlowerBed, Foliage, FoliageCurtain, Fountain, Mansion, Swan } from "./Art";
+import { Deco } from "./ImageScene";
 
 export type ScenePhase = "cover" | "go" | "open";
 
-type Enter = "rise" | "left" | "right" | "drop" | "fade" | "zoom" | "grow" | "zoomout";
-type Idle = "sway" | "float" | "breathe" | "drift";
-type Exit = { x?: number; y?: number; s?: number };
+export type Enter = "rise" | "riseSoft" | "left" | "right" | "drop" | "fade" | "zoom" | "grow" | "zoomout" | "bloom" | "swingIn";
+export type Idle = "sway" | "swing" | "float" | "breathe" | "drift" | "sky";
+export type Exit = { x?: number; y?: number; s?: number };
 
 /**
  * Satu lapisan scene.
@@ -164,63 +165,6 @@ export function SceneIstana() {
   );
 }
 
-/* ═════════════════ SCENE 2: JOGLO & AIR TERJUN ═════════════════ */
-export function SceneJoglo() {
-  const gold = ["#b88d52", "#a37a42", "#cfa86b", "#93693a"];
-  const brown = ["#8a5f33", "#74502b", "#9c6f3e"];
-  const sage = ["#7d8a6a", "#94a07f", "#6a775a"];
-  return (
-    <div className="cam">
-      <Layer className="l-full" enter="zoomout" at={250} dur={3200} depth={0.1} exit={{ s: 0.08 }}>
-        <Waterfall className="l-svg-full" />
-      </Layer>
-      <div className="stage">
-        <Layer className="l-joglo" enter="rise" at={1800} dur={2600} depth={0.5} exit={{ y: -4, s: 0.15 }}>
-          <Joglo />
-        </Layer>
-        <Layer className="l-tree1-l" enter="grow" at={2500} dur={2000} depth={0.7} idle="sway" exit={{ x: -50 }}>
-          <Foliage colors={gold} seed={3} />
-        </Layer>
-        <Layer className="l-tree1-r" enter="grow" at={2700} dur={2000} depth={0.7} idle="sway" exit={{ x: 50 }}>
-          <Foliage colors={gold} seed={13} />
-        </Layer>
-        <Layer className="l-tree2-l" enter="grow" at={3100} dur={2000} depth={1} idle="sway" exit={{ x: -70, y: 10 }}>
-          <Foliage colors={brown} seed={21} />
-        </Layer>
-        <Layer className="l-tree2-r" enter="grow" at={3300} dur={2000} depth={1} idle="sway" exit={{ x: 70, y: 10 }}>
-          <Foliage colors={brown} seed={37} />
-        </Layer>
-        <Layer className="l-lily-l" enter="zoom" at={1400} dur={1800} depth={1.4} idle="sway" exit={{ x: -40, y: 40 }}>
-          <Lily />
-        </Layer>
-        <Layer className="l-lily-r" enter="zoom" at={1550} dur={1800} depth={1.4} idle="sway" exit={{ x: 40, y: 40 }}>
-          <Lily />
-        </Layer>
-        <Layer className="l-lily-s" enter="zoom" at={3700} dur={1600} depth={1.6} idle="breathe" exit={{ y: 60 }}>
-          <Lily color="#e0603f" />
-        </Layer>
-      </div>
-      <Layer className="l-tall-l" enter="drop" at={3500} dur={2200} depth={0.85} idle="sway" exit={{ x: -40, y: -20 }}>
-        <Foliage colors={sage} seed={51} />
-      </Layer>
-      <Layer className="l-tall-r" enter="drop" at={3650} dur={2200} depth={0.85} idle="sway" exit={{ x: 40, y: -20 }}>
-        <Foliage colors={sage} seed={61} />
-      </Layer>
-      <Layer className="l-band" enter="drop" at={4100} dur={1600} depth={0.3} exit={{ y: -20 }}>
-        <CarvedBand />
-      </Layer>
-      <Flyers
-        at={2800}
-        colors={[
-          ["#2f63d6", "#a8c6ff"],
-          ["#7d3fd0", "#dcc4ff"],
-        ]}
-      />
-      <Drift kind="dust" at={4400} />
-    </div>
-  );
-}
-
 /* ═════════════════ COVER ═════════════════ */
 export function Photo({ src, label, className = "" }: { src: string | null; label: string; className?: string }) {
   return (
@@ -309,6 +253,8 @@ export function CoverJoglo({ wedding, guest, phase, onOpen }: { wedding: Wedding
         <BatikPanel className="door-svg" />
       </div>
       <div className="sc-cover-body medallion">
+        <Deco src="flower-corner" className="md-flower md-flower-l" origin="0% 100%" />
+        <Deco src="flower-corner" className="md-flower md-flower-r" origin="0% 100%" flip />
         <span className="sc-script">The Wedding Of</span>
         <h1 className="sc-caps sc-caps-stack">
           <span>{wedding.groom.nick}</span>
@@ -316,6 +262,27 @@ export function CoverJoglo({ wedding, guest, phase, onOpen }: { wedding: Wedding
           <span>{wedding.bride.nick}</span>
         </h1>
         <span className="sc-date">{wedding.dateLabel}</span>
+        <GuestInfo guest={guest} />
+        <OpenBtn onOpen={onOpen} />
+      </div>
+    </div>
+  );
+}
+
+export function CoverSawah({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
+  return (
+    <div className={`sc-cover cover-sawah is-${phase}`}>
+      <div className="cs-sky" />
+      <Deco src="lilac" className="cs-lilac-l" idle="swing" origin="0% 20%" />
+      <Deco src="lilac" className="cs-lilac-r" idle="swing" origin="0% 20%" flip />
+      <Deco src="bouquet-red" className="cs-bq-l" />
+      <Deco src="flower-corner" className="cs-fc-r" origin="0% 100%" flip />
+      <div className="sc-cover-body">
+        <span className="sc-script">The Wedding Of</span>
+        <Photo src={wedding.photos.cover} label={`${wedding.groom.nick[0]} & ${wedding.bride.nick[0]}`} className="ph-oval" />
+        <h1 className="sc-caps">
+          {wedding.groom.nick} &amp; {wedding.bride.nick}
+        </h1>
         <GuestInfo guest={guest} />
         <OpenBtn onOpen={onOpen} />
       </div>

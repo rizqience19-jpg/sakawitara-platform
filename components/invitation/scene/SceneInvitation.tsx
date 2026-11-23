@@ -5,7 +5,8 @@ import "../invitation.css";
 import "./scene.css";
 import type { SceneTemplate, Wedding } from "../data";
 import { Reveal } from "../Reveal";
-import { CoverIstana, CoverJoglo, Photo, SceneIstana, SceneJoglo, type ScenePhase } from "./Scenes";
+import { CoverIstana, CoverJoglo, CoverSawah, Photo, SceneIstana, type ScenePhase } from "./Scenes";
+import { Deco, Flock, SceneJogloImg, SceneSawahImg } from "./ImageScene";
 
 export default function SceneInvitation({ template, wedding, guest }: { template: SceneTemplate; wedding: Wedding; guest: string }) {
   const [phase, setPhase] = useState<ScenePhase>("cover");
@@ -90,8 +91,10 @@ export default function SceneInvitation({ template, wedding, guest }: { template
     }
   };
 
-  const Cover = template.scene === "istana" ? CoverIstana : CoverJoglo;
-  const Scene = template.scene === "istana" ? SceneIstana : SceneJoglo;
+  const Cover = template.scene === "istana" ? CoverIstana : template.scene === "joglo" ? CoverJoglo : CoverSawah;
+  const Scene = template.scene === "istana" ? SceneIstana : template.scene === "joglo" ? SceneJogloImg : SceneSawahImg;
+  /** ornamen PNG bergoyang di bagian konten (hanya tema berilustrasi) */
+  const deco = template.scene !== "istana";
 
   return (
     <div ref={rootRef} className={`sx sx-${template.scene}${phase !== "cover" ? " is-go" : ""}${titled ? " is-titled" : ""}`}>
@@ -103,16 +106,16 @@ export default function SceneInvitation({ template, wedding, guest }: { template
 
       <main className="sx-main">
         <TitleCard wedding={wedding} />
-        <CoupleIntro wedding={wedding} />
-        <BrideGroom wedding={wedding} />
-        <SaveDate wedding={wedding} />
+        <CoupleIntro wedding={wedding} deco={deco} />
+        <BrideGroom wedding={wedding} deco={deco} />
+        <SaveDate wedding={wedding} deco={deco} />
         <EventCards wedding={wedding} />
         <ExtraInfo wedding={wedding} />
-        <LoveStory wedding={wedding} />
+        <LoveStory wedding={wedding} deco={deco} />
         <Moments wedding={wedding} />
-        <Gift wedding={wedding} />
+        <Gift wedding={wedding} deco={deco} />
         <WishesBox wedding={wedding} />
-        <ThankYou wedding={wedding} />
+        <ThankYou wedding={wedding} deco={deco} />
       </main>
 
       {wedding.musicUrl && (
@@ -165,11 +168,15 @@ function TitleCard({ wedding }: { wedding: Wedding }) {
   );
 }
 
-function CoupleIntro({ wedding }: { wedding: Wedding }) {
+type D = { wedding: Wedding; deco?: boolean };
+
+function CoupleIntro({ wedding, deco }: D) {
   const mono = `${wedding.groom.nick[0]}`;
   const mono2 = `${wedding.bride.nick[0]}`;
   return (
     <section className="sx-sec sx-panel">
+      {deco && <Deco src="orchid" className="d-intro-r" />}
+      {deco && <Deco src="vine" className="d-intro-l" idle="swing" origin="40% 0%" />}
       <Reveal variant="curtain">
         <div className="frame-arch">
           <Photo src={wedding.photos.couple} label={`${wedding.groom.nick} & ${wedding.bride.nick}`} className="ph-arch" />
@@ -190,13 +197,14 @@ function CoupleIntro({ wedding }: { wedding: Wedding }) {
   );
 }
 
-function BrideGroom({ wedding }: { wedding: Wedding }) {
+function BrideGroom({ wedding, deco }: D) {
   const people = [
     { p: wedding.bride, photo: wedding.photos.bride, v: "left" as const },
     { p: wedding.groom, photo: wedding.photos.groom, v: "right" as const },
   ];
   return (
     <section id="sx-mempelai" className="sx-sec sx-panel">
+      {deco && <Deco src="lilac" className="d-bg-lilac" idle="swing" origin="0% 20%" flip />}
       <Reveal variant="up">
         <div className="card arch-card">
           <h2 className="sx-h">Bride &amp; Groom</h2>
@@ -228,7 +236,7 @@ function BrideGroom({ wedding }: { wedding: Wedding }) {
   );
 }
 
-function SaveDate({ wedding }: { wedding: Wedding }) {
+function SaveDate({ wedding, deco }: D) {
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
     setNow(Date.now());
@@ -245,6 +253,9 @@ function SaveDate({ wedding }: { wedding: Wedding }) {
   return (
     <section className="sx-sec sx-savedate">
       <Photo src={wedding.photos.saveDate} label="" className="ph-bg" />
+      {deco && <Flock at={0} top="10%" dur={14} />}
+      {deco && <Deco src="bouquet-red" className="d-sd-l" />}
+      {deco && <Deco src="flower-corner" className="d-sd-r" origin="0% 100%" flip />}
       <div className="savedate-in">
         <Reveal variant="blur">
           <h2 className="sx-h light">Save The Date</h2>
@@ -329,9 +340,11 @@ function ExtraInfo({ wedding }: { wedding: Wedding }) {
   );
 }
 
-function LoveStory({ wedding }: { wedding: Wedding }) {
+function LoveStory({ wedding, deco }: D) {
   return (
     <section className="sx-sec sx-panel">
+      {deco && <Deco src="banana" className="d-story-l" />}
+      {deco && <Deco src="orchid" className="d-story-r" flip />}
       <Reveal variant="up">
         <h2 className="sx-h">Love Story</h2>
       </Reveal>
@@ -371,7 +384,7 @@ function Moments({ wedding }: { wedding: Wedding }) {
   );
 }
 
-function Gift({ wedding }: { wedding: Wedding }) {
+function Gift({ wedding, deco }: D) {
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
   const copy = (n: string) => {
@@ -381,6 +394,7 @@ function Gift({ wedding }: { wedding: Wedding }) {
   };
   return (
     <section className="sx-sec sx-panel">
+      {deco && <Deco src="flower-corner" className="d-gift" origin="0% 100%" />}
       <Reveal variant="up">
         <div className="card">
           <h2 className="sx-h">Wedding Gift</h2>
@@ -456,9 +470,12 @@ function WishesBox({ wedding }: { wedding: Wedding }) {
   );
 }
 
-function ThankYou({ wedding }: { wedding: Wedding }) {
+function ThankYou({ wedding, deco }: D) {
   return (
     <section className="sx-sec sx-panel sx-end">
+      {deco && <Deco src="bouquet-red" className="d-end-l" />}
+      {deco && <Deco src="bouquet-blue" className="d-end-r" />}
+      {deco && <Deco src="lilac" className="d-end-top" idle="swing" origin="0% 20%" />}
       <Reveal variant="curtain">
         <div className="frame-arch">
           <Photo src={wedding.photos.closing} label={`${wedding.groom.nick} & ${wedding.bride.nick}`} className="ph-arch" />
