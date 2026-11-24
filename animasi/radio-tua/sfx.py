@@ -108,4 +108,8 @@ save("kresek", (rng.standard_normal(len(t)) - lowpass(rng.standard_normal(len(t)
 t = secs(3.0)
 save("hujan", lowpass(rng.standard_normal(len(t)), 3) * (0.8 + .2 * np.sin(2 * np.pi * .7 * t)) * np.sin(np.pi * t / t[-1]) ** .5, 0.4)
 
+# Dering HP.
+t = secs(1.4)
+save("dering", (np.sin(2 * np.pi * 880 * t) + np.sin(2 * np.pi * 1320 * t)) * (np.sin(2 * np.pi * 4 * t) > 0) * (t < 1.2), 0.35)
+
 print("SFX selesai di", OUT)
