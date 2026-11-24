@@ -24,6 +24,13 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - Cek ukuran sebelum render: buat satu bingkai per adegan dan bandingkan tinggi kepala antartokoh.
 - **Benda tidak bergerak sendiri.** Setiap benda yang berpindah (toples, gelas, bola, dsb.) harus dibawa tangan: tangan menjangkau benda dulu, baru benda ikut tangan; saat diletakkan, tangan membawanya sampai ke tempatnya lalu kembali. Benda yang tidak dipegang tetap diam di tempat terakhirnya (meja, pangkuan, lantai) — tidak boleh menghilang atau muncul tiba-tiba antaradegan. Cek dengan beberapa bingkai berurutan dalam satu adegan.
 
+## 1b. Aturan tambahan (masukan pengguna, November 2026)
+
+- **Volume harus kencang**: target loudness ± **-14 LUFS** (standar TikTok/IG/YouTube). Di `build.js`, rantai audio setelah `amix`: `volume=2.4,acompressor=threshold=-20dB:ratio=3:attack=5:release=150,loudnorm=I=-14:TP=-1.5:LRA=9,aresample=44100,alimiter=limit=0.9`. Cek dengan `ffmpeg -i <audio.wav> -af ebur128=peak=true -f null -` (I ≈ -13 s/d -14 LUFS, puncak ≤ -0,5 dBFS).
+- **Cerita bersambung**: bagian pertama **tidak** diberi tulisan "Bagian 1" di judul — biar mengalir. Bagian berikutnya boleh "Bagian 2", dst.
+- **Dekorasi dalam ruangan harus ramai** dan terlihat di dalam bingkai kamera (bukan di luar zoom): kalender, poster/foto, rak buku, lampu gantung, jemuran/tirai, karpet, galon, dsb. Rumah sakit: tirai, monitor, meja kecil, lantai keramik. Contoh: `kamar()`/`hospital()`/`corridor()` di `animasi/transfer/transfer-1.html`.
+- **Sebelum membuat cerita baru, riset dulu** apakah cerita serupa sudah ada (berita, YouTube, TikTok, fiksi online), lalu buat premis yang berbeda.
+
 ## 2. Pola cerita
 
 Misteri desa → digosipkan warga → tokoh muda penasaran menyelidiki diam-diam (biasanya malam hari) → ketahuan → **"Ternyata..."** → penjelasan ilmiah (adegan *zoom* ke dalam: tanah, akar, sel, dsb.) → warga ikut mencontoh → kalimat penutup yang menyimpulkan.

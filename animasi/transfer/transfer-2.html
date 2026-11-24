@@ -501,6 +501,37 @@ function kaleng(x,y){box(x-20,y-44,40,44,6,'#c8a040');box(x-22,y-48,44,8,4,'#a88
 function truck(x,y,s){at(x,y,s,()=>{box(-120,-110,170,90,6,'#d8a030');box(50,-90,70,70,8,'#3a6ab0');box(60,-82,40,30,4,'#bfe0f0');for(const wx of [-80,20,90]){ellipse(wx,-18,20,20,'#1e1e22');ellipse(wx,-18,8,8,'#9aa0a8')}})}
 function bersambung(p,x=225){if(p>.45){const a=clamp((p-.45)*4);g.fillStyle='rgba(0,0,0,'+(a*.6).toFixed(2)+')';g.fillRect(-300,-300,1100,1400);g.save();g.globalAlpha=a;capText('BERSAMBUNG…',x,400,34,'#ffd98a');g.restore()}}
 
+// ---------- Dekorasi dalam ruangan (lebih ramai) ----------
+function kamar(t,o={}){
+  g.fillStyle=gradient(0,0,0,560,[[0,'#d8c8a8'],[1,'#c8b490']]);g.fillRect(-300,-300,1100,860);
+  for(let k=-6;k<14;k++)for(let r=0;r<12;r++)if((k+r)%2===0)ellipse(k*40+10,r*48+20,2,2,'rgba(140,110,70,.25)');
+  box(-300,500,1100,8,2,'#a8885a');
+  if(o.window!==false){box(300,150,120,130,4,o.day?'#bfe0f0':'#1a2a4a');line([[360,150],[360,280]],'#6a4a2a',5);line([[300,215],[420,215]],'#6a4a2a',5);if(!o.day)ellipse(390,180,10,10,'#fff6d2');
+    polygon([[292,142],[320,142],[312,300],[290,300]],'#c0504a');polygon([[428,142],[400,142],[408,300],[430,300]],'#c0504a');line([[286,142],[434,142]],'#5a3a20',4)}
+  box(70,290,80,104,3,'#f4efe0');box(76,296,68,26,2,'#c0392b');label('2026',110,309,10,'#fff','center',900);for(let r=0;r<4;r++)for(let c=0;c<4;c++)box(78+c*16,328+r*16,13,12,1,'#e8e2d0');
+  box(290,300,96,66,3,'#3a6a9a');polygon([[298,358],[326,322],[350,344],[376,312],[378,358]],'#8ac06a');ellipse(356,320,7,7,'#f2c94a');label('SEMANGAT!',338,385,10,'#5a3a20','center',900);
+  if(o.photo){box(160,250,60,72,3,'#5a3a20');box(165,255,50,62,2,'#e8e0cc');at(190,312,.42,()=>person('ibuD',0,0,1,t,{mood:'happy'}))}
+  if(o.clock){at(220,110,1,()=>{ellipse(0,0,26,26,'#f4efe0');ellipse(0,0,22,22,'#fff');line([[0,0],[0,-16]],'#222',3);line([[0,0],[-12,0]],'#222',3)})}
+  line([[225,-300],[225,40]],'#444',2);polygon([[205,40],[245,40],[236,58],[214,58]],'#e8c04a');ellipse(225,60,8,5,o.day?'#fff8d8':'#fff2a0');
+  box(-30,330,60,230,3,'#8a5a32');for(let r=0;r<4;r++){line([[-30,380+r*48],[30,380+r*48]],'#6a4020',3);for(let k=0;k<4;k++)box(-24+k*13,350+r*48,10,28,2,['#c0392b','#3a6ab0','#e8a030','#3a8a5a'][(k+r)%4])}
+  line([[330,330],[450,320]],'#777',1.5);for(const [x,c] of [[350,'#e85a4a'],[385,'#3a8ae6'],[420,'#f2c94a']])polygon([[x-12,330],[x+12,328],[x+14,370],[x-14,372]],c);
+  g.fillStyle='#8a6a44';g.fillRect(-300,556,1100,400);for(let k=0;k<8;k++)line([[-300,570+k*k*4],[800,570+k*k*4]],'rgba(60,40,20,.35)',1.4);
+  g.beginPath();g.ellipse(225,690,200,40,0,0,TAU);g.fillStyle='#b8504a';g.fill();g.beginPath();g.ellipse(225,690,170,30,0,0,TAU);g.strokeStyle='#e8c070';g.lineWidth=3;g.stroke();
+  box(400,520,34,50,6,'#9ad0f0');box(408,510,18,12,3,'#3a8ae6')}
+function hospital(t,o={}){
+  g.fillStyle=gradient(0,0,0,560,[[0,'#e4eef0'],[1,'#d0dee2']]);g.fillRect(-300,-300,1100,860);box(-300,430,1100,126,0,'#b8d4d8');line([[-300,430],[800,430]],'#8ab0b8',4);
+  g.fillStyle='#c8d4d8';g.fillRect(-300,556,1100,400);for(let k=-8;k<16;k++)line([[k*50,560],[k*80-200,900]],'rgba(120,140,150,.35)',1.2);for(let k=0;k<8;k++)line([[-300,570+k*k*4],[800,570+k*k*4]],'rgba(120,140,150,.35)',1.2);
+  box(300,140,120,130,4,o.night?'#1a2a4a':'#bfe0f0');line([[360,140],[360,270]],'#8a9aa0',4);if(o.night)ellipse(395,170,9,9,'#fff6d2');
+  for(let k=0;k<6;k++)polygon([[-20+k*14,90],[-6+k*14,90],[-2+k*14,420],[-16+k*14,420]],k%2?'#8ac0a8':'#9ad0b8');line([[-30,88],[90,88]],'#888',4);
+  box(250,190,40,30,4,'#2a3a3a');line([[254,206],[262,206],[266,196],[270,214],[274,204],[286,204]],'#4aea8a',2);line([[270,220],[270,250]],'#888',3);
+  box(70,470,260,26,6,'#ffffff');box(70,496,260,58,4,'#d8e0e4');box(60,410,20,150,4,'#8a9aa0');box(320,440,16,120,4,'#8a9aa0');box(90,450,70,24,10,'#f4f8fa');
+  line([[40,200],[40,560]],'#8a9aa0',3);box(28,190,24,40,6,'rgba(200,230,255,.85)');line([[40,230],[110,460]],'rgba(180,200,220,.8)',1.5);
+  box(350,470,70,90,4,'#e8e0d0');box(354,476,62,30,3,'#d8d0c0');box(370,440,14,30,4,'#c0392b');box(392,446,12,24,6,'#f4f4f4');ellipse(398,444,6,3,'#3a8ae6')}
+function corridor(t){g.fillStyle='#e4ecee';g.fillRect(-300,-300,1100,860);box(-300,420,1100,136,0,'#b8d4d8');line([[-300,420],[800,420]],'#8ab0b8',4);
+  box(150,260,150,296,4,'#7a9ab0');box(158,270,134,120,3,'#c8dce4');ellipse(282,420,4,4,'#555');label('KAMAR 7',225,240,14,'#3a4a5a','center',800);
+  box(20,330,90,40,4,'#2a6a4a');label('➜ IGD',65,350,12,'#fff','center',800);for(const x of [360,410]){box(x-18,470,36,40,4,'#3a6ab0');box(x-18,452,36,20,4,'#4a7ac0')}
+  line([[0,0],[450,0]],'#ccc',2);for(const x of [80,225,370])box(x-30,40,60,10,4,'#fffff0');
+  g.fillStyle='#b8c4c8';g.fillRect(-300,556,1100,400);for(let k=-8;k<16;k++)line([[k*50,560],[k*80-200,900]],'rgba(120,140,150,.35)',1.2)}
 // ---------- Naskah Bagian 2 ----------
 const SCRIPT=[
   ['Di Bagian 1, Angga tahu siapa pengirim uang misterius itu. Pak Kasman. Orang yang dia salahkan atas kematian Bapaknya.','recap',1.0,1.04,225,420],
