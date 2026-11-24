@@ -45,9 +45,9 @@ export const sceneTemplates: SceneTemplate[] = [
     name: "Joglo Tirta",
     tagline: "Joglo, air terjun & pegunungan — ilustrasi lukis, 3D Motion",
     scene: "joglo",
-    openingLabel: "3D Motion · pintu batik & scene ilustrasi",
-    titleAt: 5600,
-    unlockAt: 6400,
+    openingLabel: "3D Motion · kamera mundur dari joglo",
+    titleAt: 4500,
+    unlockAt: 5400,
   },
   {
     kind: "scene",
@@ -55,9 +55,9 @@ export const sceneTemplates: SceneTemplate[] = [
     name: "Sawah Lestari",
     tagline: "Sawah, sungai & danau saat senja — ilustrasi lukis, 3D Motion",
     scene: "sawah",
-    openingLabel: "3D Motion · bunga terbang & scene ilustrasi",
-    titleAt: 5400,
-    unlockAt: 6200,
+    openingLabel: "3D Motion · kamera mundur dari sawah",
+    titleAt: 4500,
+    unlockAt: 5400,
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { Layer, type Enter, type Exit, type Idle } from "./Scenes";
+import { Flyers, Layer, type Enter, type Exit, type Idle } from "./Scenes";
 
 /* ═══════════════════════════════════════════════════════════════
    Scene dari ilustrasi PNG/WebP — setiap gambar = satu layer.
@@ -191,22 +191,49 @@ export function Petals({ at, kind = "lilac" }: { at: number; kind?: "lilac" | "g
   );
 }
 
-/* ═════════════ SCENE: JOGLO TIRTA (air terjun & joglo) ═════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   Opening "kamera mundur": scene sudah lengkap tapi kamera mulai sangat
+   dekat ke bangunan utama, tanaman latar depan melintas ke samping,
+   lalu kamera mundur pelan sampai terlihat langit luas. Setelah itu
+   semak bunga tumbuh dari kiri-kanan, kupu-kupu datang, nama muncul.
+   ═══════════════════════════════════════════════════════════════ */
+
+/** tanaman latar depan yang terlewati kamera saat mundur (hanya saat opening) */
+function Transit({ items }: { items: { src: string; cls: string; flip?: boolean }[] }) {
+  return (
+    <div className="transit" aria-hidden>
+      {items.map((it, i) => (
+        <div key={i} className={`tr ${it.cls}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`${A}/${it.src}.webp`} alt="" style={it.flip ? { transform: "scaleX(-1)" } : undefined} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const BUTTERFLY_PINK: [string, string][] = [
+  ["#e98bb0", "#fff1f6"],
+  ["#d96a98", "#ffe3ee"],
+  ["#f2a6c3", "#ffffff"],
+];
+
+/* ═════════════ SCENE: JOGLO TIRTA ═════════════ */
 const JOGLO: ImgLayer[] = [
-  { src: `${A}/sky.webp`, full: true, pos: { inset: 0 }, enter: "zoomout", at: 200, dur: 3200, depth: 0.05, idle: "sky", exit: { s: 0.08 } },
+  { src: `${A}/sky.webp`, full: true, pos: { inset: 0 }, enter: "none", at: 0, depth: 0.05, idle: "sky", exit: { s: 0.08 } },
   {
-    src: `${A}/mountains.webp`, pos: { top: "21%", left: "-45%", width: "190%" }, stage: true,
-    enter: "riseSoft", at: 900, dur: 3000, depth: 0.15, exit: { y: -8 },
+    src: `${A}/mountains.webp`, pos: { top: "39%", left: "-45%", width: "190%" }, stage: true,
+    enter: "none", at: 0, depth: 0.15, exit: { y: -6 },
     fx: [{ kind: "mist", box: [30, 0, 10, 0] }],
   },
   {
-    src: `${A}/lake.webp`, pos: { top: "32%", left: "-38%", width: "176%" }, stage: true,
-    enter: "riseSoft", at: 1200, dur: 2800, depth: 0.25, exit: { y: -4, s: 0.05 },
+    src: `${A}/lake.webp`, pos: { top: "49%", left: "-38%", width: "176%" }, stage: true,
+    enter: "none", at: 0, depth: 0.25, exit: { y: -3, s: 0.05 },
     fx: [{ kind: "ripple", box: [42, 0, 0, 0] }],
   },
   {
-    src: `${A}/waterfall.webp`, pos: { bottom: "33%", left: "-22%", width: "144%" }, stage: true,
-    enter: "rise", at: 1600, dur: 2800, depth: 0.4, exit: { y: -6, s: 0.12 },
+    src: `${A}/waterfall.webp`, pos: { bottom: "22%", left: "-14%", width: "128%" }, stage: true,
+    enter: "none", at: 0, depth: 0.4, exit: { y: -4, s: 0.1 },
     fx: [
       { kind: "fall", box: [8, 15, 16, 12], mask: `${A}/waterfall-water.webp` },
       { kind: "ripple", box: [80, 18, 2, 20] },
@@ -214,66 +241,89 @@ const JOGLO: ImgLayer[] = [
       { kind: "splash", box: [70, 24, 10, 56] },
     ],
   },
-  { src: `${A}/joglo.webp`, pos: { bottom: "8%", left: "4%", width: "92%" }, stage: true, enter: "rise", at: 2300, dur: 2800, depth: 0.6, exit: { y: 6, s: 0.18 } },
-  { src: `${A}/orchid.webp`, pos: { bottom: "20%", right: "-12%", width: "36%" }, stage: true, enter: "grow", at: 3300, dur: 2200, depth: 1, idle: "sway", exit: { x: 70, y: 10 } },
-  { src: `${A}/orchid.webp`, pos: { bottom: "18%", left: "-12%", width: "34%" }, stage: true, flip: true, enter: "grow", at: 3150, dur: 2200, depth: 1, idle: "sway", exit: { x: -70, y: 10 } },
-  { src: `${A}/lilac.webp`, pos: { top: "-3%", left: "-24%", width: "min(98vw, 620px)" }, enter: "swingIn", at: 3350, dur: 2600, depth: 0.9, idle: "swing", origin: "0% 20%", exit: { x: -45, y: -25 } },
-  { src: `${A}/vine.webp`, pos: { top: "-6%", right: "-6%", width: "min(40vw, 260px)" }, flip: true, enter: "drop", at: 3500, dur: 2400, depth: 0.95, idle: "swing", origin: "60% 0%", exit: { x: 40, y: -30 } },
-  { src: `${A}/flower-corner.webp`, pos: { bottom: "-4%", left: "-10%", width: "84%" }, stage: true, enter: "bloom", at: 3700, dur: 2200, depth: 1.4, idle: "sway", origin: "0% 100%", exit: { x: -40, y: 45 } },
-  { src: `${A}/flower-corner.webp`, pos: { bottom: "-6%", right: "-12%", width: "78%" }, stage: true, flip: true, enter: "bloom", at: 3850, dur: 2200, depth: 1.5, idle: "sway", origin: "0% 100%", exit: { x: 40, y: 45 } },
+  { src: `${A}/joglo.webp`, pos: { bottom: "5%", left: "14%", width: "72%" }, stage: true, enter: "none", at: 0, depth: 0.6, exit: { y: 6, s: 0.15 } },
+  // muncul setelah kamera selesai mundur
+  { src: `${A}/orchid.webp`, pos: { bottom: "6%", left: "-14%", width: "40%" }, stage: true, flip: true, enter: "grow", at: 3300, dur: 2200, depth: 1, idle: "sway", exit: { x: -70, y: 10 } },
+  { src: `${A}/orchid.webp`, pos: { bottom: "6%", right: "-14%", width: "40%" }, stage: true, enter: "grow", at: 3450, dur: 2200, depth: 1, idle: "sway", exit: { x: 70, y: 10 } },
+  { src: `${A}/lilac.webp`, pos: { top: "-3%", left: "-26%", width: "min(98vw, 620px)" }, enter: "swingIn", at: 3600, dur: 2400, depth: 0.9, idle: "swing", origin: "0% 20%", exit: { x: -45, y: -25 } },
+  { src: `${A}/vine.webp`, pos: { top: "-6%", right: "-6%", width: "min(38vw, 240px)" }, flip: true, enter: "drop", at: 3750, dur: 2200, depth: 0.95, idle: "swing", origin: "60% 0%", exit: { x: 40, y: -30 } },
+  { src: `${A}/flower-corner.webp`, pos: { bottom: "-5%", left: "-16%", width: "70%" }, stage: true, enter: "bloom", at: 3800, dur: 2000, depth: 1.4, idle: "sway", origin: "0% 100%", exit: { x: -40, y: 45 } },
+  { src: `${A}/flower-corner.webp`, pos: { bottom: "-5%", right: "-16%", width: "70%" }, stage: true, flip: true, enter: "bloom", at: 3950, dur: 2000, depth: 1.4, idle: "sway", origin: "0% 100%", exit: { x: 40, y: 45 } },
 ];
 
 export function SceneJogloImg() {
   return (
-    <div className="cam">
-      <WaterFilters />
-      {renderLayers(JOGLO, false).slice(0, 1)}
-      <div className="sun" />
-      <div className="stage">{renderLayers(JOGLO, true)}</div>
-      {renderLayers(JOGLO, false).slice(1)}
-      <Flock at={4200} />
-      <Petals at={4600} kind="lilac" />
-    </div>
+    <>
+      <div className="cam cam-dolly" style={{ ["--cam-s" as string]: 3.2, ["--cam-o" as string]: "50% 84%" }}>
+        <WaterFilters />
+        {renderLayers(JOGLO, false).slice(0, 1)}
+        <div className="sun" />
+        <div className="stage">{renderLayers(JOGLO, true)}</div>
+        {renderLayers(JOGLO, false).slice(1)}
+        <Flock at={4400} />
+        <Petals at={4700} kind="lilac" />
+      </div>
+      <Flyers at={3600} colors={BUTTERFLY_PINK} />
+      <Transit
+        items={[
+          { src: "flower-corner", cls: "tr-l" },
+          { src: "flower-corner", cls: "tr-r", flip: true },
+          { src: "lilac", cls: "tr-t" },
+          { src: "orchid", cls: "tr-c" },
+        ]}
+      />
+    </>
   );
 }
 
-/* ═════════════ SCENE: SAWAH LESTARI (sawah, sungai & danau) ═════════════ */
+/* ═════════════ SCENE: SAWAH LESTARI ═════════════ */
 const SAWAH: ImgLayer[] = [
-  { src: `${A}/sky.webp`, full: true, pos: { inset: 0 }, enter: "zoomout", at: 200, dur: 3200, depth: 0.05, idle: "sky", exit: { s: 0.08 } },
+  { src: `${A}/sky.webp`, full: true, pos: { inset: 0 }, enter: "none", at: 0, depth: 0.05, idle: "sky", exit: { s: 0.08 } },
   {
-    src: `${A}/mountains.webp`, pos: { top: "24%", left: "-55%", width: "210%" }, stage: true,
-    enter: "riseSoft", at: 1000, dur: 3000, depth: 0.15, exit: { y: -8 },
+    src: `${A}/mountains.webp`, pos: { top: "36%", left: "-55%", width: "210%" }, stage: true,
+    enter: "none", at: 0, depth: 0.15, exit: { y: -6 },
     fx: [{ kind: "mist", box: [25, 0, 10, 0] }],
   },
   {
-    src: `${A}/lake.webp`, pos: { top: "37%", left: "-45%", width: "190%" }, stage: true,
-    enter: "riseSoft", at: 1300, dur: 2800, depth: 0.25, exit: { y: -4, s: 0.05 },
+    src: `${A}/lake.webp`, pos: { top: "47%", left: "-45%", width: "190%" }, stage: true,
+    enter: "none", at: 0, depth: 0.25, exit: { y: -3, s: 0.05 },
     fx: [{ kind: "ripple", box: [42, 0, 0, 0] }],
   },
   {
-    src: `${A}/ricefield.webp`, pos: { bottom: "12%", left: "-30%", width: "160%" }, stage: true,
-    enter: "rise", at: 1800, dur: 2800, depth: 0.5, exit: { y: 10, s: 0.2 },
+    src: `${A}/ricefield.webp`, pos: { bottom: "4%", left: "-30%", width: "160%" }, stage: true,
+    enter: "none", at: 0, depth: 0.5, exit: { y: 10, s: 0.2 },
     fx: [{ kind: "ripple", box: [38, 14, 4, 6] }],
   },
-  { src: `${A}/orchid.webp`, pos: { bottom: "14%", left: "-10%", width: "38%" }, stage: true, flip: true, enter: "grow", at: 3000, dur: 2200, depth: 1, idle: "sway", exit: { x: -70, y: 10 } },
-  { src: `${A}/orchid.webp`, pos: { bottom: "16%", right: "-10%", width: "36%" }, stage: true, enter: "grow", at: 3150, dur: 2200, depth: 1, idle: "sway", exit: { x: 70, y: 10 } },
-  { src: `${A}/lilac.webp`, pos: { top: "-4%", right: "-26%", width: "min(98vw, 620px)" }, flip: true, enter: "swingIn", at: 3200, dur: 2600, depth: 0.9, idle: "swing", origin: "0% 20%", exit: { x: 45, y: -25 } },
-  { src: `${A}/vine.webp`, pos: { top: "-8%", left: "-8%", width: "min(40vw, 260px)" }, enter: "drop", at: 3350, dur: 2400, depth: 0.95, idle: "swing", origin: "40% 0%", exit: { x: -40, y: -30 } },
-  { src: `${A}/bouquet-red.webp`, pos: { bottom: "-8%", left: "-6%", width: "50%" }, stage: true, enter: "bloom", at: 3600, dur: 2200, depth: 1.4, idle: "sway", exit: { x: -40, y: 45 } },
-  { src: `${A}/flower-corner.webp`, pos: { bottom: "-5%", right: "-14%", width: "76%" }, stage: true, flip: true, enter: "bloom", at: 3750, dur: 2200, depth: 1.5, idle: "sway", origin: "0% 100%", exit: { x: 40, y: 45 } },
+  { src: `${A}/orchid.webp`, pos: { bottom: "8%", left: "-14%", width: "40%" }, stage: true, flip: true, enter: "grow", at: 3300, dur: 2200, depth: 1, idle: "sway", exit: { x: -70, y: 10 } },
+  { src: `${A}/orchid.webp`, pos: { bottom: "8%", right: "-14%", width: "40%" }, stage: true, enter: "grow", at: 3450, dur: 2200, depth: 1, idle: "sway", exit: { x: 70, y: 10 } },
+  { src: `${A}/lilac.webp`, pos: { top: "-4%", right: "-26%", width: "min(98vw, 620px)" }, flip: true, enter: "swingIn", at: 3600, dur: 2400, depth: 0.9, idle: "swing", origin: "0% 20%", exit: { x: 45, y: -25 } },
+  { src: `${A}/vine.webp`, pos: { top: "-8%", left: "-8%", width: "min(38vw, 240px)" }, enter: "drop", at: 3750, dur: 2200, depth: 0.95, idle: "swing", origin: "40% 0%", exit: { x: -40, y: -30 } },
+  { src: `${A}/bouquet-red.webp`, pos: { bottom: "-6%", left: "-8%", width: "44%" }, stage: true, enter: "bloom", at: 3800, dur: 2000, depth: 1.4, idle: "sway", exit: { x: -40, y: 45 } },
+  { src: `${A}/bouquet-red.webp`, pos: { bottom: "-6%", right: "-8%", width: "44%" }, stage: true, flip: true, enter: "bloom", at: 3950, dur: 2000, depth: 1.4, idle: "sway", exit: { x: 40, y: 45 } },
 ];
 
 export function SceneSawahImg() {
   return (
-    <div className="cam">
-      <WaterFilters />
-      {renderLayers(SAWAH, false).slice(0, 1)}
-      <div className="sun" />
-      <div className="stage">{renderLayers(SAWAH, true)}</div>
-      {renderLayers(SAWAH, false).slice(1)}
-      <Flock at={4000} top="6%" />
-      <Petals at={4400} kind="gold" />
-    </div>
+    <>
+      <div className="cam cam-dolly" style={{ ["--cam-s" as string]: 2.7, ["--cam-o" as string]: "50% 80%" }}>
+        <WaterFilters />
+        {renderLayers(SAWAH, false).slice(0, 1)}
+        <div className="sun" />
+        <div className="stage">{renderLayers(SAWAH, true)}</div>
+        {renderLayers(SAWAH, false).slice(1)}
+        <Flock at={4200} top="6%" />
+        <Petals at={4600} kind="gold" />
+      </div>
+      <Flyers at={3600} colors={BUTTERFLY_PINK} />
+      <Transit
+        items={[
+          { src: "bouquet-red", cls: "tr-l" },
+          { src: "bouquet-red", cls: "tr-r", flip: true },
+          { src: "lilac", cls: "tr-t" },
+          { src: "orchid", cls: "tr-c" },
+        ]}
+      />
+    </>
   );
 }
 

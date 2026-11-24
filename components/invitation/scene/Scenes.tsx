@@ -7,7 +7,7 @@ import { A, Deco } from "./ImageScene";
 
 export type ScenePhase = "cover" | "go" | "open";
 
-export type Enter = "rise" | "riseSoft" | "left" | "right" | "drop" | "fade" | "zoom" | "grow" | "zoomout" | "bloom" | "swingIn";
+export type Enter = "none" | "rise" | "riseSoft" | "left" | "right" | "drop" | "fade" | "zoom" | "grow" | "zoomout" | "bloom" | "swingIn";
 export type Idle = "sway" | "swing" | "float" | "breathe" | "drift" | "sky";
 export type Exit = { x?: number; y?: number; s?: number };
 
@@ -56,7 +56,7 @@ export function Layer({
   );
 }
 
-function Flyers({ at, colors }: { at: number; colors: [string, string][] }) {
+export function Flyers({ at, colors }: { at: number; colors: [string, string][] }) {
   return (
     <>
       {colors.map((c, i) => (
@@ -245,23 +245,18 @@ export function CoverIstana({ wedding, guest, phase, onOpen }: { wedding: Weddin
 
 export function CoverJoglo({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
   return (
-    <div className={`sc-cover cover-joglo is-${phase}`}>
-      <div className="door door-l">
-        <BatikPanel className="door-svg" />
-      </div>
-      <div className="door door-r">
-        <BatikPanel className="door-svg" />
-      </div>
-      <div className="sc-cover-body medallion">
-        <Deco src="flower-corner" className="md-flower md-flower-l" origin="0% 100%" />
-        <Deco src="flower-corner" className="md-flower md-flower-r" origin="0% 100%" flip />
+    <div className={`sc-cover cover-photo cover-joglo-p is-${phase}`}>
+      <div className="cs-sky" style={{ backgroundImage: `url(${A}/sky.webp)` }} />
+      <Deco src="vine" className="cp-vine-l" idle="swing" origin="40% 0%" />
+      <Deco src="vine" className="cp-vine-r" idle="swing" origin="60% 0%" flip />
+      <Deco src="flower-corner" className="cp-fc-l" origin="0% 100%" />
+      <Deco src="flower-corner" className="cp-fc-r" origin="0% 100%" flip />
+      <div className="sc-cover-body">
         <span className="sc-script">The Wedding Of</span>
-        <h1 className="sc-caps sc-caps-stack">
-          <span>{wedding.groom.nick}</span>
-          <i>&amp;</i>
-          <span>{wedding.bride.nick}</span>
+        <Photo src={wedding.photos.cover} label={`${wedding.groom.nick[0]} & ${wedding.bride.nick[0]}`} className="ph-oval" />
+        <h1 className="sc-caps">
+          {wedding.groom.nick} &amp; {wedding.bride.nick}
         </h1>
-        <span className="sc-date">{wedding.dateLabel}</span>
         <GuestInfo guest={guest} />
         <OpenBtn onOpen={onOpen} />
       </div>
@@ -271,12 +266,12 @@ export function CoverJoglo({ wedding, guest, phase, onOpen }: { wedding: Wedding
 
 export function CoverSawah({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
   return (
-    <div className={`sc-cover cover-sawah is-${phase}`}>
+    <div className={`sc-cover cover-photo cover-sawah is-${phase}`}>
       <div className="cs-sky" style={{ backgroundImage: `url(${A}/sky.webp)` }} />
       <Deco src="lilac" className="cs-lilac-l" idle="swing" origin="0% 20%" />
       <Deco src="lilac" className="cs-lilac-r" idle="swing" origin="0% 20%" flip />
       <Deco src="bouquet-red" className="cs-bq-l" />
-      <Deco src="flower-corner" className="cs-fc-r" origin="0% 100%" flip />
+      <Deco src="bouquet-red" className="cs-bq-r" flip />
       <div className="sc-cover-body">
         <span className="sc-script">The Wedding Of</span>
         <Photo src={wedding.photos.cover} label={`${wedding.groom.nick[0]} & ${wedding.bride.nick[0]}`} className="ph-oval" />

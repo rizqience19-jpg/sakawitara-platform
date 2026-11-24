@@ -321,19 +321,6 @@ function ExtraInfo({ wedding }: { wedding: Wedding }) {
     <section className="sx-sec sx-panel">
       <Reveal variant="up">
         <div className="card">
-          <h2 className="sx-h">Dresscode</h2>
-          <p className="lead">{wedding.dresscode.text}</p>
-          <div className="swatches">
-            {wedding.dresscode.colors.map((c, i) => (
-              <Reveal key={c} variant="zoom" delay={i * 120}>
-                <span className="swatch" style={{ background: c }} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-      <Reveal variant="up" delay={100}>
-        <div className="card">
           <h2 className="sx-h">Live Streaming</h2>
           <p className="lead">{wedding.liveStream.text}</p>
           <a className="pill" href={wedding.liveStream.url} target="_blank" rel="noreferrer">
