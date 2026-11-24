@@ -71,14 +71,26 @@ export default function SceneInvitation({ template, wedding, guest }: { template
     };
   }, []);
 
-  const open = () => {
-    if (phase !== "cover") return;
+  // muat & decode semua ilustrasi dulu supaya opening tidak "bolong" di HP/koneksi lambat
+  const readyRef = useRef<Promise<unknown> | null>(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const imgs = Array.from(rootRef.current?.querySelectorAll<HTMLImageElement>(".scene img") ?? []);
+    const all = Promise.all(imgs.map((i) => (i.decode ? i.decode().catch(() => {}) : Promise.resolve())));
+    readyRef.current = Promise.race([all, new Promise((r) => window.setTimeout(r, 6000))]);
+  }, []);
+
+  const open = async () => {
+    if (phase !== "cover" || loading) return;
+    const a = audioRef.current;
+    if (a) a.play().then(() => setPlaying(true)).catch(() => {});
+    setLoading(true);
+    await readyRef.current;
+    setLoading(false);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setPhase("go");
     window.setTimeout(() => setTitled(true), reduce ? 200 : template.titleAt);
     window.setTimeout(() => setPhase("open"), reduce ? 400 : template.unlockAt);
-    const a = audioRef.current;
-    if (a) a.play().then(() => setPlaying(true)).catch(() => {});
   };
 
   const toggleMusic = () => {
@@ -97,7 +109,7 @@ export default function SceneInvitation({ template, wedding, guest }: { template
   const deco = template.scene !== "istana";
 
   return (
-    <div ref={rootRef} className={`sx sx-${template.scene}${deco ? " sx-clear" : ""}${phase !== "cover" ? " is-go" : ""}${titled ? " is-titled" : ""}`}>
+    <div ref={rootRef} className={`sx sx-${template.scene}${deco ? " sx-clear" : ""}${phase !== "cover" ? " is-go" : ""}${loading ? " is-loading" : ""}${titled ? " is-titled" : ""}`}>
       <div className="scene" aria-hidden>
         <Scene />
       </div>

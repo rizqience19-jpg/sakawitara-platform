@@ -241,6 +241,12 @@ const JOGLO: ImgLayer[] = [
       { kind: "splash", box: [70, 24, 10, 56] },
     ],
   },
+  // tanah sawah di belakang joglo (menutup celah antara air terjun & joglo)
+  {
+    src: `${A}/ricefield.webp`, pos: { bottom: "-3%", left: "-34%", width: "168%" }, stage: true,
+    enter: "none", at: 0, depth: 0.5, exit: { y: 8, s: 0.12 },
+    fx: [{ kind: "ripple", box: [38, 14, 4, 6] }],
+  },
   { src: `${A}/joglo.webp`, pos: { bottom: "5%", left: "14%", width: "72%" }, stage: true, enter: "none", at: 0, depth: 0.6, exit: { y: 6, s: 0.15 } },
   // muncul setelah kamera selesai mundur
   { src: `${A}/orchid.webp`, pos: { bottom: "6%", left: "-14%", width: "40%" }, stage: true, flip: true, enter: "grow", at: 3300, dur: 2200, depth: 1, idle: "sway", exit: { x: -70, y: 10 } },

@@ -1982,3 +1982,8 @@
 .sx.sx-clear.is-titled .title-card {
   animation: enFade 1s ease forwards;
 }
+
+/* tombol saat ilustrasi masih dimuat */
+.sx.is-loading .sc-open .lbl { display: none; }
+.sx.is-loading .sc-open::before { content: "Memuat…"; }
+.sx.is-loading .sc-open { opacity: 0.8; cursor: progress; }
