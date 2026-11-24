@@ -7,6 +7,7 @@ import type { SceneTemplate, Wedding } from "../data";
 import { Reveal } from "../Reveal";
 import { CoverIstana, CoverJoglo, CoverSawah, Photo, SceneIstana, type ScenePhase } from "./Scenes";
 import { Deco, Flock, SceneJogloImg, SceneSawahImg } from "./ImageScene";
+import { Kayon, NotchFrame } from "./Frame";
 
 export default function SceneInvitation({ template, wedding, guest }: { template: SceneTemplate; wedding: Wedding; guest: string }) {
   const [phase, setPhase] = useState<ScenePhase>("cover");
@@ -119,7 +120,7 @@ export default function SceneInvitation({ template, wedding, guest }: { template
       {phase !== "open" && <Cover wedding={wedding} guest={guest} phase={phase} onOpen={open} />}
 
       <main className="sx-main">
-        <TitleCard wedding={wedding} />
+        <TitleCard wedding={wedding} panel={deco} />
         <CoupleIntro wedding={wedding} deco={deco} />
         <BrideGroom wedding={wedding} deco={deco} />
         <SaveDate wedding={wedding} deco={deco} />
@@ -165,62 +166,6 @@ export default function SceneInvitation({ template, wedding, guest }: { template
 
 /* ───────────── Bagian-bagian konten ───────────── */
 
-/** Bingkai gunungan (kayon): puncak lancip, bahu lebar, pinggang, kaki berumpak */
-const GN_PATH =
-  "M160 4 C 200 70, 282 168, 306 268 C 316 312, 300 342, 272 362 C 261 371, 261 384, 270 396 L 270 420 Q 232 424 204 432 L 172 452 L 160 458 L 148 452 L 116 432 Q 88 424 50 420 L 50 396 C 59 384, 59 371, 48 362 C 20 342, 4 312, 14 268 C 38 168, 120 70, 160 4 Z";
-
-function Gunungan() {
-  return (
-    <svg className="gn" viewBox="0 0 320 460" preserveAspectRatio="none" aria-hidden>
-      <defs>
-        <linearGradient id="gn-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#5e1913" />
-          <stop offset="1" stopColor="#3a0e0a" />
-        </linearGradient>
-        <linearGradient id="gn-gold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f6dc98" />
-          <stop offset="0.5" stopColor="#c99a4a" />
-          <stop offset="1" stopColor="#f0d08a" />
-        </linearGradient>
-        <clipPath id="gn-clip">
-          <path d={GN_PATH} />
-        </clipPath>
-      </defs>
-      <path d={GN_PATH} fill="url(#gn-fill)" />
-      <g clipPath="url(#gn-clip)">
-        {/* umpak merah di kaki */}
-        <rect x="0" y="398" width="320" height="70" fill="#8e1f17" />
-        <path d="M50 398 H 270" stroke="url(#gn-gold)" strokeWidth="2" />
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-          <path key={i} d={`M${60 + i * 20} 404 q 10 10 20 0`} stroke="url(#gn-gold)" strokeWidth="1.2" fill="none" />
-        ))}
-      </g>
-      {/* garis tepi ganda */}
-      <path d={GN_PATH} fill="none" stroke="url(#gn-gold)" strokeWidth="3" />
-      <path d={GN_PATH} fill="none" stroke="url(#gn-gold)" strokeWidth="1" opacity=".75" transform="translate(160 250) scale(.93) translate(-160 -250)" />
-      {/* tangkai tengah & pohon hayat di puncak */}
-      <g stroke="url(#gn-gold)" fill="none" strokeWidth="1.6" strokeLinecap="round">
-        <path d="M160 150 V 40 M160 432 V 458" />
-        {[0, 1, 2, 3].map((i) => {
-          const y = 142 - i * 24;
-          const w = 50 - i * 10;
-          return (
-            <g key={i}>
-              <path d={`M160 ${y} C ${160 - w * 0.4} ${y - 6}, ${160 - w} ${y - 4}, ${160 - w} ${y - 16} c 0 -8 10 -8 10 -1`} />
-              <path d={`M160 ${y} C ${160 + w * 0.4} ${y - 6}, ${160 + w} ${y - 4}, ${160 + w} ${y - 16} c 0 -8 -10 -8 -10 -1`} />
-            </g>
-          );
-        })}
-        <path d="M66 166 Q 160 144 254 166" />
-      </g>
-      <circle cx="160" cy="36" r="4" fill="url(#gn-gold)" />
-      {[96, 128, 160, 192, 224].map((x, i) => (
-        <circle key={x} cx={x} cy={[162, 157, 155, 157, 162][i]} r="2" fill="url(#gn-gold)" />
-      ))}
-    </svg>
-  );
-}
-
 /** "Putra pertama dari" di baris sendiri; tiap nama orang tua tidak dipotong ke baris lain */
 function Parents({ text }: { text: string }) {
   const i = text.indexOf(" dari ");
@@ -252,11 +197,29 @@ function LuxPortrait({ src, label }: { src: string | null; label: string }) {
   );
 }
 
-function TitleCard({ wedding }: { wedding: Wedding }) {
+function TitleCard({ wedding, panel }: { wedding: Wedding; panel?: boolean }) {
+  if (panel)
+    return (
+      <section id="sx-home" className="sx-title sx-title-panel">
+        <div className="tpanel">
+          <NotchFrame r={34} />
+          <Kayon className="tp-kayon" />
+          <span className="tp-eyebrow tp-a">The Wedding Of</span>
+          <span className="tp-names tp-b">
+            {wedding.groom.nick} &amp; {wedding.bride.nick}
+          </span>
+          <span className="tp-date tp-c">{wedding.dateLabel}</span>
+          <span className="mouse tp-d" aria-hidden>
+            <i />
+          </span>
+        </div>
+        <Kayon filled className="tp-corner tp-corner-l" />
+        <Kayon filled className="tp-corner tp-corner-r" />
+      </section>
+    );
   return (
     <section id="sx-home" className="sx-title">
       <div className="title-card">
-        <Gunungan />
         <span className="sc-script t-1">The Wedding Of</span>
         <span className="sc-caps t-2">{wedding.groom.nick}</span>
         <span className="sc-script t-amp t-3">&amp;</span>
@@ -308,7 +271,8 @@ function BrideGroom({ wedding, deco }: D) {
     <section id="sx-mempelai" className="sx-sec sx-panel">
       {deco && <Deco src="lilac" className="d-bg-lilac" idle="swing" origin="0% 20%" flip />}
       <Reveal variant="up">
-        <div className="card arch-card">
+        <div className={deco ? "card notch-card" : "card arch-card"}>
+          {deco && <NotchFrame />}
           <h2 className="sx-h">Groom &amp; Bride</h2>
           <p className="salam">Assalamu&apos;alaikum Warahmatullahi Wabarakatuh</p>
           <p className="lead">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
