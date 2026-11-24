@@ -1,6 +1,6 @@
 # Naskah: "Surat dari Bapak" — Bagian 2 (Kisah Nyempil)
 
-Lanjutan Bagian 1, versi hangat (dipilih pengguna). Satu narator (Gunawan, eleven_v4, 1 versi), narasi utuh, caption satu kata, efek suara pendek & pelan, tanpa musik. ± 2 menit, 33 baris. Tokoh & tampilan sama dengan Bagian 1: **Laras** (bertoga di awal), **Pak Saliman** (tukang becak, topi lusuh, kumis), ditambah **Bu Ningrum** (guru SD Laras dulu, berkerudung, kacamata).
+Lanjutan Bagian 1, versi hangat (dipilih pengguna). Satu narator (Gunawan, eleven_v4, 1 versi), narasi utuh, caption satu kata, efek suara pendek & pelan, tanpa musik. ± 2 menit 10 detik, 35 baris. Tokoh & tampilan sama dengan Bagian 1: **Laras** (bertoga di awal), **Pak Saliman** (tukang becak, topi lusuh, kumis), ditambah **Bu Ningrum** (guru SD Laras dulu, berkerudung, kacamata).
 
 | # | Tag | Narasi | Adegan |
 |---|-----|--------|--------|
@@ -18,6 +18,8 @@ Lanjutan Bagian 1, versi hangat (dipilih pengguna). Satu narator (Gunawan, eleve
 | 12 | [sad] | Pulpen yang empat tahun lalu Laras tinggalkan di jok becak itu. | Kilas balik pulpen di jok |
 | 13 | [softly] | "Pak…" | Laras berlutut di samping becak |
 | 14 | [warmly] | Pak Saliman terbangun, lalu tersenyum. "Bapak cuma mau lihat kamu pakai toga, Nduk. Dari jauh saja." | Pak Saliman tersenyum malu |
+| 14a | [softly] | Surat itu Bapak selipkan sendiri di bawah pintu asrama, lalu pergi diam-diam. | Kilas balik: Bapak menyelipkan amplop, berjalan pergi |
+| 14b | [sad] | "Bapak ke sini naik apa?" tanya Laras. "Naik becak, Nduk. Dua hari." | Laras menutup mulut, Bapak tersenyum polos |
 | 15 | | Malam itu, Bapak akhirnya bercerita. | Warung kopi, Laras & Bapak duduk berdua |
 | 16 | | Setiap bulan, sepulang menarik becak, Bapak berjalan ke rumah Bu Ningrum. Guru SD Laras dulu. | Pak Saliman mengetuk pintu rumah Bu Ningrum |
 | 17 | | Bapak bercerita, Bu Ningrum yang menuliskan. | Bu Ningrum menulis, Bapak bercerita sambil tersenyum |
