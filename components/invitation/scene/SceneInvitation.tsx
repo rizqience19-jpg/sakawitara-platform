@@ -265,7 +265,7 @@ function SaveDate({ wedding, deco }: D) {
     ["Detik", diff === null ? null : Math.floor(diff / 1e3) % 60],
   ];
   return (
-    <section className="sx-sec sx-savedate">
+    <section className={`sx-sec sx-savedate${wedding.photos.saveDate ? " has-photo" : ""}`}>
       {(wedding.photos.saveDate || !deco) && <Photo src={wedding.photos.saveDate} label="" className="ph-bg" />}
       {deco && <Flock at={0} top="6%" dur={14} />}
       {deco && <Deco src="bouquet-red" className="d-sd-l" />}

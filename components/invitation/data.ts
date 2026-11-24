@@ -100,6 +100,9 @@ export function getTemplate(slug: string): AnyTemplate | undefined {
   return allTemplates.find((t) => t.slug === slug);
 }
 
+/** lokasi foto demo */
+const D = process.env.NEXT_PUBLIC_DEMO_ASSETS ?? "/demo";
+
 /** Data contoh — nanti diganti data undangan dari Supabase. */
 export const sampleWedding = {
   groom: {
@@ -149,15 +152,16 @@ export const sampleWedding = {
   ],
   /** URL foto (Supabase Storage). null = placeholder. */
   photos: {
-    cover: null as string | null,
-    couple: null as string | null,
-    groom: null as string | null,
-    bride: null as string | null,
-    saveDate: null as string | null,
-    closing: null as string | null,
-    gallery: [null, null, null, null, null, null] as (string | null)[],
-    story: [null, null, null] as (string | null)[],
+    cover: `${D}/cover.webp` as string | null,
+    couple: `${D}/couple.webp` as string | null,
+    groom: `${D}/groom.webp` as string | null,
+    bride: `${D}/bride.webp` as string | null,
+    saveDate: `${D}/savedate.webp` as string | null,
+    closing: `${D}/closing.webp` as string | null,
+    gallery: [1, 2, 3, 4, 5, 6].map((i) => `${D}/gallery-${i}.webp`) as (string | null)[],
+    story: [1, 2, 3].map((i) => `${D}/story-${i}.webp`) as (string | null)[],
   },
+
   dresscode: {
     text: "Kami dengan hormat mengharapkan tamu undangan mengenakan warna-warna berikut untuk hari istimewa kami.",
     colors: ["#8a6a4a", "#d9c6a5", "#f3ece0"],

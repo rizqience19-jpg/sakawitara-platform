@@ -1987,3 +1987,15 @@
 .sx.is-loading .sc-open .lbl { display: none; }
 .sx.is-loading .sc-open::before { content: "Memuat…"; }
 .sx.is-loading .sc-open { opacity: 0.8; cursor: progress; }
+
+/* foto asli: fokus ke wajah (bagian atas foto) */
+.ph img { object-position: 50% 22%; }
+.ph-story img { object-position: 50% 30%; }
+.ph-bg img { object-position: 50% 40%; }
+/* Save the Date berfoto: teks putih di atas foto */
+.sx-savedate.has-photo { min-height: 92vh; min-height: 92svh; justify-content: flex-end; padding-bottom: 120px; }
+.sx.sx-sawah .sx-savedate.has-photo .sx-h.light,
+.sx.sx-sawah .sx-savedate.has-photo .sd-date { color: #fff; }
+.sx.sx-sawah .sx-savedate.has-photo .cd-box { color: #fff; border-color: rgba(255,255,255,.75); background: rgba(255,255,255,.1); }
+.sx.sx-sawah .sx-savedate.has-photo .pill-light { color: #fff; border-color: #fff; }
+.sx-savedate.has-photo .d-sd-l, .sx-savedate.has-photo .d-sd-r { display: none; }
