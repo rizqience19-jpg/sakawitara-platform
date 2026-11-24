@@ -1,5 +1,5 @@
 export type OpeningStyle = "gerbang" | "amplop" | "lingkar";
-export type SceneStyle = "istana" | "joglo" | "sawah";
+export type SceneStyle = "istana" | "joglo" | "sawah" | "purnama";
 
 export type Template = {
   kind: "classic";
@@ -29,6 +29,16 @@ export type SceneTemplate = {
 export type AnyTemplate = Template | SceneTemplate;
 
 export const sceneTemplates: SceneTemplate[] = [
+  {
+    kind: "scene",
+    slug: "pendopo-purnama",
+    name: "Pendopo Purnama",
+    tagline: "Regol, lampu ting & pendopo di bawah bulan purnama — 3D Motion",
+    scene: "purnama",
+    openingLabel: "3D Motion · regol terbuka menuju pendopo",
+    titleAt: 8200,
+    unlockAt: 16200,
+  },
   {
     kind: "scene",
     slug: "graha-asri",

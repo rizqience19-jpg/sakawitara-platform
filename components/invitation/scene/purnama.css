@@ -1,0 +1,293 @@
+/* ═══════════════ TEMA PENDOPO PURNAMA ═══════════════ */
+.sx-purnama {
+  --veil: rgba(30, 10, 24, 0.62);
+  --bg: #2a1430;
+  --panel: #3a1424;
+  --panel-ink: #f6dca6;
+  --card: #fff6e6;
+  --ink: #4a1d14;
+  --muted: #86553a;
+  --accent: #9c2f28;
+  --accent-d: #6b1f1a;
+  --line: rgba(196, 140, 60, 0.55);
+  --ph1: #8a3a3a;
+  --ph2: #3a1424;
+}
+
+.pp {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #2a1430;
+}
+.pp img {
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ── halaman dalam ── */
+.pp-cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 66%;
+  transform: scale(0.9);
+}
+.pp-sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+.pp-moonglow {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  width: 95vmin;
+  height: 95vmin;
+  margin-left: -47.5vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 190, 110, 0.55), rgba(255, 150, 80, 0.18) 40%, transparent 68%);
+  animation: ppMoon 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.pp-stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: min(100vw, 520px);
+  transform: translateX(-50%);
+}
+.pp-stage > * {
+  position: absolute;
+}
+.pp-pond { bottom: 4%; left: -30%; width: 160%; }
+.pp-pendopo { bottom: 25%; left: -14%; width: 128%; }
+.pp-pendopo img { width: 100%; }
+.pp-path {
+  bottom: 0;
+  height: 28%;
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: none;
+}
+.pp-couple {
+  bottom: 26.5%;
+  height: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pp-couple img {
+  height: 100%;
+  width: auto;
+  filter: drop-shadow(0 6px 10px rgba(20, 5, 10, 0.5));
+}
+
+/* lampu ting */
+.pp-ting {
+  position: absolute;
+  aspect-ratio: 223 / 700;
+}
+.pp-ting img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.pp-glow {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  width: 260%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 140, 0.75), rgba(255, 170, 80, 0.25) 35%, transparent 65%);
+  mix-blend-mode: screen;
+  animation: ppFlicker 2.6s ease-in-out var(--fl, 0s) infinite alternate;
+  pointer-events: none;
+}
+.pp-t-far-l { bottom: 20%; height: 12%; left: calc(50% - 17% - 1.7%); }
+.pp-t-far-r { bottom: 20%; height: 12%; left: calc(50% + 17% - 1.7%); }
+.pp-t-mid-l { bottom: 11%; height: 22%; left: calc(50% - 34% - 3.5%); }
+.pp-t-mid-r { bottom: 11%; height: 22%; left: calc(50% + 34% - 3.5%); }
+
+/* kunang-kunang */
+.pp-flies {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.pp-flies span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffe3a0;
+  box-shadow: 0 0 8px 3px rgba(255, 210, 120, 0.8);
+  animation: ppFly linear infinite;
+}
+
+/* lampu terdekat (dilewati kamera) */
+.pp-near {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pp-t-near-l { bottom: -6%; height: 64%; left: -9%; }
+.pp-t-near-r { bottom: -6%; height: 64%; right: -9%; }
+
+/* bunga paling depan */
+.pp-front {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pp-fl {
+  position: absolute;
+  bottom: -6%;
+  height: 30%;
+}
+.pp-fl img { height: 100%; width: auto; }
+.pp-fl-l { left: -14%; transform-origin: 0% 100%; }
+.pp-fl-r { right: -14%; transform-origin: 100% 100%; }
+.pp-fl > div { transform-origin: 50% 100%; height: 100%; }
+.pp-fl { transform: scale(0); }
+
+/* ── regol (gerbang) ── */
+.pp-gate {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pp-gate-in {
+  position: absolute;
+  left: 50%;
+  bottom: -1%;
+  width: min(260vw, 1400px);
+  aspect-ratio: 1500 / 994;
+  transform: translateX(-50%);
+  transform-origin: 50% 70.4%;
+}
+.pp-regol {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.pp-doors {
+  position: absolute;
+  left: 32.53%;
+  width: 34.73%;
+  top: 40.85%;
+  height: 59.15%;
+  perspective: 1100px;
+}
+.pp-door {
+  position: absolute;
+  top: 0;
+  width: 50.5%;
+  height: 100%;
+  object-fit: fill;
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.35);
+}
+.pp-door-l { left: 0; transform-origin: 0% 50%; }
+.pp-door-r { right: 0; transform-origin: 100% 50%; }
+.pp-doorlight {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 30% 60% at 50% 55%, rgba(255, 230, 170, 0.95), transparent 70%);
+  opacity: 0;
+}
+
+/* ═══════════ TIMELINE (detik sejak "Buka Undangan") ═══════════ */
+.sx.is-go .pp-door-l { animation: ppDoorL 1.7s cubic-bezier(0.55, 0, 0.25, 1) 1.3s forwards; }
+.sx.is-go .pp-door-r { animation: ppDoorR 1.7s cubic-bezier(0.55, 0, 0.25, 1) 1.3s forwards; }
+.sx.is-go .pp-doorlight { animation: ppDoorLight 1.6s ease 1.3s forwards; }
+.sx.is-go .pp-gate-in { animation: ppGatePass 2.2s cubic-bezier(0.55, 0, 0.75, 0.35) 2.6s forwards; }
+.sx.is-go .pp-cam {
+  animation:
+    ppCam 5.4s cubic-bezier(0.4, 0, 0.2, 1) 2.4s forwards,
+    ppDrift 14s ease-in-out 7.8s infinite alternate;
+}
+.sx.is-go .pp-t-near-l { animation: ppNearL 3.6s cubic-bezier(0.5, 0, 0.75, 0.5) 3.8s forwards; }
+.sx.is-go .pp-t-near-r { animation: ppNearR 3.6s cubic-bezier(0.5, 0, 0.75, 0.5) 3.8s forwards; }
+.sx.is-go .pp-fl { animation: ppBloom 1.8s cubic-bezier(0.34, 1.4, 0.64, 1) 5.6s forwards; }
+.sx.is-go .pp-fl-r { animation-delay: 5.8s; }
+.sx.is-go .pp-flies { animation: enFade 2s ease 4.6s forwards; }
+
+@keyframes ppDoorL { to { transform: rotateY(-108deg); } }
+@keyframes ppDoorR { to { transform: rotateY(108deg); } }
+@keyframes ppDoorLight {
+  0% { opacity: 0; }
+  35% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+@keyframes ppGatePass {
+  0% { transform: translateX(-50%) scale(1); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(-50%) scale(4.4); opacity: 0; visibility: hidden; }
+}
+@keyframes ppCam {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.12); }
+}
+@keyframes ppDrift {
+  from { transform: scale(1.12) translateX(0); }
+  to { transform: scale(1.16) translateX(-1%); }
+}
+@keyframes ppNearL {
+  0% { transform: none; opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(-75vw) scale(1.7); opacity: 0; }
+}
+@keyframes ppNearR {
+  0% { transform: none; opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(75vw) scale(1.7); opacity: 0; }
+}
+@keyframes ppBloom {
+  from { transform: scale(0) rotate(-10deg); }
+  to { transform: none; }
+}
+@keyframes ppMoon {
+  from { opacity: 0.7; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.08); }
+}
+@keyframes ppFlicker {
+  0% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+  30% { opacity: 0.95; }
+  55% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.06); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(0.97); }
+}
+@keyframes ppFly {
+  0% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translate(18px, -26px); }
+  80% { opacity: 1; }
+  100% { transform: translate(-10px, -60px); opacity: 0; }
+}
+
+/* cover */
+.cover-purnama {
+  --accent: #9c2f28;
+  --accent-d: #6b1f1a;
+  --ink: #4a1d14;
+  --muted: #86553a;
+}
+.cover-purnama .cs-sky { background-position: 50% 15%; }
+.cp-bunga-l { bottom: -6%; left: -14%; width: min(46vw, 260px); }
+.cp-bunga-r { bottom: -6%; right: -14%; width: min(46vw, 260px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-gate { display: none; }
+  .pp-cam { transform: scale(1.12); }
+  .pp-fl { transform: none; }
+  .pp-flies { opacity: 1; }
+}

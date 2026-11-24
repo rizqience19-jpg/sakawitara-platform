@@ -8,6 +8,7 @@ import { Reveal } from "../Reveal";
 import { CoverIstana, CoverJoglo, CoverSawah, Photo, SceneIstana, type ScenePhase } from "./Scenes";
 import { A, Deco, Flock, SceneJogloImg, SceneSawahImg } from "./ImageScene";
 import { NotchFrame } from "./Frame";
+import { CoverPurnama, ScenePurnama } from "./Purnama";
 
 export default function SceneInvitation({ template, wedding, guest }: { template: SceneTemplate; wedding: Wedding; guest: string }) {
   const [phase, setPhase] = useState<ScenePhase>("cover");
@@ -104,8 +105,8 @@ export default function SceneInvitation({ template, wedding, guest }: { template
     }
   };
 
-  const Cover = template.scene === "istana" ? CoverIstana : template.scene === "joglo" ? CoverJoglo : CoverSawah;
-  const Scene = template.scene === "istana" ? SceneIstana : template.scene === "joglo" ? SceneJogloImg : SceneSawahImg;
+  const Cover = { istana: CoverIstana, joglo: CoverJoglo, sawah: CoverSawah, purnama: CoverPurnama }[template.scene];
+  const Scene = { istana: SceneIstana, joglo: SceneJogloImg, sawah: SceneSawahImg, purnama: ScenePurnama }[template.scene];
   /** ornamen PNG bergoyang di bagian konten (hanya tema berilustrasi) */
   const deco = template.scene !== "istana";
 

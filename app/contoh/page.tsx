@@ -33,7 +33,7 @@ export default function Katalog() {
                 <div className="pv pv-scene pv-img">
                   <img className="pvi-sky" src="/scene/nusantara/sky.webp" alt="" />
                   <img className="pvi-mtn" src="/scene/nusantara/mountains.webp" alt="" />
-                  <img className="pvi-main" src={`/scene/nusantara/${t.scene === "joglo" ? "joglo" : "ricefield"}.webp`} alt="" />
+                  <img className="pvi-main" src={`/scene/nusantara/${t.scene === "joglo" ? "joglo" : t.scene === "purnama" ? "pp-pendopo" : "ricefield"}.webp`} alt="" />
                   <img className="pvi-fl" src="/scene/nusantara/flower-corner.webp" alt="" />
                 </div>
               )}
