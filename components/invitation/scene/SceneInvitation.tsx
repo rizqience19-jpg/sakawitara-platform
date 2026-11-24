@@ -6,8 +6,8 @@ import "./scene.css";
 import type { SceneTemplate, Wedding } from "../data";
 import { Reveal } from "../Reveal";
 import { CoverIstana, CoverJoglo, CoverSawah, Photo, SceneIstana, type ScenePhase } from "./Scenes";
-import { Deco, Flock, SceneJogloImg, SceneSawahImg } from "./ImageScene";
-import { Kayon, NotchFrame } from "./Frame";
+import { A, Deco, Flock, SceneJogloImg, SceneSawahImg } from "./ImageScene";
+import { NotchFrame } from "./Frame";
 
 export default function SceneInvitation({ template, wedding, guest }: { template: SceneTemplate; wedding: Wedding; guest: string }) {
   const [phase, setPhase] = useState<ScenePhase>("cover");
@@ -203,7 +203,15 @@ function TitleCard({ wedding, panel }: { wedding: Wedding; panel?: boolean }) {
       <section id="sx-home" className="sx-title sx-title-panel">
         <div className="tpanel">
           <NotchFrame r={34} />
-          <Kayon className="tp-kayon" />
+          {/* gunungan dibolak-balik seperti dalang membuka pertunjukan */}
+          <div className="gspin" aria-hidden>
+            <div className="gspin-card">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="gs-front" src={`${A}/gunungan.webp`} alt="" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="gs-back" src={`${A}/gunungan.webp`} alt="" />
+            </div>
+          </div>
           <span className="tp-eyebrow tp-a">The Wedding Of</span>
           <span className="tp-names tp-b">
             {wedding.groom.nick} &amp; {wedding.bride.nick}
@@ -213,8 +221,10 @@ function TitleCard({ wedding, panel }: { wedding: Wedding; panel?: boolean }) {
             <i />
           </span>
         </div>
-        <Kayon filled className="tp-corner tp-corner-l" />
-        <Kayon filled className="tp-corner tp-corner-r" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="tp-corner tp-corner-l" src={`${A}/gunungan.webp`} alt="" aria-hidden />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="tp-corner tp-corner-r" src={`${A}/gunungan.webp`} alt="" aria-hidden />
       </section>
     );
   return (
