@@ -1,9 +1,9 @@
 /* ═══════════════ TEMA PENDOPO PURNAMA ═══════════════ */
 .sx-purnama {
-  --veil: rgba(60, 22, 12, 0.55);
-  --bg: #f4c98c;
-  --panel: #3a1424;
-  --panel-ink: #f6dca6;
+  --veil: rgba(239, 230, 214, 0.74);
+  --bg: #ece2d0;
+  --panel: #ece2d0;
+  --panel-ink: #6b2a22;
   --card: #fff6e6;
   --ink: #4a1d14;
   --muted: #86553a;
@@ -18,7 +18,7 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #f4c98c;
+  background: #ece2d0;
 }
 .pp img {
   display: block;
@@ -382,3 +382,53 @@
 @media (prefers-reduced-motion: reduce) {
   .pp-moon, .pp-cap { display: none; }
 }
+
+/* ═══════════ NADA VINTAGE (krem-sepia, kontras rendah) ═══════════ */
+.pp-sky-cream {
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 30%, rgba(255, 252, 244, 0.9), transparent 70%),
+    radial-gradient(ellipse 50% 25% at 20% 55%, rgba(255, 250, 240, 0.55), transparent 70%),
+    radial-gradient(ellipse 50% 25% at 80% 48%, rgba(255, 250, 240, 0.5), transparent 70%),
+    linear-gradient(180deg, #e9dfcc 0%, #efe6d6 45%, #e3d5bd 100%);
+}
+.pp-batik {
+  position: absolute;
+  inset: -14%;
+  pointer-events: none;
+  opacity: 0.22;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 5px, #b49a72 5.5px, #b49a72 6.5px, transparent 7px) 0 0 / 46px 46px,
+    radial-gradient(circle, #b49a72 1.5px, transparent 2px) 23px 23px / 46px 46px,
+    repeating-linear-gradient(0deg, transparent 0 5px, rgba(150, 125, 90, 0.18) 5px 6px);
+  -webkit-mask: radial-gradient(ellipse 60% 55% at 50% 38%, #000 30%, transparent 75%);
+  mask: radial-gradient(ellipse 60% 55% at 50% 38%, #000 30%, transparent 75%);
+}
+/* semua ilustrasi diredam: pudar, hangat, tidak silau */
+.pp-stage,
+.pp-near,
+.pp-gate,
+.pp-moon {
+  filter: saturate(0.62) sepia(0.22) contrast(0.9) brightness(0.98);
+}
+.pp-glow { opacity: 0.18; }
+.pp-haze {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(239, 230, 214, 0.75) 0%, transparent 22%),
+    linear-gradient(0deg, rgba(232, 222, 204, 0.55) 0%, transparent 18%);
+}
+/* teks cover & caption mengikuti nada */
+.cover-purnama { --accent: #8a3a30; --accent-d: #6b2a22; --ink: #4a2a1e; --muted: #7d6450; }
+.cover-purnama .sc-cover-body { text-shadow: none; }
+.cover-purnama .ph-oval { filter: saturate(0.8) sepia(0.12); }
+.pp-cap {
+  background: linear-gradient(180deg, rgba(239, 230, 214, 0), rgba(239, 230, 214, 0.92) 35%);
+  color: #5a3424;
+  text-shadow: none;
+}
+.pp-cap-nick { color: #8a3a30; }
+/* tanpa bunga di seluruh undangan */
+.sx-purnama .sx-main .deco,
+.sx-purnama .lux-fl { display: none; }

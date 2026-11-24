@@ -37,7 +37,9 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
     <div className="pp">
       {/* ── halaman dalam (terlihat setelah pintu terbuka) ── */}
       <div className="pp-cam">
-        <Img src="sky" className="pp-sky" />
+        {/* langit krem kertas tua + pola batik samar (nada vintage) */}
+        <span className="pp-sky pp-sky-cream" />
+        <span className="pp-batik" />
         <div className="pp-stage">
           <Img src="pp-kolam" className="pp-pond" />
           <div className="pp-pendopo">
@@ -63,6 +65,9 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
       <div className="pp-moon">
         <Img src="pp-bulan" />
       </div>
+
+      {/* kabut lembut atas-bawah */}
+      <span className="pp-haze" />
 
       {/* ── nama mempelai saat kamera menyorot masing-masing ── */}
       {wedding && (
@@ -96,7 +101,8 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
 export function CoverPurnama({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
   return (
     <div className={`sc-cover cover-photo cover-purnama is-${phase}`}>
-      <div className="cs-sky" style={{ backgroundImage: `url(${A}/sky.webp)` }} />
+      <div className="cs-sky pp-sky-cream" />
+      <span className="pp-batik" />
       <div className="sc-cover-body">
         <span className="sc-script">The Wedding Of</span>
         <Photo src={wedding.photos.cover} label={`${wedding.groom.nick[0]} & ${wedding.bride.nick[0]}`} className="ph-oval" />
