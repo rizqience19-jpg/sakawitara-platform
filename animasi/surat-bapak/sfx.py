@@ -93,4 +93,11 @@ save("kertas", (rng.standard_normal(len(t)) - lowpass(rng.standard_normal(len(t)
 t = secs(1.2)
 save("dum", (np.sin(2 * np.pi * 55 * t) + 0.4 * np.sin(2 * np.pi * 82 * t)) * np.exp(-t * 3), 0.7)
 
+# Ketukan pintu kayu.
+parts = []
+for _ in range(3):
+    d = secs(0.08)
+    parts += [(np.sin(2 * np.pi * 180 * d) + .4 * rng.standard_normal(len(d))) * np.exp(-d * 50), np.zeros(int(SR * .22))]
+save("ketuk", np.concatenate(parts), 0.5)
+
 print("SFX selesai di", OUT)
