@@ -209,7 +209,7 @@ function BrideGroom({ wedding, deco }: D) {
       {deco && <Deco src="lilac" className="d-bg-lilac" idle="swing" origin="0% 20%" flip />}
       <Reveal variant="up">
         <div className="card arch-card">
-          <h2 className="sx-h">Bride &amp; Groom</h2>
+          <h2 className="sx-h">Groom &amp; Bride</h2>
           <p className="salam">Assalamu&apos;alaikum Warahmatullahi Wabarakatuh</p>
           <p className="lead">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
           {people.map(({ p, photo, v }, i) => (
