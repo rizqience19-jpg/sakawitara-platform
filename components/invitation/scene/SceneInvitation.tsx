@@ -165,10 +165,81 @@ export default function SceneInvitation({ template, wedding, guest }: { template
 
 /* ───────────── Bagian-bagian konten ───────────── */
 
+/** Bingkai gunungan (kayon) — nama & tanggal selalu terbaca di atas scene */
+function Gunungan() {
+  const outer = "M160 6 C 205 62, 306 158, 306 312 L 306 410 Q 306 430 286 430 L 34 430 Q 14 430 14 410 L 14 312 C 14 158, 115 62, 160 6 Z";
+  const inner = "M160 26 C 199 78, 292 166, 292 314 L 292 404 Q 292 416 280 416 L 40 416 Q 28 416 28 404 L 28 314 C 28 166, 121 78, 160 26 Z";
+  return (
+    <svg className="gn" viewBox="0 0 320 436" preserveAspectRatio="none" aria-hidden>
+      <defs>
+        <linearGradient id="gn-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#5a1712" />
+          <stop offset="1" stopColor="#3b0e0b" />
+        </linearGradient>
+        <linearGradient id="gn-gold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#f6dc98" />
+          <stop offset="0.5" stopColor="#c99a4a" />
+          <stop offset="1" stopColor="#f0d08a" />
+        </linearGradient>
+      </defs>
+      <path d={outer} fill="url(#gn-fill)" stroke="url(#gn-gold)" strokeWidth="3" />
+      <path d={inner} fill="none" stroke="url(#gn-gold)" strokeWidth="1.2" opacity=".8" />
+      {/* pohon hayat di puncak gunungan */}
+      <g stroke="url(#gn-gold)" fill="none" strokeWidth="1.6" strokeLinecap="round" opacity=".9">
+        <path d="M160 150 V 44" />
+        {[0, 1, 2, 3].map((i) => {
+          const y = 140 - i * 24;
+          const w = 46 - i * 9;
+          return (
+            <g key={i}>
+              <path d={`M160 ${y} C ${160 - w * 0.4} ${y - 6}, ${160 - w} ${y - 4}, ${160 - w} ${y - 16} c 0 -8 10 -8 10 -1`} />
+              <path d={`M160 ${y} C ${160 + w * 0.4} ${y - 6}, ${160 + w} ${y - 4}, ${160 + w} ${y - 16} c 0 -8 -10 -8 -10 -1`} />
+            </g>
+          );
+        })}
+        <circle cx="160" cy="40" r="4" fill="url(#gn-gold)" />
+      </g>
+      <path d="M70 164 Q 160 146 250 164" stroke="url(#gn-gold)" strokeWidth="1.2" fill="none" />
+      {[90, 125, 160, 195, 230].map((x) => (
+        <circle key={x} cx={x} cy={x === 160 ? 155 : x === 125 || x === 195 ? 158 : 162} r="2" fill="url(#gn-gold)" />
+      ))}
+      {/* umpak / gapura di kaki gunungan */}
+      <path d="M110 430 L 118 412 H 202 L 210 430" fill="#3b0e0b" stroke="url(#gn-gold)" strokeWidth="1.4" />
+    </svg>
+  );
+}
+
+/** Bingkai profil mewah: cincin manik emas berputar + bunga mekar di kaki foto */
+function LuxPortrait({ src, label }: { src: string | null; label: string }) {
+  return (
+    <div className="lux">
+      <svg className="lux-ring" viewBox="0 0 260 320" aria-hidden>
+        <defs>
+          <linearGradient id="lux-gold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#f7e2a4" />
+            <stop offset="0.45" stopColor="#c8963f" />
+            <stop offset="0.7" stopColor="#fbe7ae" />
+            <stop offset="1" stopColor="#a87a2e" />
+          </linearGradient>
+        </defs>
+        <ellipse className="lr lr-solid" cx="130" cy="160" rx="118" ry="150" />
+        <ellipse className="lr lr-beads" cx="130" cy="160" rx="124" ry="156" />
+        <ellipse className="lr lr-dash" cx="130" cy="160" rx="111" ry="143" />
+        <path className="lr-gem" d="M130 0 l7 9 -7 9 -7 -9z M130 302 l7 9 -7 9 -7 -9z" />
+      </svg>
+      <div className="lux-glow" aria-hidden />
+      <Photo src={src} label={label} className="ph-portrait" />
+      <Deco src="flower-corner" className="lux-fl lux-fl-l" origin="0% 100%" />
+      <Deco src="flower-corner" className="lux-fl lux-fl-r" origin="0% 100%" flip />
+    </div>
+  );
+}
+
 function TitleCard({ wedding }: { wedding: Wedding }) {
   return (
     <section id="sx-home" className="sx-title">
       <div className="title-card">
+        <Gunungan />
         <span className="sc-script t-1">The Wedding Of</span>
         <span className="sc-caps t-2">{wedding.groom.nick}</span>
         <span className="sc-script t-amp t-3">&amp;</span>
@@ -227,7 +298,7 @@ function BrideGroom({ wedding, deco }: D) {
           {people.map(({ p, photo, v }, i) => (
             <div key={p.nick} className="person">
               <Reveal variant={v}>
-                <Photo src={photo} label={p.nick} className="ph-portrait" />
+                <LuxPortrait src={photo} label={p.nick} />
               </Reveal>
               <Reveal variant="up" delay={150}>
                 <span className="person-nick">{p.nick}</span>

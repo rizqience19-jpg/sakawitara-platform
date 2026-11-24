@@ -156,9 +156,9 @@ export const sampleWedding = {
     couple: `${D}/couple.webp` as string | null,
     groom: `${D}/groom.webp` as string | null,
     bride: `${D}/bride.webp` as string | null,
-    saveDate: `${D}/savedate.webp` as string | null,
+    saveDate: null as string | null,
     closing: `${D}/closing.webp` as string | null,
-    gallery: [1, 2, 3, 4, 5, 6].map((i) => `${D}/gallery-${i}.webp`) as (string | null)[],
+    gallery: ["gallery-1", "gallery-2", "gallery-3", "savedate", "gallery-5", "gallery-6"].map((n) => `${D}/${n}.webp`) as (string | null)[],
     story: [1, 2, 3].map((i) => `${D}/story-${i}.webp`) as (string | null)[],
   },
 
