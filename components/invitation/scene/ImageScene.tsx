@@ -339,7 +339,7 @@ export function Deco({ src, className, idle = "sway", origin = "50% 100%", flip 
     <div className={`deco ${className}`} aria-hidden style={{ ["--origin" as string]: origin }}>
       <div className={`id-${idle}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`${A}/${src}.webp`} alt="" loading="lazy" style={flip ? { transform: "scaleX(-1)" } : undefined} />
+        <img src={`${A}/${src}.webp`} alt="" style={flip ? { transform: "scaleX(-1)" } : undefined} />
       </div>
     </div>
   );
