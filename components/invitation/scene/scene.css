@@ -2097,11 +2097,11 @@
   border-radius: 40px;
 }
 .sx.is-titled .tpanel {
-  animation: tpGrow 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: tpGrow 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes tpGrow {
   0% { opacity: 0; transform: scale(0.32); }
-  25% { opacity: 1; }
+  30% { opacity: 1; }
   100% { opacity: 1; transform: none; }
 }
 .tp-eyebrow {
@@ -2126,10 +2126,10 @@
 .tpanel .mouse { margin-top: 18px; border-color: #b8893c; }
 .tpanel .mouse i { background: #b8893c; }
 .tp-a, .tp-b, .tp-c, .tp-d { opacity: 0; }
-.sx.is-titled .tp-a { animation: txtIn 1s var(--ease) 5.5s forwards; }
-.sx.is-titled .tp-b { animation: txtIn 1.2s var(--ease) 5.9s forwards; }
-.sx.is-titled .tp-c { animation: txtIn 1s var(--ease) 6.3s forwards; }
-.sx.is-titled .tp-d { animation: txtIn 1s var(--ease) 6.9s forwards; }
+.sx.is-titled .tp-a { animation: txtIn 1.2s var(--ease) 8s forwards; }
+.sx.is-titled .tp-b { animation: txtIn 1.4s var(--ease) 8.5s forwards; }
+.sx.is-titled .tp-c { animation: txtIn 1.2s var(--ease) 9.1s forwards; }
+.sx.is-titled .tp-d { animation: txtIn 1s var(--ease) 9.9s forwards; }
 
 /* gunungan emas kecil di sudut bawah panel */
 .tp-corner {
@@ -2143,8 +2143,8 @@
 }
 .tp-corner-l { left: 6px; }
 .tp-corner-r { right: 6px; }
-.sx.is-titled .tp-corner { animation: cornerIn 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) 5.3s forwards, idSway 5s ease-in-out 6.8s infinite; }
-.sx.is-titled .tp-corner-r { animation-delay: 5.45s, 7s; }
+.sx.is-titled .tp-corner { animation: cornerIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) 7.6s forwards, idSway 5s ease-in-out 9.3s infinite; }
+.sx.is-titled .tp-corner-r { animation-delay: 7.8s, 9.5s; }
 @keyframes cornerIn {
   from { opacity: 0; transform: translateY(40px) scale(0.3); }
   to { opacity: 1; transform: none; }
@@ -2205,23 +2205,23 @@
   transform: rotateY(180deg);
   filter: brightness(0.72) saturate(0.85) sepia(0.25);
 }
-/* searah jarum jam (dilihat dari atas) tanpa pernah berbalik arah:
+/* searah jarum jam tanpa pernah berbalik arah:
    muncul -> 2 putaran (depan, belakang, depan, belakang, depan) -> terus berputar pelan */
 .sx.is-titled .gspin-card {
   animation:
-    gnDalang 4.6s linear 1s forwards,
-    gnLoop 8s linear 5.6s infinite;
+    gnDalang 6s linear 1.5s forwards,
+    gnLoop 10s linear 7.5s infinite;
 }
 @keyframes gnDalang {
   0% { opacity: 0; transform: translateY(30px) scale(0.2) rotateY(0deg); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
   14% { opacity: 1; transform: translateY(0) scale(1) rotateY(0deg); animation-timing-function: cubic-bezier(0.5, 0, 1, 1); }
-  30% { opacity: 1; transform: rotateY(-150deg); animation-timing-function: linear; }
-  78% { opacity: 1; transform: rotateY(-620deg); animation-timing-function: cubic-bezier(0.2, 0.6, 0.5, 0.9); }
-  100% { opacity: 1; transform: rotateY(-720deg); }
+  30% { opacity: 1; transform: rotateY(150deg); animation-timing-function: linear; }
+  78% { opacity: 1; transform: rotateY(620deg); animation-timing-function: cubic-bezier(0.2, 0.6, 0.5, 0.9); }
+  100% { opacity: 1; transform: rotateY(720deg); }
 }
 @keyframes gnLoop {
-  from { opacity: 1; transform: rotateY(-720deg); }
-  to { opacity: 1; transform: rotateY(-1080deg); }
+  from { opacity: 1; transform: rotateY(720deg); }
+  to { opacity: 1; transform: rotateY(1080deg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .gspin-card { opacity: 1; transform: none; }
