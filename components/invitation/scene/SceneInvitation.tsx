@@ -97,10 +97,12 @@ export default function SceneInvitation({ template, wedding, guest }: { template
   const deco = template.scene !== "istana";
 
   return (
-    <div ref={rootRef} className={`sx sx-${template.scene}${phase !== "cover" ? " is-go" : ""}${titled ? " is-titled" : ""}`}>
+    <div ref={rootRef} className={`sx sx-${template.scene}${deco ? " sx-clear" : ""}${phase !== "cover" ? " is-go" : ""}${titled ? " is-titled" : ""}`}>
       <div className="scene" aria-hidden>
         <Scene />
       </div>
+      {/* lapisan lembut di atas ilustrasi saat scroll, agar teks tetap terbaca */}
+      {deco && <div className="veil" aria-hidden />}
 
       {phase !== "open" && <Cover wedding={wedding} guest={guest} phase={phase} onOpen={open} />}
 
@@ -252,13 +254,16 @@ function SaveDate({ wedding, deco }: D) {
   ];
   return (
     <section className="sx-sec sx-savedate">
-      <Photo src={wedding.photos.saveDate} label="" className="ph-bg" />
-      {deco && <Flock at={0} top="10%" dur={14} />}
+      {(wedding.photos.saveDate || !deco) && <Photo src={wedding.photos.saveDate} label="" className="ph-bg" />}
+      {deco && <Flock at={0} top="6%" dur={14} />}
       {deco && <Deco src="bouquet-red" className="d-sd-l" />}
       {deco && <Deco src="flower-corner" className="d-sd-r" origin="0% 100%" flip />}
       <div className="savedate-in">
         <Reveal variant="blur">
           <h2 className="sx-h light">Save The Date</h2>
+        </Reveal>
+        <Reveal variant="up" delay={120}>
+          <span className="sd-date">{wedding.dateLabel}</span>
         </Reveal>
         <div className="cd">
           {parts.map(([l, v], i) => (
@@ -343,8 +348,7 @@ function ExtraInfo({ wedding }: { wedding: Wedding }) {
 function LoveStory({ wedding, deco }: D) {
   return (
     <section className="sx-sec sx-panel">
-      {deco && <Deco src="banana" className="d-story-l" />}
-      {deco && <Deco src="orchid" className="d-story-r" flip />}
+      {deco && <Deco src="flower-corner" className="d-story-fl" origin="0% 100%" />}
       <Reveal variant="up">
         <h2 className="sx-h">Love Story</h2>
       </Reveal>
@@ -352,7 +356,7 @@ function LoveStory({ wedding, deco }: D) {
         {wedding.story.map((s, i) => (
           <li key={s.year}>
             <span className="story-node">♥</span>
-            <Reveal variant="right" delay={80}>
+            <Reveal variant="up" delay={80}>
               <div className="card story-card">
                 <Photo src={wedding.photos.story[i] ?? null} label={s.year} className="ph-story" />
                 <span className="story-year">{s.year}</span>
@@ -474,7 +478,7 @@ function ThankYou({ wedding, deco }: D) {
   return (
     <section className="sx-sec sx-panel sx-end">
       {deco && <Deco src="bouquet-red" className="d-end-l" />}
-      {deco && <Deco src="bouquet-blue" className="d-end-r" />}
+      {deco && <Deco src="bouquet-red" className="d-end-r" flip />}
       {deco && <Deco src="lilac" className="d-end-top" idle="swing" origin="0% 20%" />}
       <Reveal variant="curtain">
         <div className="frame-arch">

@@ -34,7 +34,6 @@ export default function Katalog() {
                   <img className="pvi-sky" src="/scene/nusantara/sky.webp" alt="" />
                   <img className="pvi-mtn" src="/scene/nusantara/mountains.webp" alt="" />
                   <img className="pvi-main" src={`/scene/nusantara/${t.scene === "joglo" ? "joglo" : "ricefield"}.webp`} alt="" />
-                  <img className="pvi-tree" src="/scene/nusantara/banana.webp" alt="" />
                   <img className="pvi-fl" src="/scene/nusantara/flower-corner.webp" alt="" />
                 </div>
               )}
