@@ -25,7 +25,7 @@ const fs = require('fs');
     return `[${i}:a]${trim}aformat=sample_rates=44100:channel_layouts=stereo,volume=${vol},adelay=${ms}|${ms}[a${i}]`;
   });
   const inputs = audio.map((_, i) => `[a${i}]`).join('');
-  const filter = `${parts.join(';')};${inputs}amix=inputs=${audio.length}:normalize=0,volume=2.4,alimiter=limit=0.95,atrim=0:${duration}[out]`;
+  const filter = `${parts.join(';')};${inputs}amix=inputs=${audio.length}:normalize=0,volume=2.4,acompressor=threshold=-20dB:ratio=3:attack=5:release=150,loudnorm=I=-14:TP=-1.5:LRA=9,aresample=44100,alimiter=limit=0.9,atrim=0:${duration}[out]`;
   const wav = path.join(out, name + '-audio.wav');
   execFileSync('ffmpeg', [...args, '-filter_complex', filter, '-map', '[out]', wav], { stdio: 'inherit' });
   console.log('Audio:', wav);
