@@ -1537,7 +1537,7 @@
 }
 /* air terjun: dua salinan tekstur air yang terus turun & saling crossfade (tanpa sambungan) */
 .fx-flow {
-  filter: url(#sx-fallwobble);
+  filter: none;
 }
 .fx-flow i {
   background-size: 100% 100%;
@@ -1564,11 +1564,11 @@
 }
 /* buih di kaki air terjun */
 .fx-splash {
+  inset: auto;
   background:
-    radial-gradient(ellipse 30% 40% at 35% 60%, rgba(255, 255, 255, 0.8), transparent 70%),
-    radial-gradient(ellipse 30% 40% at 65% 55%, rgba(255, 255, 255, 0.7), transparent 70%);
-  filter: blur(3px);
-  opacity: 0.55;
+    radial-gradient(ellipse 38% 42% at 30% 62%, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 100%),
+    radial-gradient(ellipse 38% 42% at 70% 58%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 100%);
+  opacity: 0.5;
   animation: splash 0.9s ease-in-out infinite alternate;
 }
 /* kabut melayang di pegunungan */
@@ -2187,4 +2187,14 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ky-o, .ky-i, .ky-l { stroke-dashoffset: 0; }
+}
+
+/* Safari iPhone merender filter SVG beresolusi rendah (tampak kotak-kotak):
+   riak danau diganti gerak lembut tanpa filter */
+@supports (-webkit-touch-callout: none) {
+  .fx-wave img { filter: none; animation: waveSoft 4s ease-in-out infinite alternate; opacity: 0.55; }
+}
+@keyframes waveSoft {
+  from { transform: translate(-1.5px, 0) scaleY(1); }
+  to { transform: translate(1.5px, 1px) scaleY(1.01); }
 }

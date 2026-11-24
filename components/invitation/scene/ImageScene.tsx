@@ -37,7 +37,7 @@ export const A = process.env.NEXT_PUBLIC_SCENE_ASSETS ?? "/scene/nusantara";
 
 /** Potongan gambar seukuran kotak `box`, isinya gambar penuh yang digeser —
  *  supaya filter/animasi hanya bekerja di area air (ringan di HP). */
-function Window({ box, className, children }: { box: Box; className: string; children: ReactNode }) {
+function Window({ box, className, children }: { box: Box; className: string; children?: ReactNode }) {
   const [t, r, b, l] = box;
   const w = 100 - l - r;
   const h = 100 - t - b;
@@ -85,6 +85,9 @@ function Img({ l }: { l: ImgLayer }) {
                   <img src={l.src} alt="" draggable={false} />
                 </Window>
               );
+            if (f.kind === "splash")
+              // buih: kotak seukuran area, cahaya memudar lembut di dalamnya (tanpa tepi tajam)
+              return <Window key={i} box={f.box} className="fx-splash" />;
             return (
               <span
                 key={i}
@@ -108,12 +111,6 @@ function WaterFilters() {
           <animate attributeName="baseFrequency" dur="7s" values="0.006 0.045;0.009 0.06;0.006 0.045" repeatCount="indefinite" />
         </feTurbulence>
         <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G" />
-      </filter>
-      <filter id="sx-fallwobble" x="-2%" y="-2%" width="104%" height="104%" colorInterpolationFilters="sRGB">
-        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.008" numOctaves="1" seed="9" result="noise">
-          <animate attributeName="baseFrequency" dur="2.5s" values="0.05 0.008;0.06 0.011;0.05 0.008" repeatCount="indefinite" />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
       </filter>
     </svg>
   );
