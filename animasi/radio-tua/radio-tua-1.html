@@ -623,7 +623,7 @@ function paintAt(t){
   g.setTransform(scale,0,0,scale,0,0);grade(scale);
   let word='';if(t>=L.start&&t<=L.end+.3)for(const [s,w] of L.words)if(t>=s)word=w;
   const titleA=t<2.6?1:t<3.1?1-(t-2.6)/.5:0;
-  if(titleA>0){g.save();g.globalAlpha=titleA;capText('Kisah Nyempil',W/2,92,20,'#ffd98a',6);capText('Radio Tua',W/2,138,40);capText('Mbah Kakung · Bagian 1',W/2,182,26);g.restore()}
+  if(titleA>0){g.save();g.globalAlpha=titleA;capText('Kisah Nyempil',W/2,92,20,'#ffd98a',6);capText('Radio Tua',W/2,138,40);capText('Mbah Kakung',W/2,182,30);g.restore()}
   if(t<OUTRO&&titleA<=0)caption(word);
   if(t>=OUTRO){const f=clamp((t-OUTRO)/.6);g.fillStyle='rgba(4,5,10,'+(f*.86).toFixed(3)+')';g.fillRect(0,0,W,H);
     g.save();g.globalAlpha=f;capText('Sampai jumpa di Kisah',W/2,360,30);capText('Nyempil berikutnya',W/2,398,30);capText('@kisah.nyempil',W/2,446,20,'#ffd98a',6);g.restore()}
