@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 import "./purnama.css";
 import type { Wedding } from "../data";
-import { A } from "./ImageScene";
+import { A, Deco } from "./ImageScene";
 import { Photo, type ScenePhase } from "./Scenes";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -40,7 +40,14 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
         {/* langit krem kertas tua + pola batik samar (nada vintage) */}
         <span className="pp-sky pp-sky-cream" />
         <span className="pp-batik" />
+        {/* bulan purnama terus berputar di langit belakang joglo */}
+        <div className="pp-moon">
+          <Img src="pp-bulan" />
+        </div>
         <div className="pp-stage">
+          {/* latar pemandangan: pegunungan & danau (tanpa air terjun) */}
+          <Img src="mountains" className="pp-mtn" />
+          <Img src="lake" className="pp-lake" />
           <Img src="pp-kolam" className="pp-pond" />
           <div className="pp-pendopo">
             <Img src="pp-pendopo" />
@@ -61,11 +68,6 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
         <Ting className="pp-t-near-l" delay={0.5} />
         <Ting className="pp-t-near-r" delay={1.4} />
       </div>
-      {/* ── bulan purnama: hanya saat masuk gerbang, berputar ── */}
-      <div className="pp-moon">
-        <Img src="pp-bulan" />
-      </div>
-
       {/* kabut lembut atas-bawah */}
       <span className="pp-haze" />
 
@@ -102,6 +104,8 @@ export function CoverPurnama({ wedding, guest, phase, onOpen }: { wedding: Weddi
   return (
     <div className={`sc-cover cover-photo cover-purnama is-${phase}`}>
       <div className="cs-sky pp-sky-cream" />
+      <Deco src="pp-bunga" className="cp-bunga-l" />
+      <Deco src="pp-bunga" className="cp-bunga-r" flip />
       <span className="pp-batik" />
       <div className="sc-cover-body">
         <span className="sc-script">The Wedding Of</span>

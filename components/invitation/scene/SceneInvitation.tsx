@@ -250,6 +250,11 @@ function TitleCard({ wedding, panel }: { wedding: Wedding; panel?: boolean }) {
         <img className="tp-corner tp-corner-l" src={`${A}/gunungan.webp`} alt="" aria-hidden />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="tp-corner tp-corner-r" src={`${A}/gunungan.webp`} alt="" aria-hidden />
+        {/* bunga di samping panel (dipakai tema Pendopo Purnama) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="tp-flower tp-flower-l" src={`${A}/pp-bunga.webp`} alt="" aria-hidden />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="tp-flower tp-flower-r" src={`${A}/pp-bunga.webp`} alt="" aria-hidden />
       </section>
     );
   return (

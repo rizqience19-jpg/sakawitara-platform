@@ -36,8 +36,8 @@ export const sceneTemplates: SceneTemplate[] = [
     tagline: "Regol terbuka, jalan berlampu ting & pendopo di siang hari — 3D Motion",
     scene: "purnama",
     openingLabel: "3D Motion · regol terbuka menuju pendopo",
-    titleAt: 15300,
-    unlockAt: 23300,
+    titleAt: 19300,
+    unlockAt: 27300,
   },
   {
     kind: "scene",
