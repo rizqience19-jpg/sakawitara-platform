@@ -201,8 +201,8 @@ function CoupleIntro({ wedding, deco }: D) {
 
 function BrideGroom({ wedding, deco }: D) {
   const people = [
-    { p: wedding.bride, photo: wedding.photos.bride, v: "left" as const },
-    { p: wedding.groom, photo: wedding.photos.groom, v: "right" as const },
+    { p: wedding.groom, photo: wedding.photos.groom, v: "left" as const },
+    { p: wedding.bride, photo: wedding.photos.bride, v: "right" as const },
   ];
   return (
     <section id="sx-mempelai" className="sx-sec sx-panel">
