@@ -47,7 +47,7 @@ export const sceneTemplates: SceneTemplate[] = [
     scene: "joglo",
     openingLabel: "3D Motion · kamera mundur dari joglo",
     titleAt: 7000,
-    unlockAt: 13500,
+    unlockAt: 15000,
   },
   {
     kind: "scene",
@@ -57,7 +57,7 @@ export const sceneTemplates: SceneTemplate[] = [
     scene: "sawah",
     openingLabel: "3D Motion · kamera mundur dari sawah",
     titleAt: 7000,
-    unlockAt: 13500,
+    unlockAt: 15000,
   },
 ];
 

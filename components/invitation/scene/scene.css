@@ -2126,10 +2126,10 @@
 .tpanel .mouse { margin-top: 18px; border-color: #b8893c; }
 .tpanel .mouse i { background: #b8893c; }
 .tp-a, .tp-b, .tp-c, .tp-d { opacity: 0; }
-.sx.is-titled .tp-a { animation: txtIn 1.2s var(--ease) 5s forwards; }
-.sx.is-titled .tp-b { animation: txtIn 1.4s var(--ease) 5.5s forwards; }
-.sx.is-titled .tp-c { animation: txtIn 1.2s var(--ease) 6.1s forwards; }
-.sx.is-titled .tp-d { animation: txtIn 1s var(--ease) 6.9s forwards; }
+.sx.is-titled .tp-a { animation: txtIn 1.2s var(--ease) 6s forwards; }
+.sx.is-titled .tp-b { animation: txtIn 1.4s var(--ease) 6.5s forwards; }
+.sx.is-titled .tp-c { animation: txtIn 1.2s var(--ease) 7.1s forwards; }
+.sx.is-titled .tp-d { animation: txtIn 1s var(--ease) 7.9s forwards; }
 
 /* gunungan emas kecil di sudut bawah panel */
 .tp-corner {
@@ -2143,8 +2143,8 @@
 }
 .tp-corner-l { left: 6px; }
 .tp-corner-r { right: 6px; }
-.sx.is-titled .tp-corner { animation: cornerIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) 4.6s forwards, idSway 5s ease-in-out 6.3s infinite; }
-.sx.is-titled .tp-corner-r { animation-delay: 4.8s, 6.5s; }
+.sx.is-titled .tp-corner { animation: cornerIn 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) 5.6s forwards, idSway 5s ease-in-out 7.3s infinite; }
+.sx.is-titled .tp-corner-r { animation-delay: 5.8s, 7.5s; }
 @keyframes cornerIn {
   from { opacity: 0; transform: translateY(40px) scale(0.3); }
   to { opacity: 1; transform: none; }
@@ -2173,54 +2173,53 @@
   to { transform: translate(1.5px, 1px) scaleY(1.01); }
 }
 
-/* ═════════════════ GUNUNGAN DIBOLAK-BALIK (gaya dalang) ═════════════════ */
+/* ═════════════════ GUNUNGAN DIPUTAR DALANG (terpilin) ═════════════════ */
 .gspin {
-  width: min(44vw, 180px);
-  filter: drop-shadow(0 8px 10px rgba(90, 45, 10, 0.35));
+  position: relative;
+  width: min(46vw, 190px);
   aspect-ratio: 520 / 960;
   margin-bottom: 10px;
-  perspective: 900px;
-}
-.gspin-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
+  perspective: 700px;
   opacity: 0;
-  transform: scale(0.2);
+  transform: translateY(60px) scale(0.5);
+  filter: drop-shadow(0 8px 10px rgba(90, 45, 10, 0.35));
 }
-.gspin-card img {
+.gt-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* sedikit tumpang tindih supaya tidak ada garis celah saat diam */
+  height: calc(100% / 18 + 1px);
+  transform-style: preserve-3d;
+}
+.gt-strip i {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  background-repeat: no-repeat;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+.gt-front { filter: saturate(1.25) contrast(1.15) brightness(0.92); }
 /* sisi belakang: ukiran sama, nada perunggu lebih gelap */
-.gs-front {
-  filter: saturate(1.25) contrast(1.15) brightness(0.92);
-}
-.gs-back {
+.gt-back {
   transform: rotateY(180deg);
-  filter: brightness(0.72) saturate(0.85) sepia(0.25);
+  filter: brightness(0.62) saturate(0.85) sepia(0.3);
 }
-/* searah jarum jam tanpa pernah berbalik arah:
-   muncul -> 3 putaran cepat -> berhenti menghadap depan */
-.sx.is-titled .gspin-card {
-  animation:
-    gnDalang 3s linear 1.5s forwards;
+/* 1) gunungan naik dari bawah  2) diputar terpilin 2x (bawah dulu, atas menyusul)  3) berhenti tegak */
+.sx.is-titled .gspin {
+  animation: gtRise 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.3s forwards;
 }
-@keyframes gnDalang {
-  /* muncul tenang (0,9 dtk), lalu diputar cepat 3x seperti dalang (±1,9 dtk), berhenti menghadap depan */
-  0% { opacity: 0; transform: translateY(30px) scale(0.2) rotateY(0deg); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
-  30% { opacity: 1; transform: translateY(0) scale(1) rotateY(0deg); animation-timing-function: cubic-bezier(0.55, 0, 1, 1); }
-  42% { opacity: 1; transform: rotateY(180deg); animation-timing-function: linear; }
-  82% { opacity: 1; transform: rotateY(940deg); animation-timing-function: cubic-bezier(0.1, 0.7, 0.3, 1); }
-  100% { opacity: 1; transform: rotateY(1080deg); }
+.sx.is-titled .gt-strip {
+  animation: gtTwist 2.4s cubic-bezier(0.6, 0, 0.3, 1) calc(2.6s + var(--lag)) both;
 }
-
-
+@keyframes gtRise {
+  to { opacity: 1; transform: none; }
+}
+@keyframes gtTwist {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(720deg); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .gspin-card { opacity: 1; transform: none; }
+  .gspin { opacity: 1; transform: none; }
+  .gt-strip { animation: none !important; }
 }

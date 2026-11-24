@@ -197,6 +197,37 @@ function LuxPortrait({ src, label }: { src: string | null; label: string }) {
   );
 }
 
+/** Gunungan diputar dalang: dipotong jadi irisan mendatar; irisan bawah (dekat tangkai)
+ *  berputar lebih dulu, irisan atas menyusul → kulit gunungan tampak terpilin. */
+const TWIST_STRIPS = 18;
+function GununganTwist() {
+  const url = `url(${A}/gunungan.webp)`;
+  return (
+    <div className="gspin" aria-hidden>
+      {Array.from({ length: TWIST_STRIPS }).map((_, i) => {
+        const face = {
+          backgroundImage: url,
+          backgroundSize: `100% ${TWIST_STRIPS * 100}%`,
+          backgroundPosition: `0 ${(i / (TWIST_STRIPS - 1)) * 100}%`,
+        };
+        return (
+          <div
+            key={i}
+            className="gt-strip"
+            style={{
+              top: `${(i / TWIST_STRIPS) * 100}%`,
+              ["--lag" as string]: `${(TWIST_STRIPS - 1 - i) * 42}ms`,
+            }}
+          >
+            <i className="gt-front" style={face} />
+            <i className="gt-back" style={face} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function TitleCard({ wedding, panel }: { wedding: Wedding; panel?: boolean }) {
   if (panel)
     return (
@@ -204,14 +235,7 @@ function TitleCard({ wedding, panel }: { wedding: Wedding; panel?: boolean }) {
         <div className="tpanel">
           <NotchFrame r={34} />
           {/* gunungan dibolak-balik seperti dalang membuka pertunjukan */}
-          <div className="gspin" aria-hidden>
-            <div className="gspin-card">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="gs-front" src={`${A}/gunungan.webp`} alt="" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="gs-back" src={`${A}/gunungan.webp`} alt="" />
-            </div>
-          </div>
+          <GununganTwist />
           <span className="tp-eyebrow tp-a">The Wedding Of</span>
           <span className="tp-names tp-b">
             {wedding.groom.nick} &amp; {wedding.bride.nick}
