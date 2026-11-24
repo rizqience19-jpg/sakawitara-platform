@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 import "./purnama.css";
 import type { Wedding } from "../data";
-import { A, Deco } from "./ImageScene";
+import { A } from "./ImageScene";
 import { Photo, type ScenePhase } from "./Scenes";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -32,13 +32,12 @@ function Ting({ className, delay = 0 }: { className: string; delay?: number }) {
   );
 }
 
-export function ScenePurnama() {
+export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
   return (
     <div className="pp">
       {/* ── halaman dalam (terlihat setelah pintu terbuka) ── */}
       <div className="pp-cam">
-        <Img src="pp-langit" className="pp-sky" />
-        <span className="pp-moonglow" />
+        <Img src="sky" className="pp-sky" />
         <div className="pp-stage">
           <Img src="pp-kolam" className="pp-pond" />
           <div className="pp-pendopo">
@@ -53,19 +52,6 @@ export function ScenePurnama() {
             <Img src="pp-pengantin" />
           </div>
         </div>
-        <div className="pp-flies" aria-hidden>
-          {Array.from({ length: 16 }).map((_, i) => (
-            <span
-              key={i}
-              style={{
-                left: `${(i * 37 + 11) % 100}%`,
-                top: `${30 + ((i * 23) % 60)}%`,
-                animationDelay: `${((i * 0.9) % 7).toFixed(1)}s`,
-                animationDuration: `${6 + ((i * 3) % 6)}s`,
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       {/* ── lampu & bunga paling depan: dilewati kamera ── */}
@@ -73,18 +59,24 @@ export function ScenePurnama() {
         <Ting className="pp-t-near-l" delay={0.5} />
         <Ting className="pp-t-near-r" delay={1.4} />
       </div>
-      <div className="pp-front">
-        <div className="pp-fl pp-fl-l">
-          <div className="id-sway">
-            <Img src="pp-bunga" />
-          </div>
-        </div>
-        <div className="pp-fl pp-fl-r">
-          <div className="id-sway">
-            <Img src="pp-bunga" flip />
-          </div>
-        </div>
+      {/* ── bulan purnama: hanya saat masuk gerbang, berputar ── */}
+      <div className="pp-moon">
+        <Img src="pp-bulan" />
       </div>
+
+      {/* ── nama mempelai saat kamera menyorot masing-masing ── */}
+      {wedding && (
+        <>
+          <div className="pp-cap pp-cap-g">
+            <span className="pp-cap-nick">{wedding.groom.nick}</span>
+            <span className="pp-cap-full">{wedding.groom.full}</span>
+          </div>
+          <div className="pp-cap pp-cap-b">
+            <span className="pp-cap-nick">{wedding.bride.nick}</span>
+            <span className="pp-cap-full">{wedding.bride.full}</span>
+          </div>
+        </>
+      )}
 
       {/* ── regol (gerbang) di paling depan ── */}
       <div className="pp-gate">
@@ -104,9 +96,7 @@ export function ScenePurnama() {
 export function CoverPurnama({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
   return (
     <div className={`sc-cover cover-photo cover-purnama is-${phase}`}>
-      <div className="cs-sky" style={{ backgroundImage: `url(${A}/pp-langit.webp)` }} />
-      <Deco src="pp-bunga" className="cp-bunga-l" />
-      <Deco src="pp-bunga" className="cp-bunga-r" flip />
+      <div className="cs-sky" style={{ backgroundImage: `url(${A}/sky.webp)` }} />
       <div className="sc-cover-body">
         <span className="sc-script">The Wedding Of</span>
         <Photo src={wedding.photos.cover} label={`${wedding.groom.nick[0]} & ${wedding.bride.nick[0]}`} className="ph-oval" />

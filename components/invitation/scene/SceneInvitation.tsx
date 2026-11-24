@@ -113,7 +113,7 @@ export default function SceneInvitation({ template, wedding, guest }: { template
   return (
     <div ref={rootRef} className={`sx sx-${template.scene}${deco ? " sx-clear" : ""}${phase !== "cover" ? " is-go" : ""}${loading ? " is-loading" : ""}${titled ? " is-titled" : ""}`}>
       <div className="scene" aria-hidden>
-        <Scene />
+        <Scene wedding={wedding} />
       </div>
       {/* lapisan lembut di atas ilustrasi saat scroll, agar teks tetap terbaca */}
       {deco && <div className="veil" aria-hidden />}
