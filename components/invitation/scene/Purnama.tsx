@@ -33,7 +33,9 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
           <Img src="pv-bulan" />
         </div>
         <div className="pp-stage">
+          <Img src="pv-gunung" className="pv-gunung2" />
           <Img src="pv-gunung" className="pv-gunung" />
+          <Img src="pv-kelapa" className="pv-kelapa2" flip />
           <Img src="pv-kelapa" className="pv-kelapa" />
           <div className="pv-merah id-sway">
             <Img src="pv-pohon-merah" />
@@ -67,6 +69,11 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
         <div className="pv-semak pv-semak-r">
           <Img src="pv-semak-kanan" />
         </div>
+      </div>
+
+      {/* close-up pengantin resolusi penuh (tajam, tidak di-zoom dari gambar kecil) */}
+      <div className="pv-close">
+        <Img src="pv-pengantin-hd" />
       </div>
 
       {/* kabut lembut atas-bawah */}
