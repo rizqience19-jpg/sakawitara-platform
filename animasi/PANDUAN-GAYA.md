@@ -41,6 +41,8 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - **Judul unggahan** memakai pola rasa penasaran + emosi (contoh: "Malu Punya Bapak yang Tidak Bisa Menulis, Sampai Surat Terakhir Itu Datang…").
 - Untuk jam tayang YouTube: gabungkan cerita 2 bagian menjadi satu video panjang (> 3 menit) dengan thumbnail `-yt.png`.
 
+- **Bingkai pembuka = thumbnail**: 3,7 detik pertama video menampilkan thumbnail vertikal penuh (sampul otomatis TikTok/IG/Shorts), lalu berganti cepat ke cerita. `build.js` memanggil `node animasi/sampul.js <video.mp4> <thumbnail-vertikal.png>` otomatis bila `thumbnail/<nama>-vertikal.png` ada — jadi buat thumbnail **sebelum** build terakhir (atau jalankan `sampul.js` manual sesudahnya).
+
 ## 2. Pola cerita
 
 Misteri desa → digosipkan warga → tokoh muda penasaran menyelidiki diam-diam (biasanya malam hari) → ketahuan → **"Ternyata..."** → penjelasan ilmiah (adegan *zoom* ke dalam: tanah, akar, sel, dsb.) → warga ikut mencontoh → kalimat penutup yang menyimpulkan.

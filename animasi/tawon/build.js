@@ -30,4 +30,8 @@ const fs = require('fs');
   execFileSync('ffmpeg', [...args, '-filter_complex', filter, '-map', '[out]', wav], { stdio: 'inherit' });
   console.log('Audio:', wav);
   execFileSync('node', [path.join(dir, '..', 'render.js'), path.join(out, name + '.mp4'), wav, '1080', '30', 'tawon/' + name + '.html'], { stdio: 'inherit' });
+
+  // Bingkai pembuka = thumbnail vertikal (sampul otomatis).
+  const thumb = path.join(dir, 'thumbnail', name + '-vertikal.png');
+  if (fs.existsSync(thumb)) execFileSync('node', [path.join(dir, '..', 'sampul.js'), path.join(out, name + '.mp4'), thumb], { stdio: 'inherit' });
 })();
