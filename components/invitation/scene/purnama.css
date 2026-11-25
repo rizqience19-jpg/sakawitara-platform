@@ -653,3 +653,11 @@
   .pv-gunung2, .pv-gunung, .pv-kelapa2, .pv-kelapa, .pv-merah, .pv-joglo, .pp-couple { opacity: 1; }
   .pv-tree-l { left: -30%; } .pv-tree-r { right: -30%; }
 }
+/* pengantin berdiri di teras, tepat di depan pintu joglo */
+.pv-joglo { left: -28.7%; }
+.pp-couple { bottom: 29.2%; height: 11%; z-index: 1; }
+@keyframes ppTour {
+  0% { transform: scale(1.12); filter: none; }
+  22%, 78% { transform: translateY(-18vh) scale(3.2); filter: blur(3px) brightness(0.92); }
+  100% { transform: scale(1.12); filter: none; }
+}
