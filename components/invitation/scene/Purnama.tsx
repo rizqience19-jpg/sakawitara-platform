@@ -22,52 +22,53 @@ function Img({ src, className, style, flip }: { src: string; className?: string;
   );
 }
 
-/** lampu ting + cahaya berkedip */
-function Ting({ className, delay = 0 }: { className: string; delay?: number }) {
-  return (
-    <div className={`pp-ting ${className}`} style={{ ["--fl" as string]: `${delay}s` }}>
-      <span className="pp-glow" />
-      <Img src="pp-lampu" />
-    </div>
-  );
-}
-
 export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
   return (
     <div className="pp">
       {/* ── halaman dalam (terlihat setelah pintu terbuka) ── */}
       <div className="pp-cam">
-        {/* langit krem kertas tua + pola batik samar (nada vintage) */}
-        <span className="pp-sky pp-sky-cream" />
-        <span className="pp-batik" />
+        <Img src="pv-langit" className="pp-sky" />
         {/* bulan purnama terus berputar di langit belakang joglo */}
         <div className="pp-moon">
-          <Img src="pp-bulan" />
+          <Img src="pv-bulan" />
         </div>
         <div className="pp-stage">
-          {/* latar pemandangan: pegunungan & danau (tanpa air terjun) */}
-          <Img src="mountains" className="pp-mtn" />
-          <Img src="lake" className="pp-lake" />
-          <Img src="pp-kolam" className="pp-pond" />
-          <div className="pp-pendopo">
-            <Img src="pp-pendopo" />
+          <Img src="pv-gunung" className="pv-gunung" />
+          <Img src="pv-kelapa" className="pv-kelapa" />
+          <div className="pv-merah id-sway">
+            <Img src="pv-pohon-merah" />
           </div>
-          <Img src="pp-jalan" className="pp-path" />
-          <Ting className="pp-t-far-l" delay={0.3} />
-          <Ting className="pp-t-far-r" delay={1.1} />
-          <Ting className="pp-t-mid-l" delay={0.7} />
-          <Ting className="pp-t-mid-r" delay={0.1} />
+          <Img src="pv-joglo" className="pv-joglo" />
+          <Img src="pv-jalan" className="pv-jalan" />
           <div className="pp-couple">
             <Img src="pp-pengantin" />
           </div>
         </div>
+        {/* pohon pembingkai kiri-kanan */}
+        <div className="pv-tree pv-tree-l">
+          <Img src="pv-pohon-kiri" />
+        </div>
+        <div className="pv-tree pv-tree-r">
+          <Img src="pv-pohon-kanan" />
+        </div>
+        {/* kupu-kupu */}
+        {[0, 1, 2].map((i) => (
+          <div key={i} className={`pv-fly pv-fly-${i}`}>
+            <Img src="pv-kupu" />
+          </div>
+        ))}
       </div>
 
-      {/* ── lampu & bunga paling depan: dilewati kamera ── */}
-      <div className="pp-near">
-        <Ting className="pp-t-near-l" delay={0.5} />
-        <Ting className="pp-t-near-r" delay={1.4} />
+      {/* semak paling depan: tersibak saat kamera masuk */}
+      <div className="pv-near">
+        <div className="pv-semak pv-semak-l">
+          <Img src="pv-semak-kiri" />
+        </div>
+        <div className="pv-semak pv-semak-r">
+          <Img src="pv-semak-kanan" />
+        </div>
       </div>
+
       {/* kabut lembut atas-bawah */}
       <span className="pp-haze" />
 
@@ -89,11 +90,11 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
       <div className="pp-gate">
         <div className="pp-gate-in">
           <div className="pp-doors">
-            <Img src="pp-pintu-kiri" className="pp-door pp-door-l" />
-            <Img src="pp-pintu-kanan" className="pp-door pp-door-r" />
+            <Img src="pv-pintu-kiri" className="pp-door pp-door-l" />
+            <Img src="pv-pintu-kanan" className="pp-door pp-door-r" />
             <span className="pp-doorlight" />
           </div>
-          <Img src="pp-regol" className="pp-regol" />
+          <Img src="pv-regol" className="pp-regol" />
         </div>
       </div>
     </div>
@@ -104,8 +105,8 @@ export function CoverPurnama({ wedding, guest, phase, onOpen }: { wedding: Weddi
   return (
     <div className={`sc-cover cover-photo cover-purnama is-${phase}`}>
       <div className="cs-sky pp-sky-cream" />
-      <Deco src="pp-bunga" className="cp-bunga-l" />
-      <Deco src="pp-bunga" className="cp-bunga-r" flip />
+      <Deco src="pv-bunga" className="cp-bunga-l" />
+      <Deco src="pv-bunga" className="cp-bunga-r" flip />
       <span className="pp-batik" />
       <div className="sc-cover-body">
         <span className="sc-script">The Wedding Of</span>

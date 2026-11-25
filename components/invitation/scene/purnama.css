@@ -488,3 +488,63 @@
 @keyframes tpFlowerR { from { opacity: 0; transform: scaleX(-1) translateY(40px) scale(0.4); } to { opacity: 1; transform: scaleX(-1); } }
 /* gunungan kecil sudut tidak tertutup bunga */
 .sx-purnama .tp-corner { display: none; }
+
+/* ═══════════ VERSI ETSA VINTAGE (aset pv-*) ═══════════ */
+.pp-doors { left: 32.93%; width: 34%; top: 36.51%; height: 63.49%; }
+.pp-gate-in { aspect-ratio: 1491 / 997; }
+.pp-stage, .pp-near, .pp-gate, .pp-moon { filter: none; }
+.pp-sky { inset: -10%; width: 120%; height: 120%; object-position: 50% 40%; }
+.pp-cam > .pp-moon { top: 6%; width: min(46vw, 220px); }
+.pp-moon img { filter: none; opacity: 0.95; }
+.pv-gunung { top: 33%; left: -40%; width: 180%; }
+.pv-kelapa { bottom: 30%; left: -10%; width: 120%; opacity: 0.9; }
+.pv-merah { bottom: 28%; right: -22%; width: 52%; transform-origin: 50% 100%; }
+.pv-merah img { width: 100%; }
+.pv-joglo { bottom: 20%; left: -6%; width: 112%; }
+.pv-jalan { bottom: -2%; left: -30%; width: 160%; height: auto; transform: none; }
+.pp-couple { bottom: 21%; height: 17%; }
+.pv-tree {
+  position: absolute;
+  top: -4%;
+  height: 88%;
+  transform-origin: 50% 100%;
+  animation: idSway 7s ease-in-out infinite;
+}
+.pv-tree img { height: 100%; width: auto; }
+.pv-tree-l { left: -18%; }
+.pv-tree-r { right: -18%; animation-delay: -3s; }
+.pv-near { position: absolute; inset: 0; pointer-events: none; }
+.pv-semak { position: absolute; bottom: -3%; height: 34%; transform-origin: 50% 100%; }
+.pv-semak img { height: 100%; width: auto; animation: idSway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+.pv-semak-l { left: -16%; }
+.pv-semak-r { right: -16%; }
+.sx.is-go .pv-semak-l { animation: pvPartL 3.4s cubic-bezier(0.5, 0, 0.75, 0.5) 3.6s forwards; }
+.sx.is-go .pv-semak-r { animation: pvPartR 3.4s cubic-bezier(0.5, 0, 0.75, 0.5) 3.6s forwards; }
+@keyframes pvPartL { to { transform: translateX(-30vw) scale(1.25); } }
+@keyframes pvPartR { to { transform: translateX(30vw) scale(1.25); } }
+.pv-fly { position: absolute; width: 34px; opacity: 0; left: 0; top: 0; z-index: 3; }
+.pv-fly img { width: 100%; transform-origin: 50% 50%; animation: pvFlap 0.28s ease-in-out infinite alternate; }
+.sx.is-go .pv-fly-0 { animation: flyA 17s linear 4s infinite; }
+.sx.is-go .pv-fly-1 { animation: flyB 20s linear 5.2s infinite; width: 26px; }
+.sx.is-go .pv-fly-2 { animation: flyC 15s linear 6.4s infinite; width: 22px; }
+@keyframes pvFlap { to { transform: scaleX(0.35); } }
+.pp-haze { background: linear-gradient(0deg, rgba(232, 220, 196, 0.35) 0%, transparent 14%); }
+.cover-purnama .cs-sky { background-position: 50% 40%; }
+.cp-bunga-l { bottom: -2%; left: -10%; width: min(52vw, 290px); }
+.cp-bunga-r { bottom: -2%; right: -10%; width: min(52vw, 290px); }
+/* penyetelan komposisi */
+.pv-tree { height: 66%; top: -6%; }
+.pv-tree-l { left: -30%; }
+.pv-tree-r { right: -30%; }
+.pp-cam > .pp-moon { top: 9%; width: min(52vw, 250px); }
+.pv-joglo { bottom: 17%; left: -22%; width: 144%; }
+.pv-kelapa { bottom: 36%; }
+.pv-merah { bottom: 34%; }
+.pp-couple { bottom: 19%; height: 14.5%; }
+/* titik sorot zoom mengikuti posisi pengantin di depan joglo */
+@keyframes ppTour {
+  0% { transform: scale(1.12); }
+  22%, 40% { transform: translate(27vw, -47vh) scale(4.5); }
+  60%, 78% { transform: translate(-27vw, -47vh) scale(4.5); }
+  100% { transform: scale(1.12); }
+}
