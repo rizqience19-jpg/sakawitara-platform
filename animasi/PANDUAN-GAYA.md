@@ -31,6 +31,14 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - **Dekorasi dalam ruangan harus ramai** dan terlihat di dalam bingkai kamera (bukan di luar zoom): kalender, poster/foto, rak buku, lampu gantung, jemuran/tirai, karpet, galon, dsb. Rumah sakit: tirai, monitor, meja kecil, lantai keramik. Contoh: `kamar()`/`hospital()`/`corridor()` di `animasi/transfer/transfer-1.html`.
 - **Sebelum membuat cerita baru, riset dulu** apakah cerita serupa sudah ada (berita, YouTube, TikTok, fiksi online), lalu buat premis yang berbeda.
 
+## 1c. Thumbnail & hook (wajib mulai 25 November 2026 — target monetisasi YouTube)
+
+- **Setiap video wajib punya thumbnail** dari `node animasi/thumb.js <html> <detik> "<HOOK|BARIS>" <folder>/thumbnail/<nama> [kata-sorot]` → `-vertikal.png` (1080×1920, cover Shorts/Reels/TikTok) dan `-yt.png` (1280×720, thumbnail YouTube/video panjang). Pilih bingkai dengan wajah tokoh besar & ekspresi kuat (kaget/menangis), di detik tanpa caption.
+- **Teks hook thumbnail**: 2–4 baris pendek HURUF BESAR, memancing penasaran tanpa membocorkan twist (contoh: "TIAP BULAN ADA YANG TRANSFER… DARI ORANG YANG PALING KUBENCI"). Satu kata/frasa kunci diwarnai kuning (kata-sorot).
+- **Hook di 2–3 detik pertama video**: kalimat narasi pertama harus berupa pertanyaan/pernyataan yang bikin penasaran (bukan pembuka datar). Di layar pembuka, tampilkan label kecil "Kisah Nyempil", judul episode, dan **teks hook besar bergaya sama dengan thumbnail**, supaya bingkai pembuka bisa dipakai sebagai thumbnail Shorts.
+- **Judul unggahan** memakai pola rasa penasaran + emosi (contoh: "Malu Punya Bapak yang Tidak Bisa Menulis, Sampai Surat Terakhir Itu Datang…").
+- Untuk jam tayang YouTube: gabungkan cerita 2 bagian menjadi satu video panjang (> 3 menit) dengan thumbnail `-yt.png`.
+
 ## 2. Pola cerita
 
 Misteri desa → digosipkan warga → tokoh muda penasaran menyelidiki diam-diam (biasanya malam hari) → ketahuan → **"Ternyata..."** → penjelasan ilmiah (adegan *zoom* ke dalam: tanah, akar, sel, dsb.) → warga ikut mencontoh → kalimat penutup yang menyimpulkan.
