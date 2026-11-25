@@ -661,3 +661,41 @@
   22%, 78% { transform: translateY(-18vh) scale(3.2); filter: blur(3px) brightness(0.92); }
   100% { transform: scale(1.12); filter: none; }
 }
+
+/* ═══════════ gerbang memenuhi layar, joglo lebih besar, cover lebih ramai ═══════════ */
+.pp-gate-in {
+  width: calc(88vh * 1491 / 997);
+  height: 88vh;
+  aspect-ratio: auto;
+  bottom: 0;
+}
+.pv-joglo { left: -45%; width: 190%; bottom: 17%; }
+.pp-couple { bottom: 25%; height: 16%; }
+@keyframes ppTour {
+  0% { transform: scale(1.12); filter: none; }
+  22%, 78% { transform: translateY(-24vh) scale(3.2); filter: blur(3px) brightness(0.92); }
+  100% { transform: scale(1.12); filter: none; }
+}
+
+/* cover */
+.cover-purnama .cs-sky { background-size: cover; background-position: 50% 40%; }
+.cover-purnama .sc-cover-body { z-index: 4; }
+.cover-purnama > img { position: absolute; display: block; max-width: none; pointer-events: none; }
+.cv-gunung { bottom: 14%; left: -40%; width: 180%; opacity: 0.8; }
+.cv-kelapa { bottom: 18%; left: -10%; width: 120%; opacity: 0.55; }
+.cv-tree { position: absolute; top: -4%; height: 62%; z-index: 2; transform-origin: 50% 100%; animation: idSway 7s ease-in-out infinite; }
+.cv-tree img { height: 100%; width: auto; max-width: none; }
+.cv-tree-l { left: -24%; }
+.cv-tree-r { right: -24%; animation-delay: -3s; }
+.cv-semak-l { bottom: -4%; left: -18%; width: min(60vw, 330px); z-index: 2; }
+.cv-semak-r { bottom: -4%; right: -18%; width: min(60vw, 330px); z-index: 2; }
+.cover-purnama .cp-bunga-l, .cover-purnama .cp-bunga-r { z-index: 3; }
+.cv-fly { position: absolute; width: 30px; left: 0; top: 0; z-index: 5; animation: flyA 16s linear infinite; }
+.cv-fly-1 { width: 22px; animation: flyB 19s linear 3s infinite; }
+.cv-fly img { width: 100%; max-width: none; animation: pvFlap 0.28s ease-in-out infinite alternate; }
+/* kartu isi cover: krem lembut agar terbaca di atas pemandangan */
+.cv-card {
+  background: radial-gradient(ellipse at center, rgba(250, 242, 226, 0.94) 0%, rgba(250, 242, 226, 0.86) 55%, rgba(250, 242, 226, 0) 76%) !important;
+  border-radius: 50%;
+  padding: 44px 34px !important;
+}

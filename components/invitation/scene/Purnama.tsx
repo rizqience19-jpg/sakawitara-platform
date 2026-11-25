@@ -111,11 +111,26 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
 export function CoverPurnama({ wedding, guest, phase, onOpen }: { wedding: Wedding; guest: string; phase: ScenePhase; onOpen: () => void }) {
   return (
     <div className={`sc-cover cover-photo cover-purnama is-${phase}`}>
-      <div className="cs-sky pp-sky-cream" />
+      <div className="cs-sky" style={{ backgroundImage: `url(${A}/pv-langit.webp)` }} />
+      {/* pemandangan & pembingkai cover */}
+      <Img src="pv-gunung" className="cv-gunung" />
+      <Img src="pv-kelapa" className="cv-kelapa" />
+      <div className="cv-tree cv-tree-l">
+        <Img src="pv-pohon-kiri" />
+      </div>
+      <div className="cv-tree cv-tree-r">
+        <Img src="pv-pohon-kanan" />
+      </div>
+      <Deco src="pv-semak-kiri" className="cv-semak-l" />
+      <Deco src="pv-semak-kanan" className="cv-semak-r" />
       <Deco src="pv-bunga" className="cp-bunga-l" />
       <Deco src="pv-bunga" className="cp-bunga-r" flip />
-      <span className="pp-batik" />
-      <div className="sc-cover-body">
+      {[0, 1].map((i) => (
+        <div key={i} className={`cv-fly cv-fly-${i}`}>
+          <Img src="pv-kupu" />
+        </div>
+      ))}
+      <div className="sc-cover-body cv-card">
         <span className="sc-script">The Wedding Of</span>
         <Photo src={wedding.photos.cover} label={`${wedding.groom.nick[0]} & ${wedding.bride.nick[0]}`} className="ph-oval" />
         <h1 className="sc-caps">
