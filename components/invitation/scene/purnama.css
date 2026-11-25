@@ -548,3 +548,16 @@
   60%, 78% { transform: translate(-27vw, -47vh) scale(4.5); }
   100% { transform: scale(1.12); }
 }
+/* titik sorot untuk foto pengantin baju hitam */
+@keyframes ppTour {
+  0% { transform: scale(1.12); }
+  22%, 40% { transform: translate(10vw, -42vh) scale(4.5); }
+  60%, 78% { transform: translate(-17vw, -47vh) scale(4.5); }
+  100% { transform: scale(1.12); }
+}
+@keyframes ppTour {
+  0% { transform: scale(1.12); }
+  22%, 40% { transform: translate(17vw, -43vh) scale(7.5); }
+  60%, 78% { transform: translate(-28vw, -52vh) scale(7.5); }
+  100% { transform: scale(1.12); }
+}

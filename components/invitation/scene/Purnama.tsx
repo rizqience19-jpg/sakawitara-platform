@@ -41,7 +41,7 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
           <Img src="pv-joglo" className="pv-joglo" />
           <Img src="pv-jalan" className="pv-jalan" />
           <div className="pp-couple">
-            <Img src="pp-pengantin" />
+            <Img src="pv-pengantin" />
           </div>
         </div>
         {/* pohon pembingkai kiri-kanan */}
@@ -51,16 +51,16 @@ export function ScenePurnama({ wedding }: { wedding?: Wedding }) {
         <div className="pv-tree pv-tree-r">
           <Img src="pv-pohon-kanan" />
         </div>
-        {/* kupu-kupu */}
+      </div>
+
+      {/* semak paling depan: tersibak saat kamera masuk */}
+      <div className="pv-near">
+        {/* kupu-kupu (di luar kamera: ukurannya tetap kecil saat zoom) */}
         {[0, 1, 2].map((i) => (
           <div key={i} className={`pv-fly pv-fly-${i}`}>
             <Img src="pv-kupu" />
           </div>
         ))}
-      </div>
-
-      {/* semak paling depan: tersibak saat kamera masuk */}
-      <div className="pv-near">
         <div className="pv-semak pv-semak-l">
           <Img src="pv-semak-kiri" />
         </div>
