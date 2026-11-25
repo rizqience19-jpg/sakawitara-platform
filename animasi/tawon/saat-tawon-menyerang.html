@@ -632,7 +632,7 @@ const SCRIPT=[
   ['Kompres dingin bagian yang bengkak.','kompres',1.0,1.02,225,420],
   ['Lalu segera bawa ke IGD atau puskesmas. Disengat banyak tawon sekaligus itu darurat, walaupun korban terlihat baik-baik saja.','bawa',1.0,1.05,225,520],
   ['Waspadai tanda bahaya. Sesak napas, wajah atau tenggorokan bengkak, pusing, muntah, atau pingsan.','bahaya',1.0,1.0,225,420],
-  ['Mbah Wardi dibawa ke puskesmas. Tiga hari dirawat… dan dia pulang dengan selamat.','puskesmas',1.3,1.4,200,500],
+  ['Mbah Wardi dibawa ke puskesmas. Tiga hari dirawat… dan dia pulang dengan selamat.','puskesmas',1.1,1.2,230,470],
   ['Sore itu, petugas Damkar datang dan memindahkan sarangnya dengan aman.','damkar',1.2,1.3,160,480],
   ['Satu hal lagi. Kalau kamu melihat sarang tawon di dekat rumah, jangan dibongkar sendiri. Laporkan ke Damkar.','lapor',1.0,1.02,225,420],
   ['Hari itu, lima orang melihat. Tapi cukup satu orang yang tahu harus berbuat apa.','satu',1.2,1.3,240,520],
@@ -662,14 +662,14 @@ function paintScene(key,t,dt,len){
   const p=clamp(dt/Math.max(len,.01)),row=SCRIPT[KI(key)],spk=row[6];
   const P=(id,x,y,s,o={})=>person(id,x,y,s,t,Object.assign({talk:spk===id},o));
   const NX=110,NY=440;
-  const crowd=(o={})=>{for(const [id,x,hp] of [['ibu1',250,0],['wargaA',300,1],['ranto',350,0],['wargaB',400,1],['warga1',450,0]])P(id,x+(o.dx||0),Y+10,A*.9,{mood:o.mood||'wow',look:-1,handPos:hp?{1:[-10,-120]}:{},tools:hp?[['hp',1]]:[],lean:o.back?.1:0})};
+  const crowd=(o={})=>{for(const [id,x,hp] of [['ibu1',240,0],['wargaA',285,1],['ranto',330,0],['wargaB',375,1],['warga1',420,0]]){const X=x+(o.dx||0);P(id,X,Y+10,A*.9,{mood:o.mood||'wow',look:-1,handPos:hp?{'-1':[-50,-122]}:{},lean:o.back?.1:0});if(hp)at(X,Y+10,A*.9,()=>{box(-66,-160,24,40,4,'#2a2a30');box(-63,-156,18,30,2,'#9ad0f0');ellipse(-54,-150,2.6,2.6,(t*2%1<.5)?'#e33':'#922')})}};
   switch(key){
     case 'sapu':desa(t);sarang(NX,NY,1);P('wardi',220,Y,A,{mood:'calm',look:-1,handPos:{1:[-30,-60]},tools:[['sapu',1]],toolAngle:-.4+Math.sin(t*4)*.3});break;
     case 'senggol':desa(t);sarang(NX,NY,1+Math.sin(t*30)*.03);P('wardi',190,Y,A,{mood:'wow',look:-1,handPos:{1:[-40,-80]},tools:[['sapu',1]],toolAngle:-1});swarm(NX,NY+20,20,p*12,t,.8);break;
     case 'keluar':desa(t);sarang(NX,NY,1);P('wardi',190,Y,A,{mood:'scared',look:-1});swarm(mix(NX,170,p),mix(NY,500,p),mix(30,90,p),60,t,.9);break;
     case 'panik':{desa(t);sarang(NX,NY,1);const k=clamp((p-.5)*2.5);if(k<=0)P('wardi',210,Y,A,{mood:'scared',both:true,gesture:1,wiggle:1,shake:.5});
-      else at(210,Y,1,()=>{g.rotate(-1.4*ease(k));person('wardi',0,0,A,t,{mood:'scared'})});swarm(210,Y-90,90,70,t,.9);break}
-    case 'lihat':case 'takut':desa(t);sarang(NX,NY,1);at(150,Y,1,()=>{g.rotate(-1.4);person('wardi',0,0,A,t,{mood:'scared'})});swarm(150,Y-30,80,60,t,.8);crowd({back:key==='takut',dx:-20});break;
+      else lie('wardi',210,Y,A,t,{mood:'scared'},ease(k));swarm(210,Y-90,90,70,t,.9);break}
+    case 'lihat':case 'takut':desa(t);sarang(NX,NY,1);lie('wardi',150,Y,A,t,{mood:'scared'});swarm(150,Y-30,80,60,t,.8);crowd({back:key==='takut',dx:-20});break;
     case 'tanya':g.fillStyle='#14141c';g.fillRect(-300,-300,1100,1400);capText('KALAU KAMU',225,360,40,'#fff');capText('ADA DI SANA…',225,410,40,'#fff');capText('KAMU AKAN APA?',225,480,40,'#ffd93a');break;
     case 'kartu1':card(t,'1','KALAU KAMU DISERANG','#c0392b');break;
     case 'kartu2':card(t,'2','KALAU KAMU MELIHAT','#2a6ab0');break;
@@ -677,10 +677,10 @@ function paintScene(key,t,dt,len){
     case 'x_kibas':iconPanel(t,()=>{P('wardi',225,560,A*1.3,{mood:'scared',both:true,gesture:1,wiggle:1});swarm(225,350,70,30,t,1.1)},p>.35?false:undefined);break;
     case 'tutup':desa(t);P('wargaA',225,Y,A,{mood:'closed',handPos:{1:[8,-128],'-1':[-8,-128]}});box(225-24*A,Y-150*A,48*A,26*A,8,'#4a7ac0');swarm(225,Y-200,90,25,t,.8);break;
     case 'lari':{desa(t);const k=ease(p);P('wargaA',mix(60,330,k),Y,A,{walk:1,pace:1.6,dir:.8,mood:'scared',handPos:{1:[8,-128],'-1':[-8,-128]}});swarm(mix(20,260,k),Y-150,70,30,t,.8);if(p>.5)iconCheck(330,300,t)}break;
-    case 'x_tiarap':iconPanel(t,()=>{at(225,560,1,()=>{g.rotate(-1.4);person('wardi',0,0,A*1.3,t,{mood:'scared'})})},p>.3?false:undefined);break;
+    case 'x_tiarap':iconPanel(t,()=>{lie('wardi',310,560,A*1.3,t,{mood:'scared'})},p>.3?false:undefined);break;
     case 'x_air':iconPanel(t,()=>{ellipse(225,520,170,50,'#7ac0e8');ellipse(225,520,140,36,'#9ad0f0');at(225,520,1,()=>{orb(0,-10,20,22,'#e3ae84','#bd8459','#8f5e3e')});swarm(225,440,90,30,t,1)},p>.35?false:undefined);break;
     case 'x_masuk':iconPanel(t,()=>{P('wardi',190,560,A*1.1,{mood:'scared'});P('wargaA',270,560,A*1.1,{mood:'scared'});swarm(230,400,110,50,t,1)},p>.35?false:undefined);break;
-    case 'teriak':desa(t);box(300,460,50,100,3,'#3a2a1a');P('wargaB',260,Y,A,{mood:'wow',talk:true,hand:-1,gesture:1,look:-1});at(80,Y,1,()=>{g.rotate(-1.4);person('wardi',0,0,A,t,{mood:'scared'})});swarm(80,Y-30,60,30,t,.8);break;
+    case 'teriak':desa(t);box(300,460,50,100,3,'#3a2a1a');P('wargaB',260,Y,A,{mood:'wow',talk:true,hand:-1,gesture:1,look:-1});lie('wardi',80,Y,A,t,{mood:'scared'});swarm(80,Y-30,60,30,t,.8);break;
     case 'nomor':phoneNums(t,p);break;
     case 'hp':iconPanel(t,()=>{box(110,280,100,180,14,'#222');box(118,292,84,140,4,'#c0392b');ellipse(160,360,18,18,'#fff');box(250,280,100,180,14,'#222');box(258,292,84,140,4,'#2a8a4a');label('📞',300,362,40,'#fff','center',900);
       g.save();line([[100,280],[220,460]],'#e0302a',10);line([[220,280],[100,460]],'#e0302a',10);line([[260,380],[290,420],[345,330]],'#2aa04a',12);g.restore()});break;
@@ -688,18 +688,19 @@ function paintScene(key,t,dt,len){
     case 'buka':warungS(t);P('sinta',300,Y,A,{mood:'scared',look:-1,hand:-1,gesture:1});swarm(40,Y-80,60,30,t,.8);break;
     case 'sinta_teriak':warungS(t);P('sinta',300,Y,A,{mood:'wow',talk:true,both:true,gesture:1,look:-1});break;
     case 'masuk':{warungS(t);const k=ease(p);P('wardi',mix(-40,300,k),Y,A,{walk:1,pace:1.6,dir:.8,mood:'scared',handPos:{1:[8,-128],'-1':[-8,-128]}});swarm(mix(-80,180,k),Y-120,60,25,t,.8);if(p>.85)box(260,330,90,226,3,'#5a3818');break}
-    case 'telepon':warungS(t);box(260,330,90,226,3,'#5a3818');P('sinta',150,Y,A,{mood:'calm',handPos:{1:[18,-130]},tools:[['hp',1]]});P('wargaA',60,Y+10,A,{walk:1,dir:.6,handPos:{1:[30,-80]}});P('wargaB',400,Y+10,A,{walk:1,dir:-.6});break;
+    case 'telepon':warungS(t);box(260,330,90,226,3,'#5a3818');P('sinta',150,Y,A,{mood:'calm',talk:true,handPos:{1:[30,-128]},front:[['hp',1]]});P('wargaA',60,Y+10,A,{walk:1,dir:.6,handPos:{1:[30,-80]}});P('wargaB',400,Y+10,A,{walk:1,dir:-.6});break;
     case 'kerok':iconPanel(t,()=>{box(60,380,330,90,40,'#d9a47a');for(let k=0;k<4;k++)ellipse(140+k*50,420,6,6,'#c0605a');line([[200,415],[204,400]],'#222',2);at(mix(320,180,p),400,1,()=>{g.rotate(-.5);box(-40,-26,80,52,6,'#3a8ae6')})},true);break;
     case 'kompres':iconPanel(t,()=>{box(60,380,330,90,40,'#d9a47a');box(150,360,150,70,8,'#9ad0f0');for(let k=0;k<3;k++)label('❄',190+k*35,330,22,'#4a9ae0','center',900)},true);break;
-    case 'bawa':{road(t,'day',{houses:[[80,1.2],[380,1.1]]});const k=ease(p);motor(mix(-40,360,k),Y+30,1.2,t);P('wargaA',mix(-40,360,k)+10,Y-20,A,{sit:true,dir:.6});P('wardi',mix(-40,360,k)-40,Y-24,A,{sit:true,dir:.6,mood:'sad'});break}
+    case 'bawa':{road(t,'day',{houses:[[80,1.2],[380,1.1]]});const k=ease(p);const mx=mix(-60,340,k);P('wardi',mx-30,Y-36,A,{sit:true,dir:.6,mood:'sad'});motor(mx,Y+30,1.6,t);P('wargaA',mx+18,Y-36,A,{sit:true,dir:.6,handPos:{1:[44,-92]}});break}
     case 'bahaya':bahaya(t,p);break;
-    case 'puskesmas':hospital(t,{});P('wardi',190,Y-70,A,{sit:true,dir:.3,mood:'happy',look:1});P('sinta',330,Y,A,{mood:'happy',look:-1});break;
+    case 'puskesmas':hospital(t,{});box(80,436,80,30,12,'#f4f8fa');lie('wardi',265,470,A,t,{mood:'happy'});box(140,428,170,44,12,'#8ab4d8');box(140,428,170,9,5,'#a8c8e4');P('sinta',330,Y,A,{mood:'happy',look:-1});break;
     case 'damkar':desa(t,{mode:'dusk'});sarang(NX,NY,1);P('damkar',200,Y,A,{look:-1,handPos:{1:[-60,-120]}});box(200-26*A,Y-150*A,52*A,30*A,6,'rgba(200,220,240,.8)');swarm(NX,NY,40,10,t,.7);break;
     case 'lapor':iconPanel(t,()=>{sarang(150,400,2.2);box(250,330,120,180,14,'#222');box(258,342,104,150,4,'#e8802a');label('113',310,410,30,'#fff','center',900);label('Damkar',310,445,13,'#fff','center',800)});break;
     case 'satu':warungS(t);P('wardi',190,Y,A,{mood:'happy',look:1});P('sinta',290,Y,A,{mood:'happy',look:-1});break;
     case 'akhir':desa(t,{mode:'dusk'});P('sinta',180,Y,A,{mood:'happy'});P('wardi',270,Y,A,{mood:'happy'});break;
   }
 }
+function lie(id,x,y,s,t,o={},k=1){at(x,y-26*s*k,1,()=>{g.rotate(-Math.PI/2*k);person(id,0,0,s,t,o)})}
 function iconCheck(x,y,t){g.save();g.globalAlpha=.9;line([[x-30,y],[x-8,y+24],[x+34,y-26]],'#2aa04a',10);g.restore()}
 function camOverride(key,p){return null}
 const GRADE={saturate:1.08,contrast:1.12,brightness:1.0,vignette:.45};
