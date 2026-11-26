@@ -97,6 +97,8 @@ Nada: santai, lucu, sedikit dramatis; edukasinya jelas dan benar. Tokoh, nama, d
 - **Biaya**: ± 2.400 kredit per versi untuk naskah ± 1.700 karakter. **Selalu buat 1 versi saja (`generations_count: 1`)** — keputusan pengguna untuk menghemat kredit. Kalau ada kalimat yang kurang pas, buat ulang kalimat itu saja, bukan seluruh naskah. Kuota paket Creator 131.000 kredit/bulan, reset otomatis tiap bulan (sekitar tanggal 14).
 - Hasil: ± 15–18 huruf per detik; jeda `[pause]` ± 0,3–0,7 detik.
 
+- **Menyambung potongan narasi (ffmpeg `concat`)**: selalu paksa `aformat=sample_fmts=fltp:channel_layouts=mono` di **setiap** masukan (termasuk `anullsrc`) dan pakai `-c:a libmp3lame -b:a 192k`. Tanpa itu ffmpeg bisa memilih format 8-bit → suara **kresek** (desis lebar + putus-putus di jeda), seperti yang terjadi pada narasi Lele. Cek hasilnya: tidak boleh ada potongan hening digital 5–80 ms di tengah narasi.
+
 ## 5. Alur kerja cerita baru
 
 1. Tulis naskah (`naskah-<judul>.md`): tabel nomor, narasi, adegan. Minta persetujuan pengguna.
