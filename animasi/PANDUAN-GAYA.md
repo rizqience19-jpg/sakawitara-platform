@@ -45,6 +45,7 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 
 - **Bingkai pembuka harus menampilkan tokoh utama** di latarnya (mis. Aldi di depan kolam), bukan objek polos — tetap dengan judul/hook. Buat varian adegan pertama khusus `window.THUMB` lalu `thumb.js` di detik ± 5.
 - **Judul hook muncul satu per satu** (efek pop per baris) begitu video mulai bergerak setelah sampul ± 1 detik — contoh `hookTitle` di `animasi/lele/lele-aldi-hilang.html` (memakai `window._t` yang diisi di `paintScene`).
+- **Judul jangan terlalu besar & jangan terlalu atas** (bagian atas layar HP tertutup tombol/nama akun): judul animasi di video huruf 30, baris mulai y ± 286 dari 800 (pil "Kisah Nyempil" y 205); thumbnail vertikal huruf 84, mulai y 560 dari 1920 (sudah jadi bawaan `thumb.js`).
 - **Jalur subtitle (y ± 545–615 dari 800) harus kosong**: label/teks adegan ditaruh di atas 530 atau di bawah 630, supaya tidak bertumpuk dengan caption kata.
 - **Gerakan harus hidup**: ikan/hewan berenang di jalur acak (gabungan beberapa sinus + variasi kecepatan), arah badan mengikuti arah gerak, kibasan ekor sesuai kecepatan, berkerumun saat diberi pakan; tangan tokoh bergerak berulang saat menabur/menyiram; objek di air naik-turun pelan.
 

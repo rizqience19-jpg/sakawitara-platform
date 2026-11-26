@@ -36,16 +36,16 @@ const fs = require('fs');
             const sy = 1920 * .28, sh = 1920 * .5, dw = H * 1080 / sh; g.drawImage(img, 0, sy, 1080, sh, W - dw + 40, 0, dw, H);
           }
           // Gelapkan area teks supaya terbaca.
-          const grad = mode === 'v' ? g.createLinearGradient(0, 0, 0, H * .5) : g.createLinearGradient(0, 0, W * .7, 0);
+          const grad = mode === 'v' ? g.createLinearGradient(0, 300, 0, H * .55) : g.createLinearGradient(0, 0, W * .7, 0);
           grad.addColorStop(0, 'rgba(0,0,0,.75)'); grad.addColorStop(1, 'rgba(0,0,0,0)');
           g.fillStyle = grad; g.fillRect(0, 0, W, mode === 'v' ? H * .5 : H);
           const maxW = mode === 'v' ? W * .9 : W * .58;
-          let size = mode === 'v' ? 104 : 78;
+          let size = mode === 'v' ? 84 : 78;
           g.font = '900 ' + size + 'px system-ui, sans-serif';
           const widest = Math.max(...lines.map(l => g.measureText(l).width));
           if (widest > maxW) size = Math.floor(size * maxW / widest);
           g.font = '900 ' + size + 'px system-ui, sans-serif'; g.textBaseline = 'middle'; g.lineJoin = 'round';
-          const lh = size * 1.12, x0 = mode === 'v' ? W / 2 : 50, y0 = mode === 'v' ? 230 : H / 2 - (lines.length - 1) * lh / 2;
+          const lh = size * 1.12, x0 = mode === 'v' ? W / 2 : 50, y0 = mode === 'v' ? 560 : H / 2 - (lines.length - 1) * lh / 2;
           g.textAlign = mode === 'v' ? 'center' : 'left';
           lines.forEach((l, i) => {
             const y = y0 + i * lh;
@@ -54,7 +54,7 @@ const fs = require('fs');
           });
           // Label kanal kecil.
           const tag = 'Kisah Nyempil'; const ts = mode === 'v' ? 40 : 30; g.font = '800 ' + ts + 'px system-ui, sans-serif';
-          const tw = g.measureText(tag).width + 36, tx = mode === 'v' ? W / 2 - tw / 2 : 50, ty = mode === 'v' ? 110 : 40;
+          const tw = g.measureText(tag).width + 36, tx = mode === 'v' ? W / 2 - tw / 2 : 50, ty = mode === 'v' ? 440 : 40;
           g.fillStyle = '#e8402a'; g.beginPath(); g.roundRect(tx, ty - ts * .8, tw, ts * 1.6, 12); g.fill();
           g.fillStyle = '#fff'; g.textAlign = 'left'; g.fillText(tag, tx + 18, ty);
           return c.toDataURL('image/png');
