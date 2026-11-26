@@ -2,7 +2,7 @@
 
 Fokus: **usaha agen BRILink** dibungkus misteri. Sebelum berangkat kondangan ke Klaten, ibu Dina menempel **3 aturan aneh** di laci kasir. Dina menertawakannya — tapi hari itu, ketiganya terbukti satu per satu. Sepanjang hari penonton belajar cara kerja usaha agen: untung dari biaya jasa, "dua dompet" (saldo rekening & uang tunai), tanggal muda, modus bukti transfer palsu, dan uang palsu (3D singkat). **Dina** (fiksi), warga Sleman, Yogyakarta. Narasi orang ketiga **semangat** (acuan `lele/suara/narasi.mp3`), pembuka sapaan + kartu profil "DINA · Sleman, Yogyakarta". Narator Gunawan, eleven_v4, caption satu kata, efek suara pendek pelan (lonceng pintu, laci kasir, notifikasi HP), tanpa musik, -14 LUFS. ± 2:50, 33 baris.
 
-Tokoh: **Dina** (± 19 th, kerudung biru muda, kaos kuning), **Bu Wartini** (ibunya), **Mas Ferdi** (mau tarik tunai), **pria bukti palsu** (jaket hitam, topi), **pria "uangnya di motor"**, **Mbah Rukmi** (nenek, kebaya ungu). Latar: warung sembako + meja agen di Sleman (rak sembako penuh, etalase, laci kasir, HP & mesin EDC, papan teks "AGEN BRILink" polos tanpa logo).
+Tokoh: **Dina** (± 19 th, rambut panjang tanpa jilbab, kaos kuning), **Bu Wartini** (ibunya, jilbab cokelat, berkacamata, baju ungu), **Mas Ferdi** (mau tarik tunai), **pria bukti palsu** (jaket hitam, topi), **pria "uangnya di motor"**, **Mbah Rukmi** (nenek, kebaya ungu). Latar: warung sembako + meja agen di Sleman (rak sembako penuh, etalase, laci kasir, HP & mesin EDC, papan teks "AGEN BRILink" polos tanpa logo).
 
 Tag di unggahan: Bank BRI & Bank Indonesia (disebut di narasi baris 0, 16, 24, 26, 30).
 
