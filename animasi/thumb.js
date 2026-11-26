@@ -20,6 +20,7 @@ const fs = require('fs');
   const res = await page.evaluate(([t, lines, hl]) => {
     // Bingkai tanpa caption & judul: pakai paintScene langsung lewat SAKA.frame lalu tutup caption dengan gambar ulang.
     window.caption = function () {};  // tanpa caption kata
+    window.THUMB = true;  // adegan boleh menyembunyikan label (GAGAL/KUNCINYA)
     const src = window.SAKA.frame(t, 1080);
     const img = new Image();
     return new Promise(done => {
