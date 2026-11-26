@@ -41,9 +41,10 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - **Judul unggahan** memakai pola rasa penasaran + emosi (contoh: "Malu Punya Bapak yang Tidak Bisa Menulis, Sampai Surat Terakhir Itu Datang…").
 - Untuk jam tayang YouTube: gabungkan cerita 2 bagian menjadi satu video panjang (> 3 menit) dengan thumbnail `-yt.png`.
 
-- **Bingkai pembuka = thumbnail**: 3,7 detik pertama video menampilkan thumbnail vertikal penuh (sampul otomatis TikTok/IG/Shorts), lalu berganti cepat ke cerita. `build.js` memanggil `node animasi/sampul.js <video.mp4> <thumbnail-vertikal.png>` otomatis bila `thumbnail/<nama>-vertikal.png` ada — jadi buat thumbnail **sebelum** build terakhir (atau jalankan `sampul.js` manual sesudahnya).
+- **Bingkai pembuka = thumbnail**: ± 1 detik pertama video menampilkan thumbnail vertikal penuh (sampul otomatis TikTok/IG/Shorts), lalu memudar ke adegan yang bergerak — jangan lebih lama, gambar diam terasa membosankan. `build.js` memanggil `node animasi/sampul.js <video.mp4> <thumbnail-vertikal.png>` otomatis bila `thumbnail/<nama>-vertikal.png` ada — jadi buat thumbnail **sebelum** build terakhir (atau jalankan `sampul.js` manual sesudahnya).
 
 - **Bingkai pembuka harus menampilkan tokoh utama** di latarnya (mis. Aldi di depan kolam), bukan objek polos — tetap dengan judul/hook. Buat varian adegan pertama khusus `window.THUMB` lalu `thumb.js` di detik ± 5.
+- **Judul hook muncul satu per satu** (efek pop per baris) begitu video mulai bergerak setelah sampul ± 1 detik — contoh `hookTitle` di `animasi/lele/lele-aldi-hilang.html` (memakai `window._t` yang diisi di `paintScene`).
 - **Jalur subtitle (y ± 545–615 dari 800) harus kosong**: label/teks adegan ditaruh di atas 530 atau di bawah 630, supaya tidak bertumpuk dengan caption kata.
 - **Gerakan harus hidup**: ikan/hewan berenang di jalur acak (gabungan beberapa sinus + variasi kecepatan), arah badan mengikuti arah gerak, kibasan ekor sesuai kecepatan, berkerumun saat diberi pakan; tangan tokoh bergerak berulang saat menabur/menyiram; objek di air naik-turun pelan.
 

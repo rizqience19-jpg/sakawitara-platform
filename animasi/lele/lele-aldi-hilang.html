@@ -692,6 +692,10 @@ function kertasPH(x,y,s,c){at(x,y,s,()=>{box(-10,-60,20,120,3,'#f4f0e4');box(-10
 
 Object.assign(people,{pengepul:{skin:['#c8946a','#a06a46','#74482e'],shirt:['#3a6ab0','#2a4e8a','#1a3466'],pants:'#2a2a2a',kind:'hair',hair:'#222',cap:['#e8e8e8','#c8c8c8','#989898']}});
 // ---------- Pembantu tambahan ----------
+// Judul hook muncul satu per satu (pop) begitu video mulai bergerak, setelah sampul ± 1 detik.
+function hookTitle(a){const t=window._t||0;g.save();g.globalAlpha=a;const bg=clamp((t-.9)/.3);g.fillStyle='rgba(0,0,0,'+(.5*bg)+')';g.fillRect(0,0,W,330);
+  g.font='800 15px system-ui, sans-serif';const tw=g.measureText('Kisah Nyempil').width+24;g.save();g.globalAlpha=a*bg;g.fillStyle='#e8402a';g.beginPath();g.roundRect(W/2-tw/2,58,tw,26,8);g.fill();g.fillStyle='#fff';g.textAlign='center';g.textBaseline='middle';g.fillText('Kisah Nyempil',W/2,71);capText(EP_TITLE,W/2,110,20,'#ffffff',5);g.restore();
+  HOOK.forEach((l,i)=>{const k=clamp((t-1.05-i*.38)/.28);if(k<=0)return;const sc=k<1?.6+.55*Math.sin(k*Math.PI*.75):1;g.save();g.globalAlpha=a*clamp(k*1.6);g.translate(W/2,165+i*46);g.scale(sc,sc);capText(l,0,0,36,l.includes(HOOK_HL)?'#ffd93a':'#ffffff',9);g.restore()});g.restore()}
 // Kartu profil (lower third). Saat tampil, caption kata disembunyikan supaya tidak bertumpuk.
 const _capAsli=caption;caption=function(w){if(!window._noCap)_capAsli(w)};
 function kartuProfil(nama,asal,k){if(k<=0)return;const e=1-Math.pow(1-clamp(k),3),x=mix(-320,24,e);g.save();g.globalAlpha=clamp(k*2);
@@ -776,6 +780,7 @@ function paintScene(key,t,dt,len){
   const p=clamp(dt/Math.max(len,.01));
   const P=(id,x,y,s,o={})=>person(id,x,y,s,t,o);
   window._noCap=key==='desa'&&!window.THUMB;
+  window._t=t;
   const swim=(n,o={})=>()=>{const sp=(o.sp||.7)/.7;for(let i=0;i<n;i++){const sd=i*7.3+(o.seed||0),r=k=>random(sd+k)*6.283;
       const pos=tt=>{const tw=tt+.9*Math.sin(.45*tt+r(5));let x=225+100*Math.sin(.31*tw+r(0))+36*Math.sin(.83*tw+r(1)),y=470+40*Math.sin(.27*tw+r(2))+15*Math.sin(.91*tw+r(3));
         if(o.feed){const fx=225+(random(sd+9)-.5)*150+20*Math.sin(tt*2.3+i),fy=462+(random(sd+11)-.5)*60+10*Math.cos(tt*1.9+i);x=mix(x,fx,.45);y=mix(y,fy,.45)}return [clamp(x,70,380),clamp(y,398,545)]};
