@@ -771,7 +771,7 @@ function paintScene(key,t,dt,len){
   const P=(id,x,y,s,o={})=>person(id,x,y,s,t,o);
   const swim=(n,o={})=>()=>{const sp=(o.sp||.7)/.7;for(let i=0;i<n;i++){const sd=i*7.3+(o.seed||0),r=k=>random(sd+k)*6.283;
       const pos=tt=>{const tw=tt+.9*Math.sin(.45*tt+r(5));let x=225+100*Math.sin(.31*tw+r(0))+36*Math.sin(.83*tw+r(1)),y=470+40*Math.sin(.27*tw+r(2))+15*Math.sin(.91*tw+r(3));
-        if(o.feed){const fx=225+18*Math.sin(tt*2.3+i),fy=462+10*Math.cos(tt*1.9+i);x=mix(x,fx,.62);y=mix(y,fy,.62)}return [clamp(x,70,380),clamp(y,398,545)]};
+        if(o.feed){const fx=225+(random(sd+9)-.5)*150+20*Math.sin(tt*2.3+i),fy=462+(random(sd+11)-.5)*60+10*Math.cos(tt*1.9+i);x=mix(x,fx,.45);y=mix(y,fy,.45)}return [clamp(x,70,380),clamp(y,398,545)]};
       const tt=t*sp,[x,y]=pos(tt),[x2,y2]=pos(tt+.06),v=Math.hypot(x2-x,y2-y)/.06,deep=i%3===0;
       g.save();if(deep)g.globalAlpha=.55;leleTop(x,y,(o.sz||.62)*(o.var?(.6+random(i+8)*.7):1)*(deep?.9:1),Math.atan2(y2-y,x2-x)+Math.PI,t,{seed:i,speed:4+Math.min(16,v*.18)});g.restore();
       if(!deep&&(o.feed||Math.sin(tt*.7+r(4))>.93)){const ph=(t*1.6+i*.37)%1;g.save();g.globalAlpha=(1-ph)*.5;g.beginPath();g.ellipse(x,y,4+ph*16,1.5+ph*5,0,0,TAU);g.strokeStyle='#e8f0e0';g.lineWidth=1.2;g.stroke();g.restore()}}};
