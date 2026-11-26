@@ -5,7 +5,7 @@ Object.assign(people,{
 });
 const HOOK=['LELENYA HILANG…','PELAKUNYA','DI DALAM KOLAM'],HOOK_HL='DI DALAM KOLAM',EP_TITLE='Lele Aldi Hilang Satu per Satu';
 // --- lele tampak samping (kepala di kiri). o.flip = menghadap kanan ---
-function leleSide(x,y,s,t,o={}){at(x,y,s,()=>{if(o.flip)g.scale(-1,1);const ph=t*(o.speed||6)+(o.seed||0),amp=o.amp??3.5;
+function leleSide(x,y,s,t,o={}){at(x,y+(o.bob??Math.sin(t*1.4+(o.seed||0))*5),s,()=>{if(o.flip)g.scale(-1,1);g.rotate((o.tilt??Math.cos(t*1.4+(o.seed||0))*.05));const ph=t*(o.speed||6)+(o.seed||0),amp=o.amp??3.5;
   const bend=(px)=>Math.sin(ph-px*.045)*amp*clamp((px+40)/110);
   const top=[[-64,1],[-60,-9],[-48,-15],[-30,-16],[-5,-15],[20,-12],[45,-8],[62,-5]],bot=[[62,5],[45,8],[20,11],[-5,14],[-30,15],[-48,13],[-60,8]];
   const P=a=>a.map(([px,py])=>[px,py+bend(px)]);
@@ -36,7 +36,7 @@ function leleTop(x,y,s,ang,t,o={}){at(x,y,s,()=>{g.rotate(ang);const ph=t*(o.spe
   g.beginPath();pts.forEach(([px,py,w],i)=>i?g.lineTo(px,py-w):g.moveTo(px,py-w));pts.slice().reverse().forEach(([px,py,w])=>g.lineTo(px,py+w));g.closePath();
   g.fillStyle=o.col||'rgba(40,42,34,.92)';g.fill();const l=pts[12];polygon([[l[0],l[1]],[l[0]+16,l[1]-8],[l[0]+16,l[1]+8]],o.col||'rgba(40,42,34,.92)');
   ellipse(-34,-7,1.6,1.6,'#d8d0b8');ellipse(-34,7,1.6,1.6,'#d8d0b8');
-  for(const sd of [-1,1]){curve(-40,sd*4,-52,sd*(10+Math.sin(t*3)*3),-60,sd*20,'rgba(30,30,24,.9)',1.2);curve(-38,sd*7,-46,sd*16,-50,sd*26,'rgba(30,30,24,.9)',1)}})}
+  for(const sd of [-1,1]){curve(-40,sd*4,-47,sd*(7+Math.sin(t*3)*2),-52,sd*12,'rgba(30,30,24,.6)',.9)}})}
 // --- kolam terpal (tampak agak dari atas). y = tepi depan atas, h = tinggi dinding depan, o.d = kedalaman pandang permukaan ---
 function kolamTerpal(x,y,w,h,t,o={}){const d=o.d||150,ins=26;
   const front=[[x,y],[x+w,y]],back=[[x+w-ins,y-d],[x+ins,y-d]];

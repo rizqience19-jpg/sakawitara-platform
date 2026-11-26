@@ -625,7 +625,7 @@ Object.assign(people,{
 });
 const HOOK=['LELENYA HILANG…','PELAKUNYA','DI DALAM KOLAM'],HOOK_HL='DI DALAM KOLAM',EP_TITLE='Lele Aldi Hilang Satu per Satu';
 // --- lele tampak samping (kepala di kiri). o.flip = menghadap kanan ---
-function leleSide(x,y,s,t,o={}){at(x,y,s,()=>{if(o.flip)g.scale(-1,1);const ph=t*(o.speed||6)+(o.seed||0),amp=o.amp??3.5;
+function leleSide(x,y,s,t,o={}){at(x,y+(o.bob??Math.sin(t*1.4+(o.seed||0))*5),s,()=>{if(o.flip)g.scale(-1,1);g.rotate((o.tilt??Math.cos(t*1.4+(o.seed||0))*.05));const ph=t*(o.speed||6)+(o.seed||0),amp=o.amp??3.5;
   const bend=(px)=>Math.sin(ph-px*.045)*amp*clamp((px+40)/110);
   const top=[[-64,1],[-60,-9],[-48,-15],[-30,-16],[-5,-15],[20,-12],[45,-8],[62,-5]],bot=[[62,5],[45,8],[20,11],[-5,14],[-30,15],[-48,13],[-60,8]];
   const P=a=>a.map(([px,py])=>[px,py+bend(px)]);
@@ -769,10 +769,18 @@ const K0={d:190};
 function paintScene(key,t,dt,len){
   const p=clamp(dt/Math.max(len,.01));
   const P=(id,x,y,s,o={})=>person(id,x,y,s,t,o);
-  const swim=(n,o={})=>()=>{for(let i=0;i<n;i++){const a=random(i+(o.seed||0))*TAU+t*(o.sp||.7)*(i%2?1:-1),r=30+random(i+3)*70;leleTop(225+Math.cos(a)*r*1.5,470+Math.sin(a)*r*.6,(o.sz||.62)*(o.var?(.6+random(i+8)*.7):1),a+Math.PI/2*(i%2?1:-1),t,{seed:i})}};
+  const swim=(n,o={})=>()=>{const sp=(o.sp||.7)/.7;for(let i=0;i<n;i++){const sd=i*7.3+(o.seed||0),r=k=>random(sd+k)*6.283;
+      const pos=tt=>{const tw=tt+.9*Math.sin(.45*tt+r(5));let x=225+100*Math.sin(.31*tw+r(0))+36*Math.sin(.83*tw+r(1)),y=470+40*Math.sin(.27*tw+r(2))+15*Math.sin(.91*tw+r(3));
+        if(o.feed){const fx=225+18*Math.sin(tt*2.3+i),fy=462+10*Math.cos(tt*1.9+i);x=mix(x,fx,.62);y=mix(y,fy,.62)}return [clamp(x,70,380),clamp(y,398,545)]};
+      const tt=t*sp,[x,y]=pos(tt),[x2,y2]=pos(tt+.06),v=Math.hypot(x2-x,y2-y)/.06,deep=i%3===0;
+      g.save();if(deep)g.globalAlpha=.55;leleTop(x,y,(o.sz||.62)*(o.var?(.6+random(i+8)*.7):1)*(deep?.9:1),Math.atan2(y2-y,x2-x)+Math.PI,t,{seed:i,speed:4+Math.min(16,v*.18)});g.restore();
+      if(!deep&&(o.feed||Math.sin(tt*.7+r(4))>.93)){const ph=(t*1.6+i*.37)%1;g.save();g.globalAlpha=(1-ph)*.5;g.beginPath();g.ellipse(x,y,4+ph*16,1.5+ph*5,0,0,TAU);g.strokeStyle='#e8f0e0';g.lineWidth=1.2;g.stroke();g.restore()}}};
+  const throwG=.25+.75*Math.max(0,Math.sin(t*4.2));
   const pond=(o={})=>kolamTerpal(40,560,370,60,t,Object.assign({d:190},o));
   switch(key){
-    case 'desa':pekarangan(t);rumpunKolam(t);P('aldi',360,Y+50,A,{mood:'happy',look:-1});break;
+    case 'desa':if(window.THUMB){pekarangan(t,'night');g.fillStyle='rgba(10,16,30,.5)';g.fillRect(-300,-300,1100,1400);pond({fish:()=>{swim(10,{sz:.7})();g.fillStyle='rgba(0,0,0,.35)';g.fillRect(0,0,450,800);g.save();g.globalAlpha=.9;leleTop(250,470,1.25,Math.PI*.95,t,{seed:3,speed:12});leleTop(150,462,.45,Math.PI*.95,t,{seed:4,speed:16,col:'rgba(120,118,100,.95)'});g.restore()}});
+        g.save();g.globalCompositeOperation='lighter';g.globalAlpha=.5;polygon([[330,Y-40],[120,420],[300,540]],'rgba(255,240,180,.55)');g.restore();P('aldi',330,Y+90,A*1.45,{mood:'wow',look:-1,handPos:{'-1':[-46,-110]}});box(330-46*A*1.45-16,Y+90-110*A*1.45-8,26,14,4,'#333');break}
+      pekarangan(t);at(-10,240,.42,()=>{for(let i=0;i<3;i++)at(i*360,0,1,()=>kolamTerpal(40,560,370,60,t,{d:190,fish:swim(8)}))});pond({fish:swim(14)});P('aldi',300,Y+80,A*1.3,{mood:'happy',look:-.3,hand:1,gesture:.5+.5*Math.max(0,Math.sin(t*5))});break;
     case 'buat':{pekarangan(t);const lv=ease(clamp(p*1.4));pond({fish:()=>{g.fillStyle='rgba(60,90,110,'+(1-lv)*.8+')';g.fillRect(0,0,450,800)}});line([[440,520],[360,480],[300,440]],'#3a7ab0',6);for(let i=0;i<5;i++){const ph=(t*2+i/5)%1;ellipse(300-ph*10,440+ph*30,3,5,'rgba(150,200,240,.8)')}
       P('aldi',380,Y+50,A,{mood:'happy',look:-1});if(p>.6)kantong(330,Y+20,.9,t);break}
     case 'tuang':{pekarangan(t);pond({fish:()=>{if(p>.4)for(let i=0;i<20;i++){ellipse(180+random(i)*90,440+random(i+1)*40,5,1.6,'#3a3a30')}}});P('aldi',330,Y+50,A,{mood:'happy',look:-1,handPos:{'-1':[-50,-130]}});kantong(330-50*A,Y+50-130*A,1,t,{tilt:-1.4*clamp(p*2)});
@@ -783,18 +791,18 @@ function paintScene(key,t,dt,len){
     case 'k_apung':{plain('#2e4e34');g.fillStyle=gradient(0,0,0,800,[[0,'#5a7a4e'],[1,'#2e4e34']]);g.fillRect(-300,-300,1100,1400);for(let i=0;i<10;i++){g.save();g.globalAlpha=.25;g.beginPath();g.ellipse(random(i)*450,random(i+3)*800,20+((t*8+i*3)%26),5,0,0,TAU);g.strokeStyle='#d8e8d0';g.stroke();g.restore()}
       kantong(160,420+Math.sin(t*2)*6,2,t);kantong(320,460+Math.cos(t*2)*6,1.6,t);if(p>.45){at(260,300,1,()=>{orb(0,0,26,20,'#d8a37a','#b07552','#845438');box(-14,-30,28,40,6,'#6aa0d0')});for(let i=0;i<5;i++){const ph=(t*2+i/5)%1;ellipse(220-ph*40,320+ph*80,3,5,'rgba(180,220,240,.8)')}}
       capText('SEDIKIT DEMI SEDIKIT',225,180,22,'#ffd93a',6);break}
-    case 'pakan':{pekarangan(t);pond({fish:swim(14)});P('aldi',360,Y+50,A,{mood:'laugh',look:-1,hand:-1,gesture:1});for(let i=0;i<26;i++){const ph=(t*1.5+i/26)%1;ellipse(mix(320,180+random(i)*120,ph),mix(Y-80,430+random(i+2)*60,ph)-Math.sin(ph*Math.PI)*50,2.8,2.8,'#8a5a2a')}break}
+    case 'pakan':{pekarangan(t);pond({fish:swim(14,{feed:true})});P('aldi',360,Y+50,A,{mood:'laugh',look:-1,hand:-1,gesture:throwG});for(let i=0;i<26;i++){const ph=(t*1.5+i/26)%1;ellipse(mix(320,180+random(i)*120,ph),mix(Y-80,430+random(i+2)*60,ph)-Math.sin(ph*Math.PI)*50,2.8,2.8,'#8a5a2a')}break}
     case 'busuk':{pekarangan(t,'day');pond({murky:true,fish:()=>{g.fillStyle='rgba(80,70,30,.35)';g.fillRect(0,0,450,800);for(let i=0;i<9;i++)megap(150+random(i)*160,400+random(i+3)*100,1.4,t,i)}});
       for(let i=0;i<5;i++){const ph=(t*.6+i/5)%1;g.save();g.globalAlpha=Math.sin(Math.PI*ph);curve(140+i*45,350-ph*80,152+i*45,330-ph*80,140+i*45,310-ph*80,'#a8c050',3);g.restore()}P('aldi',330,Y+50,A,{mood:'frown',look:-1,handPos:{1:[6,-128]}});break}
     case 'k_pakan':iconPanel(t,()=>{at(225,360,1,()=>{ellipse(0,0,120,60,'#2e4e34');const n=Math.floor(clamp(1-p*1.4)*14);for(let i=0;i<n;i++)ellipse(-80+random(i)*160,-30+random(i+2)*60,4,4,'#8a5a2a');for(let i=0;i<6;i++)leleTop(-60+i*24,Math.sin(i)*20,.4,1.6+i,t,{seed:i})});
-      at(225,520,1,()=>{ellipse(0,0,40,40,'#fff');g.lineWidth=4;g.strokeStyle='#333';g.beginPath();g.arc(0,0,40,0,TAU);g.stroke();g.beginPath();g.moveTo(0,0);g.arc(0,0,36,-Math.PI/2,-Math.PI/2+TAU*clamp(p*1.2));g.closePath();g.fillStyle='rgba(42,160,74,.5)';g.fill()});label('beberapa menit',225,590,16,'#333','center',900);if(p>.75)iconCheck(330,330,t)});break;
+      at(225,460,1,()=>{ellipse(0,0,40,40,'#fff');g.lineWidth=4;g.strokeStyle='#333';g.beginPath();g.arc(0,0,40,0,TAU);g.stroke();g.beginPath();g.moveTo(0,0);g.arc(0,0,36,-Math.PI/2,-Math.PI/2+TAU*clamp(p*1.2));g.closePath();g.fillStyle='rgba(42,160,74,.5)';g.fill()});label('beberapa menit',225,520,16,'#333','center',900);if(p>.75)iconCheck(330,330,t)});break;
     case 'kuras':{pekarangan(t);const lv=p<.5?1-ease(p*2):ease((p-.5)*2);pond({fish:()=>{g.fillStyle='rgba(30,74,128,'+(1-lv)*.9+')';g.fillRect(0,0,450,800);swim(10,{sz:.5})()}});P('aldi',380,Y+50,A,{mood:'calm',look:-1});
       line([[440,520],[360,480],[300,440]],p>.5?'#3a7ab0':'#555',6);capText(p<.5?'DIKURAS HABIS':'DIISI AIR BARU',225,180,24,'#ff8a5a',6);break}
     case 'kaget':{bawahAir(t);g.fillStyle='rgba(120,150,170,.15)';g.fillRect(-300,-300,1100,1400);for(let i=0;i<6;i++)leleSide(60+i*70,640+Math.sin(i)*20,.75,t,{seed:i,amp:.6,speed:1.5,flip:i%2});capText('KAGET · TIDAK MAU MAKAN',225,180,20,'#ff8a5a',6);break}
-    case 'k_ganti':{plain('#eef2f4');at(225,430,1,()=>{box(-170,-110,340,200,6,'#2a64a8');const lv=p<.5?mix(0,40,ease(p*2)):mix(40,0,ease((p-.5)*2));box(-160,-100+lv,320,180-lv,4,'#4a7a52');box(-160,60,320,20,2,'#5a4a2a');
-      line([[170,70],[220,70],[220,140]],'#555',8);if(p<.5)for(let i=0;i<5;i++){const ph=(t*2+i/5)%1;ellipse(220,140+ph*40,3,6,'rgba(120,100,60,.8)')}if(p>.5)for(let i=0;i<5;i++){const ph=(t*2+i/5)%1;ellipse(-120,-160+ph*60,3,6,'rgba(150,200,240,.8)')}});
-      label('buang air dasar sebagian',225,620,18,'#333','center',900);label('tambah air baru pelan-pelan',225,250,18,'#2a6ab0','center',900);break}
-    case 'besar':bawahAir(t);for(let i=0;i<5;i++)leleSide(80+i*80+Math.sin(t+i)*10,240+i*90,1.3-i*.08,t,{seed:i,flip:i%2});break;
+    case 'k_ganti':{plain('#eef2f4');at(225,380,1,()=>{box(-170,-110,340,200,6,'#2a64a8');const lv=p<.5?mix(0,40,ease(p*2)):mix(40,0,ease((p-.5)*2));box(-160,-100+lv,320,180-lv,4,'#4a7a52');box(-160,60,320,20,2,'#5a4a2a');
+      line([[170,70],[220,70],[220,110]],'#555',8);if(p<.5)for(let i=0;i<5;i++){const ph=(t*2+i/5)%1;ellipse(220,110+ph*30,3,6,'rgba(120,100,60,.8)')}if(p>.5)for(let i=0;i<5;i++){const ph=(t*2+i/5)%1;ellipse(-120,-160+ph*60,3,6,'rgba(150,200,240,.8)')}});
+      label('buang air dasar sebagian',225,515,18,'#333','center',900);label('tambah air baru pelan-pelan',225,200,18,'#2a6ab0','center',900);break}
+    case 'besar':bawahAir(t);for(let i=0;i<5;i++){const dir=i%2?1:-1,x=225+dir*(((t*22*(1+i*.15)+i*90)%560)-280);leleSide(x,240+i*90,1.3-i*.08,t,{seed:i,flip:dir>0,speed:5+i})}break;
     case 'hitung':{pekarangan(t);pond({fish:swim(9,{sz:.75})});P('aldi',370,Y+50,A,{mood:'frown',look:-1,handPos:{'-1':[-30,-100]}});const n=[1000,870,740,610][Math.min(3,Math.floor(p*4))];at(130,200,1,()=>{box(-80,-34,160,68,12,'#fff');label(String(n)+' ekor',0,0,26,'#c0392b','center',900)});break}
     case 'hilang':pekarangan(t,'dusk');pond({fish:swim(4,{sz:.75})});break;
     case 'senter':{pekarangan(t,'night');g.fillStyle='rgba(10,16,30,.5)';g.fillRect(-300,-300,1100,1400);pond({fish:()=>{swim(8,{sz:.7,var:true})();g.fillStyle='rgba(0,0,0,.45)';g.fillRect(0,0,450,800)}});
@@ -807,8 +815,8 @@ function paintScene(key,t,dt,len){
     case 'rata':pekarangan(t);pond({fish:swim(16,{sz:.62})});P('aldi',370,Y+50,A,{mood:'happy',look:-1});iconCheck(370,240,t);break;
     case 'hujan':pekarangan(t,'night');g.fillStyle='rgba(20,30,50,.5)';g.fillRect(-300,-300,1100,1400);pond({murky:true,fish:()=>{for(let i=0;i<30;i++){const ph=(t*2+i/30)%1;g.save();g.globalAlpha=1-ph;g.beginPath();g.ellipse(random(i)*450,380+random(i+3)*130,ph*12,ph*3,0,0,TAU);g.strokeStyle='#d8e8f0';g.stroke();g.restore()}}});hujan(t);break;
     case 'matihujan':pekarangan(t,'day');g.fillStyle='rgba(80,90,110,.4)';g.fillRect(-300,-300,1100,1400);pond({murky:true,fish:()=>{for(let i=0;i<5;i++)at(150+random(i)*160,400+random(i+2)*90,.6,()=>{g.rotate(random(i)*3);box(-30,-6,60,12,6,'#c8c0b0')});swim(6,{sz:.6,sp:.2})()}});P('aldi',370,Y+50,A,{mood:'sad',look:-1});break;
-    case 'k_asam':{plain('#f4efe4');at(225,330,1,()=>{box(-150,-110,300,200,14,'#fff');label('pH',0,-84,20,'#333','center',900);const c=['#e0402a','#e8782a','#e8c03a','#8ac04a','#3aa06a','#2a7ab0'];c.forEach((cc,i)=>{box(-130+i*44,-50,40,50,4,cc);label(String(4+i),-110+i*44,20,16,'#333','center',900)});const k=clamp(p*1.5);const x=mix(-110+3*44,-110,k);polygon([[x,30],[x-10,50],[x+10,50]],'#222');label(k>.7?'ASAM':'normal',x,70,15,k>.7?'#c0392b':'#2a8a4a','center',900)});
-      for(let i=0;i<6;i++){const ph=(t+i/6)%1;line([[60+i*60,520+ph*40],[56+i*60,536+ph*40]],'rgba(80,140,200,.7)',2)}box(60,600,330,50,8,'#5a4a2a');for(let i=0;i<10;i++)ellipse(80+i*30,612,6,4,'#8a5a2a');label('sisa pakan & kotoran',225,680,15,'#5a4a2a','center',900);break}
+    case 'k_asam':{plain('#f4efe4');at(225,300,1,()=>{box(-150,-110,300,200,14,'#fff');label('pH',0,-84,20,'#333','center',900);const c=['#e0402a','#e8782a','#e8c03a','#8ac04a','#3aa06a','#2a7ab0'];c.forEach((cc,i)=>{box(-130+i*44,-50,40,50,4,cc);label(String(4+i),-110+i*44,20,16,'#333','center',900)});const k=clamp(p*1.5);const x=mix(-110+3*44,-110,k);polygon([[x,30],[x-10,50],[x+10,50]],'#222');label(k>.7?'ASAM':'normal',x,70,15,k>.7?'#c0392b':'#2a8a4a','center',900)});
+      for(let i=0;i<6;i++){const ph=(t+i/6)%1;line([[60+i*60,410+ph*30],[56+i*60,426+ph*30]],'rgba(80,140,200,.7)',2)}box(60,470,330,40,8,'#5a4a2a');for(let i=0;i<10;i++)ellipse(80+i*30,480,6,4,'#8a5a2a');label('sisa pakan & kotoran',225,530,15,'#5a4a2a','center',900);break}
     case 'k_cek':{pekarangan(t);pond({fish:swim(8)});P('aldi',360,Y+50,A,{mood:'calm',look:-1,handPos:{'-1':[-44,-100]}});kertasPH(360-44*A,Y+50-100*A-18,.5,p>.5?'#8ac04a':'#e8c03a');capText('CEK pH',225,190,24,'#7ae08a',6);break}
     case 'k_kapur':{pekarangan(t);atapKolam(40,560,370,190);pond({fish:swim(10)});const hx=360-46*A,hy=Y+50-120*A;P('aldi',360,Y+50,A,{mood:'calm',look:-1,handPos:{'-1':[-46,-120]}});box(hx-14,hy-10,28,22,5,'#f4f4f0');for(let i=0;i<14;i++){const ph=(t*1.2+i/14)%1;ellipse(hx-20-ph*120+random(i)*20,hy+ph*100,2.5,2.5,'rgba(255,255,255,.9)')}
       ['KAPUR','SEDOT KOTORAN','GANTI SEBAGIAN','ATAP'].forEach((l,i)=>{const a=clamp(p*4-i*.8);if(a>0){g.save();g.globalAlpha=a;box(30,160+i*38,180,30,8,'#2a8a4a');label('✓ '+l,120,175+i*38,13,'#fff','center',900);g.restore()}});break}
@@ -817,7 +825,7 @@ function paintScene(key,t,dt,len){
     case 'montase':{g.fillStyle='#14141c';g.fillRect(-300,-300,1100,1400);const items=[['BIBIT MATI',()=>{pekarangan(t);pond({fish:()=>{for(let i=0;i<30;i++)bibitMati(120+random(i)*210,380+random(i+5)*110,1,i)}})}],['AIR BUSUK',()=>{pekarangan(t);pond({murky:true,fish:()=>{for(let i=0;i<9;i++)megap(150+random(i)*160,400+random(i+3)*100,1.4,t,i)}})}],['LELE KAGET',()=>{bawahAir(t);for(let i=0;i<5;i++)leleSide(80+i*80,620,.8,t,{seed:i,amp:.5,speed:1.5})}],['SALING MAKAN',()=>{bawahAir(t,{night:true});leleSide(200,420,2.4,t,{seed:2,flip:true});leleSide(330,430,.7,t,{seed:7,flip:true,pale:true})}],['AIR ASAM',()=>{pekarangan(t,'night');pond({murky:true});hujan(t)}]];
       items.forEach(([l,d],i)=>{const a=clamp(p*4-i*.55);if(a<=0)return;const cx=(i%2)*218+16,cy=Math.floor(i/2)*200+120,ww=i===4?418:200;g.save();g.globalAlpha=a;g.beginPath();g.rect(cx,cy,ww,186);g.clip();g.translate(cx,cy);g.scale(ww/450,ww/450);g.translate(0,i===4?-330:-250);d();g.restore();
         g.save();g.globalAlpha=a;box(cx,cy+156,ww,30,0,'rgba(0,0,0,.6)');label(l,cx+ww/2,cy+171,13,'#fff','center',900);label('✗',cx+ww-20,cy+20,24,'#ff5a4a','center',900);g.restore()});break}
-    case 'pintar':pekarangan(t);rumpunKolam(t);P('aldi',360,Y+50,A,{mood:'happy',look:-1});break;
+    case 'pintar':pekarangan(t);at(-10,240,.42,()=>{for(let i=0;i<3;i++)at(i*360,0,1,()=>kolamTerpal(40,560,370,60,t,{d:190,fish:swim(8)}))});pond({fish:swim(14)});P('aldi',330,Y+60,A,{mood:'happy',look:-1});break;
     case 'akhir':pekarangan(t);pond({fish:swim(14)});P('aldi',225,Y+50,A,{mood:'happy',handPos:{1:[44,-74],'-1':[-44,-74]}});leleSide(225,Y+50-80*A,.9,t,{seed:9,amp:3});break;
   }
   if(!window.THUMB&&FAIL[key]&&p>.15)pill('GAGAL #'+FAIL[key],'#c0392b');

@@ -43,6 +43,10 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 
 - **Bingkai pembuka = thumbnail**: 3,7 detik pertama video menampilkan thumbnail vertikal penuh (sampul otomatis TikTok/IG/Shorts), lalu berganti cepat ke cerita. `build.js` memanggil `node animasi/sampul.js <video.mp4> <thumbnail-vertikal.png>` otomatis bila `thumbnail/<nama>-vertikal.png` ada — jadi buat thumbnail **sebelum** build terakhir (atau jalankan `sampul.js` manual sesudahnya).
 
+- **Bingkai pembuka harus menampilkan tokoh utama** di latarnya (mis. Aldi di depan kolam), bukan objek polos — tetap dengan judul/hook. Buat varian adegan pertama khusus `window.THUMB` lalu `thumb.js` di detik ± 5.
+- **Jalur subtitle (y ± 545–615 dari 800) harus kosong**: label/teks adegan ditaruh di atas 530 atau di bawah 630, supaya tidak bertumpuk dengan caption kata.
+- **Gerakan harus hidup**: ikan/hewan berenang di jalur acak (gabungan beberapa sinus + variasi kecepatan), arah badan mengikuti arah gerak, kibasan ekor sesuai kecepatan, berkerumun saat diberi pakan; tangan tokoh bergerak berulang saat menabur/menyiram; objek di air naik-turun pelan.
+
 ## 2. Pola cerita
 
 Misteri desa → digosipkan warga → tokoh muda penasaran menyelidiki diam-diam (biasanya malam hari) → ketahuan → **"Ternyata..."** → penjelasan ilmiah (adegan *zoom* ke dalam: tanah, akar, sel, dsb.) → warga ikut mencontoh → kalimat penutup yang menyimpulkan.
