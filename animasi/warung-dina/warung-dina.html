@@ -637,8 +637,8 @@ function callScreen(t,name,sub,o={}){g.fillStyle=o.bg||'#1a1a22';g.fillRect(-300
 
 // ---------- Tokoh "Warung Dina" ----------
 Object.assign(people,{
-  dina:{skin:['#e4b189','#b98262','#8a5c49'],shirt:['#f2c94a','#d9a62a','#a87a14'],pants:'#3a4a6a',kind:'scarf',scarf:['#8ac0e8','#6aa0c8','#4a80a8']},
-  wartini:{skin:['#d8a37a','#b07552','#845438'],shirt:['#7a5aa0','#5e4080','#402860'],pants:'#3a2a3a',kind:'scarf',scarf:['#a87a4a','#8a5a32','#5e3a1a']},
+  dina:{skin:['#e4b189','#b98262','#8a5c49'],shirt:['#f2c94a','#d9a62a','#a87a14'],pants:'#3a5a8a',kind:'hair',hair:'#1a120c',long:true},
+  wartini:{skin:['#d8a37a','#b07552','#845438'],shirt:['#7a5aa0','#5e4080','#402860'],pants:'#3a2a3a',kind:'scarf',scarf:['#7a3a2a','#5e2a1c','#3e1a10'],glasses:true},
   ferdi:{skin:['#d2a07a','#a8724e','#7a5034'],shirt:['#3aa05a','#2a8046','#1a5a30'],pants:'#2a2a3a',kind:'hair',hair:'#1a1612',spiky:true},
   penipu:{skin:['#c8946a','#a06a46','#74482e'],shirt:['#2a2a30','#1a1a20','#0a0a10'],pants:'#2a2a2a',kind:'hair',hair:'#111',cap:['#3a3a3a','#222','#111']},
   penipu2:{skin:['#d8a37a','#b07552','#845438'],shirt:['#c0582a','#a04418','#783008'],pants:'#3a3a4a',kind:'hair',hair:'#1f1a16'},
@@ -714,7 +714,7 @@ function antrean(t,n,x0=40,dx=-34){const ids=['ferdi','penipu2','warga1','ibu1',
 // ---------- Naskah ----------
 const SCRIPT=[
   ['Halo, penonton setia Kisah Nyempil! Hari ini kita intip serunya usaha agen BRILink dari Bank BRI.','halo',1.0,1.05,225,450],
-  ['Kenalin, ini Dina. Warga Sleman, Yogyakarta. Hari ini, Dina disuruh jaga warung sembako sekaligus agen BRILink milik ibunya, karena ibunya ke pasar.','desa',1.0,1.05,225,450],
+  ['Kenalin, ini Dina. Warga Sleman, Yogyakarta. Hari ini, Dina disuruh jaga warung sembako sekaligus agen BRILink milik ibunya, karena ibunya kondangan ke Klaten, baru pulang malam.','desa',1.0,1.05,225,450],
   ['Sebelum berangkat, ibunya menempel secarik kertas di laci kasir. Isinya tiga aturan.','tempel',1.2,1.4,330,500],
   ['Satu. Jangan serahkan uang sebelum cek mutasi. Dua. Terima uangnya dulu, baru transfer. Tiga. Setiap uang seratus ribu, angkat ke lampu.','aturan',1.0,1.04,225,420],
   ['Dina tertawa. "Aturan apa ini, Bu?" Ibunya cuma tersenyum. "Nanti kamu tahu sendiri."','tertawa',1.0,1.05,225,450],
@@ -779,7 +779,7 @@ function paintScene(key,t,dt,len){
   const hp=(x,y,s,warna)=>at(x,y,s,()=>{box(-14,-26,28,52,6,'#111');box(-11,-21,22,40,3,warna||'#e8eef4')});
   switch(key){
     case 'halo':if(window.THUMB){warungAgen(t,{malam:true});P('dina',300,Y-60,A*1.3,{mood:'wow',handPos:{1:[30,-118]}});mejaKasir(t,{});at(300+30*A*1.3,Y-60-118*A*1.3,1,()=>uang(38,-14,.8,{fake:true,light:true}));kertasAturan(100,545,.8,3);break}
-    case 'desa':warungAgen(t);dina({x:key==='desa'?340:300,look:-.3,hand:key==='desa'?-1:1,gesture:wave});mejaKasir(t,{kertas:true});if(key==='desa'){P('wartini',mix(90,-80,clamp((p-.5)*2)),Y,A,{walk:p>.5?1:0,dir:-.6,mood:'happy',hand:1,gesture:p<.5?wave:0});kartuProfil('DINA','Sleman, Yogyakarta',dt/.6)}break;
+    case 'desa':if(key==='desa'){warungAgen(t);mejaKasir(t,{kertas:true});P('wartini',mix(380,580,clamp((p-.5)*2)),Y,A,{walk:p>.5?1:0,dir:.6,mood:'happy',look:-1,hand:-1,gesture:p<.5?wave:0});P('dina',110,Y,A,{mood:'happy',look:1,hand:1,gesture:wave});kartuProfil('DINA','Sleman, Yogyakarta',dt/.6);break}warungAgen(t);dina({x:key==='desa'?340:300,look:-.3,hand:key==='desa'?-1:1,gesture:wave});mejaKasir(t,{kertas:true});if(key==='desa'){P('wartini',mix(90,-80,clamp((p-.5)*2)),Y,A,{walk:p>.5?1:0,dir:-.6,mood:'happy',hand:1,gesture:p<.5?wave:0});kartuProfil('DINA','Sleman, Yogyakarta',dt/.6)}break;
     case 'tempel':warungAgen(t);P('wartini',300,Y-60,A,{mood:'happy',look:1,handPos:{1:[40,-30]}});mejaKasir(t,{});if(p>.4)kertasAturan(375,565,.32,3);break;
     case 'aturan':plain('#f4ead2');kertasAturan(225,380,2.1,1+Math.floor(clamp(p*1.05)*3));break;
     case 'tertawa':warungAgen(t);dina({mood:'laugh'});mejaKasir(t,{kertas:true});P('wartini',mix(110,-60,ease(p)),Y,A,{walk:1,dir:-.6,mood:'happy',look:1});break;
@@ -796,7 +796,7 @@ function paintScene(key,t,dt,len){
     case 'ferdi':warungAgen(t,{tgl:'25',jam:9});dina({mood:'calm',look:-1,handPos:{'-1':[-10,-50]}});P('ferdi',150,Y,A,{mood:'happy',look:1,hand:1,gesture:.6});mejaKasir(t,{kertas:true,laciBuka:true});at(375,550,1,()=>{for(let i=0;i<3;i++)uang(-20+i*10,-i*3,.3,{})});bubbleText(150,330,['"Tarik tunai','satu juta, Mbak"'],{size:13});break;
     case 'panik':warungAgen(t,{tgl:'25',jam:9});dina({mood:'scared',both:true,gesture:.6,shake:.3});mejaKasir(t,{kertas:true,laciBuka:true});antrean(t,5,150,-34);for(let i=0;i<3;i++){const ph=(t+i/3)%1;g.save();g.globalAlpha=1-ph;label(['huh…','lama!','ayo…'][i],60+i*60,330-ph*30,14,'#c0392b','center',900);g.restore()}break;
     case 'telepon':{g.save();g.beginPath();g.rect(-300,-300,525,1400);g.clip();warungAgen(t,{tgl:'25'});P('dina',150,Y,A,{mood:'scared',handPos:{1:[30,-128]},front:[['hp',1]]});g.restore();
-      g.save();g.beginPath();g.rect(225,-300,600,1400);g.clip();sky(t,'day');g.fillStyle='#d8c0a0';g.fillRect(225,330,600,700);for(let i=0;i<3;i++){box(240+i*70,380,60,50,4,['#e8402a','#f2c94a','#2aa04a'][i])}P('wartini',340,Y,A,{mood:'laugh',talk:true,handPos:{'-1':[-30,-128]},front:[['hp',-1]]});g.restore();line([[225,-300],[225,1100]],'#fff',6);break}
+      g.save();g.beginPath();g.rect(225,-300,600,1400);g.clip();sky(t,'day');g.fillStyle='#d8c0a0';g.fillRect(225,330,600,700);for(let i=0;i<6;i++)polygon([[225+i*40,170],[265+i*40,170],[265+i*40,215],[225+i*40,215]],i%2?'#fff':'#d8302a');for(const px of [240,440])line([[px,215],[px,560]],'#8a6a4a',5);for(let i=0;i<5;i++){line([[245+i*45,215],[255+i*45,270]],'#d8c84a',4);line([[255+i*45,215],[245+i*45,262]],'#b8a83a',3)}for(let i=0;i<4;i++){box(250+i*50,470,34,8,2,'#e8e0d0');box(252+i*50,478,4,40,1,'#b8b0a0');box(278+i*50,478,4,40,1,'#b8b0a0')}label('KONDANGAN',335,150,14,'#7a3020','center',900);P('wartini',340,Y,A,{mood:'laugh',talk:true,handPos:{'-1':[-30,-128]},front:[['hp',-1]]});g.restore();line([[225,-300],[225,1100]],'#fff',6);break}
     case 'bukti':warungAgen(t,{jam:12});dina({mood:'wow',look:-1});mejaKasir(t,{kertas:true});P('penipu',150,Y,A,{mood:'happy',look:1,handPos:{1:[44,-110]}});hp(150+44*A+6,Y-110*A,1,'#2a8a4a');break;
     case 'layar':{phoneFrame('Bukti Transfer','#1f5ea8');at(225,330,1,()=>{ellipse(0,0,34,34,'#2aa04a');label('✓',0,2,34,'#fff','center',900)});label('Transfer Berhasil',225,390,18,'#2aa04a','center',900);label('Rp 2.000.000',225,430,26,'#222','center',900);label('ke: WARUNG BU WARTINI',225,465,12,'#555','center',800);label('12:41 WIB',225,490,12,'#555','center',800);
       if(p>.6){g.save();g.globalAlpha=clamp((p-.6)*3);capText('ASLI?',225,150,30,'#ff6a4a',7);g.restore()}break}

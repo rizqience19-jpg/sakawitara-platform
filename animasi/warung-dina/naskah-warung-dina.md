@@ -1,6 +1,6 @@
 # Naskah: "3 Aturan Aneh di Laci Agen BRILink" (Kisah Nyempil — usaha desa)
 
-Fokus: **usaha agen BRILink** dibungkus misteri. Sebelum ke pasar, ibu Dina menempel **3 aturan aneh** di laci kasir. Dina menertawakannya — tapi hari itu, ketiganya terbukti satu per satu. Sepanjang hari penonton belajar cara kerja usaha agen: untung dari biaya jasa, "dua dompet" (saldo rekening & uang tunai), tanggal muda, modus bukti transfer palsu, dan uang palsu (3D singkat). **Dina** (fiksi), warga Sleman, Yogyakarta. Narasi orang ketiga **semangat** (acuan `lele/suara/narasi.mp3`), pembuka sapaan + kartu profil "DINA · Sleman, Yogyakarta". Narator Gunawan, eleven_v4, caption satu kata, efek suara pendek pelan (lonceng pintu, laci kasir, notifikasi HP), tanpa musik, -14 LUFS. ± 2:50, 33 baris.
+Fokus: **usaha agen BRILink** dibungkus misteri. Sebelum berangkat kondangan ke Klaten, ibu Dina menempel **3 aturan aneh** di laci kasir. Dina menertawakannya — tapi hari itu, ketiganya terbukti satu per satu. Sepanjang hari penonton belajar cara kerja usaha agen: untung dari biaya jasa, "dua dompet" (saldo rekening & uang tunai), tanggal muda, modus bukti transfer palsu, dan uang palsu (3D singkat). **Dina** (fiksi), warga Sleman, Yogyakarta. Narasi orang ketiga **semangat** (acuan `lele/suara/narasi.mp3`), pembuka sapaan + kartu profil "DINA · Sleman, Yogyakarta". Narator Gunawan, eleven_v4, caption satu kata, efek suara pendek pelan (lonceng pintu, laci kasir, notifikasi HP), tanpa musik, -14 LUFS. ± 2:50, 33 baris.
 
 Tokoh: **Dina** (± 19 th, kerudung biru muda, kaos kuning), **Bu Wartini** (ibunya), **Mas Ferdi** (mau tarik tunai), **pria bukti palsu** (jaket hitam, topi), **pria "uangnya di motor"**, **Mbah Rukmi** (nenek, kebaya ungu). Latar: warung sembako + meja agen di Sleman (rak sembako penuh, etalase, laci kasir, HP & mesin EDC, papan teks "AGEN BRILink" polos tanpa logo).
 
@@ -13,7 +13,7 @@ Rujukan: Detik, Okezone, RM.id, Investortrust, Bisnis.com (modus bukti transfer 
 | # | Tag | Narasi | Adegan |
 |---|-----|--------|--------|
 | 0 | [excited] | Halo, penonton setia Kisah Nyempil! Hari ini kita intip serunya usaha agen BRILink dari Bank BRI. | Dina melambai di depan warung |
-| 1 | [excited] | Kenalin, ini Dina. Warga Sleman, Yogyakarta. Hari ini, Dina disuruh jaga warung sembako sekaligus agen BRILink milik ibunya, karena ibunya ke pasar. | Kartu profil; ibu pamit |
+| 1 | [excited] | Kenalin, ini Dina. Warga Sleman, Yogyakarta. Hari ini, Dina disuruh jaga warung sembako sekaligus agen BRILink milik ibunya, karena ibunya kondangan ke Klaten, baru pulang malam. | Kartu profil; ibu pamit |
 | 2 | [whispers] | Sebelum berangkat, ibunya menempel secarik kertas di laci kasir. Isinya tiga aturan. | Kertas ditempel di laci |
 | 3 | [whispers] | Satu. Jangan serahkan uang sebelum cek mutasi. Dua. Terima uangnya dulu, baru transfer. Tiga. Setiap uang seratus ribu, angkat ke lampu. | Close-up kertas 3 aturan |
 | 4 | [excited] | Dina tertawa. "Aturan apa ini, Bu?" Ibunya cuma tersenyum. "Nanti kamu tahu sendiri." | Dina tertawa, ibu naik motor |
@@ -23,7 +23,7 @@ Rujukan: Detik, Okezone, RM.id, Investortrust, Bisnis.com (modus bukti transfer 
 | 8 | [excited] | Hari itu tanggal muda. Pagi-pagi, antrean sudah mengular sampai teras. | Antrean panjang |
 | 9 | [excited] | Mas Ferdi datang, mau tarik tunai satu juta. Saldo cukup. Tapi uang di laci tinggal tiga ratus ribu. | Laci hampir kosong |
 | 10 | [dramatically] | Dina panik. Antrean di belakang mulai mengeluh. | Antrean mengeluh |
-| 11 | [excited] | Dina menelepon ibunya. Ibunya cuma bilang, "Itu kenapa tiap pagi harus dihitung, Nduk. Hari gajian, siapkan uang tunai lebih banyak." | Telepon, ibu di pasar |
+| 11 | [excited] | Dina menelepon ibunya. Ibunya cuma bilang, "Itu kenapa tiap pagi harus dihitung, Nduk. Hari gajian, siapkan uang tunai lebih banyak." | Telepon, ibu di kondangan |
 | 12 | [excited] | Siangnya, seorang pria datang terburu-buru. "Mbak, saya sudah transfer dua juta ke rekening warung. Ini buktinya. Saya ambil tunainya, ya." | Pria jaket hitam, HP |
 | 13 | [whispers] | Di layar HP-nya ada bukti transfer. Lengkap. Nama, nominal, jam. Tangan Dina sudah hampir membuka laci. | Close-up bukti transfer |
 | 14 | [excited] | Tapi Dina ingat aturan nomor satu. Dia membuka mutasi rekening warung. | Dina cek HP sendiri |
