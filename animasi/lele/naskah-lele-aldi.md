@@ -8,7 +8,8 @@ Rujukan: Mojok (mitos lele tahan air kotor bikin benih mati massal), Antara Babe
 
 | # | Tag | Narasi | Adegan |
 |---|-----|--------|--------|
-| 1 | [softly] | Namanya Aldi. Pemuda dari Rejotangan, Tulungagung. Di kampungnya, banyak orang hidup dari kolam lele. | Desa, kolam-kolam terpal berjajar |
+| 0 | [excited] | Halo, penonton setia Kisah Nyempil! Hari ini kita belajar budidaya lele. | Aldi melambai di depan kolam, judul muncul |
+| 1 | [excited] | Kenalin, ini namanya Aldi. Pemuda dari Rejotangan, Tulungagung. Di kampungnya, banyak orang hidup dari kolam lele. | Desa, kolam-kolam terpal berjajar |
 | 2 | | Aldi ingin ikut. Dia bikin kolam terpal di belakang rumah, isi air sumur, lalu beli seribu bibit lele. | Aldi memasang terpal, mengisi air |
 | 3 | | Hari itu juga, bibitnya langsung dia tuang ke kolam. | Kantong bibit dituang |
 | 4 | [sad] | Besok paginya, puluhan bibit mengambang. Mati. | Bibit mati mengambang |
