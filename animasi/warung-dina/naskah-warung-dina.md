@@ -4,13 +4,15 @@ Fokus: **usaha agen BRILink** dibungkus misteri. Sebelum ke pasar, ibu Dina mene
 
 Tokoh: **Dina** (± 19 th, kerudung biru muda, kaos kuning), **Bu Wartini** (ibunya), **Mas Ferdi** (mau tarik tunai), **pria bukti palsu** (jaket hitam, topi), **pria "uangnya di motor"**, **Mbah Rukmi** (nenek, kebaya ungu). Latar: warung sembako + meja agen di Sleman (rak sembako penuh, etalase, laci kasir, HP & mesin EDC, papan teks "AGEN BRILink" polos tanpa logo).
 
+Tag di unggahan: Bank BRI & Bank Indonesia (disebut di narasi baris 0, 16, 24, 26, 30).
+
 Hook & thumbnail: "IBU TINGGALKAN 3 ATURAN ANEH…" (kata-sorot: 3 ATURAN ANEH).
 
 Rujukan: Detik, Okezone, RM.id, Investortrust, Bisnis.com (modus bukti transfer palsu/hasil edit; SOP agen: cek mutasi rekening, terima uang dulu baru transfer; agen pasar wajib teliti uang palsu); Detik/RRI (fee per transaksi kecil, untung dari banyaknya transaksi); Bank Indonesia (3D, tolak sopan & prasangka baik, jangan diedarkan, bawa ke bank/polisi/BI).
 
 | # | Tag | Narasi | Adegan |
 |---|-----|--------|--------|
-| 0 | [excited] | Halo, penonton setia Kisah Nyempil! Hari ini kita intip serunya usaha agen BRILink. | Dina melambai di depan warung |
+| 0 | [excited] | Halo, penonton setia Kisah Nyempil! Hari ini kita intip serunya usaha agen BRILink dari Bank BRI. | Dina melambai di depan warung |
 | 1 | [excited] | Kenalin, ini Dina. Warga Sleman, Yogyakarta. Hari ini, Dina disuruh jaga warung sembako sekaligus agen BRILink milik ibunya, karena ibunya ke pasar. | Kartu profil; ibu pamit |
 | 2 | [whispers] | Sebelum berangkat, ibunya menempel secarik kertas di laci kasir. Isinya tiga aturan. | Kertas ditempel di laci |
 | 3 | [whispers] | Satu. Jangan serahkan uang sebelum cek mutasi. Dua. Terima uangnya dulu, baru transfer. Tiga. Setiap uang seratus ribu, angkat ke lampu. | Close-up kertas 3 aturan |
@@ -26,7 +28,7 @@ Rujukan: Detik, Okezone, RM.id, Investortrust, Bisnis.com (modus bukti transfer 
 | 13 | [whispers] | Di layar HP-nya ada bukti transfer. Lengkap. Nama, nominal, jam. Tangan Dina sudah hampir membuka laci. | Close-up bukti transfer |
 | 14 | [excited] | Tapi Dina ingat aturan nomor satu. Dia membuka mutasi rekening warung. | Dina cek HP sendiri |
 | 15 | [dramatically] | Tidak ada uang masuk. Bukti itu hasil edit. Begitu ditanya, pria itu langsung pergi. | Mutasi kosong, pria kabur |
-| 16 | [excited] | Ternyata modus bukti transfer palsu memang sering mengincar agen. Patokannya cuma satu: mutasi rekening, bukan foto di layar HP orang lain. | Kartu kunci |
+| 16 | [excited] | Ternyata modus bukti transfer palsu memang sering mengincar agen. Karena itu, agen BRILink diminta mengikuti SOP dari Bank BRI. Patokannya cuma satu: mutasi rekening, bukan foto di layar HP orang lain. | Kartu kunci |
 | 17 | [excited] | Sorenya, seorang pria minta dikirimi uang ke saudaranya. "Transfer dulu, Mbak. Uangnya saya ambil di motor." | Pria menunjuk motor |
 | 18 | [excited] | Dina tersenyum. "Uangnya dulu ya, Mas." Aturan nomor dua. Pria itu menggerutu, lalu ikut pergi. | Pria pergi |
 | 19 | [whispers] | Menjelang tutup, seorang nenek datang pelan-pelan. Mbah Rukmi, dari dusun sebelah. | Mbah masuk |
@@ -34,12 +36,12 @@ Rujukan: Detik, Okezone, RM.id, Investortrust, Bisnis.com (modus bukti transfer 
 | 21 | [whispers] | Aturan nomor tiga. Dina mengangkat lembar demi lembar ke arah lampu. | Diterawang |
 | 22 | [dramatically] | Lembar ketiga… tidak ada tanda airnya. Terasa licin. Warnanya pucat. Uang itu palsu. | Uang palsu, judul "PALSU" |
 | 23 | [sad] | Mbah Rukmi kaget. Uang itu dia terima kemarin, dari pembeli ayam di pasar. | Mbah kaget |
-| 24 | [excited] | Dina tidak marah. Dia menolak dengan sopan, karena Mbah juga korban. Lalu dia tunjukkan caranya: dilihat, diraba, diterawang. | Kartu 3D |
+| 24 | [excited] | Dina tidak marah. Dia menolak dengan sopan, karena Mbah juga korban. Lalu dia tunjukkan cara dari Bank Indonesia: dilihat, diraba, diterawang. | Kartu 3D |
 | 25 | [excited] | Uang asli warnanya terang, gambar pahlawannya terasa kasar saat diraba, dan kalau diterawang, muncul tanda air. | Close-up uang asli |
-| 26 | [excited] | Uang yang palsu jangan dibelanjakan lagi. Simpan, lalu bawa ke bank atau kantor polisi untuk diperiksa. | Ikon bank & polisi |
+| 26 | [excited] | Uang yang palsu jangan dibelanjakan lagi. Simpan, lalu bawa ke bank, kantor polisi, atau kantor Bank Indonesia terdekat untuk diperiksa. | Ikon bank & polisi |
 | 27 | [excited] | Dua lembar uang asli Mbah tetap terkirim. Mbah pulang sambil menepuk pundak Dina. | Notifikasi berhasil |
 | 28 | [excited] | Malamnya, ibu Dina pulang. Dina menunjuk kertas di laci. "Bu, tiga-tiganya kejadian hari ini!" | Dina & ibu di warung |
 | 29 | [excited] | Ibunya tertawa. "Setiap aturan itu dulu bayarannya mahal, Nduk." | Ibu tertawa, kilas balik |
-| 30 | [excited] | Usaha agen BRILink memang bisa jadi penghasilan tambahan. Tapi kuncinya bukan cuma ramai. Kuncinya teliti. | Warung ramai |
+| 30 | [excited] | Jadi agen BRILink dari Bank BRI memang bisa jadi penghasilan tambahan. Tapi kuncinya bukan cuma ramai. Kuncinya teliti. | Warung ramai |
 | 31 | [excited] | Cek mutasi, terima uang dulu, dan terawang setiap uang besar. | Tiga ikon aturan |
 | 32 | [excited] | Kamu punya warung juga? Simpan video ini, dan tempel tiga aturan ini di lacimu! | Dina menempel kertas, tersenyum |
