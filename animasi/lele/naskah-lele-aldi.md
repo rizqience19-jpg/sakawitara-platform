@@ -38,3 +38,10 @@ Rujukan: Mojok (mitos lele tahan air kotor bikin benih mati massal), Antara Babe
 | 28 | [softly] | Aldi gagal lima kali. Bibit mati, air busuk, lele kaget, lele saling makan, dan air asam. | Montase lima kegagalan |
 | 29 | [softly] | Tapi dari setiap kegagalan, kolamnya jadi makin pintar. | Kolam-kolam Aldi |
 | 30 | [warmly] | Kamu mau coba juga? Simpan video ini, dan mulai dari satu kolam kecil. | Aldi tersenyum memegang lele |
+
+## Prompt narasi semangat (versi final, dipakai di `suara/narasi.mp3` — ACUAN gaya excited)
+
+```
+[excited] Namanya Aldi. Pemuda dari Rejotangan, Tulungagung. Di kampungnya, banyak orang hidup dari kolam lele. [pause] [excited] Aldi ingin ikut. … [pause] [excited] Hari itu juga, bibitnya langsung dia tuang ke kolam. [pause] [dramatically] Besok paginya, puluhan bibit mengambang. Mati. [pause] [excited] Ternyata air baru perlu didiamkan dulu beberapa hari. … [pause] [whispers] Setiap kali dihitung, jumlahnya berkurang. … [pause] [dramatically] Lelenya hilang satu per satu. [pause] [whispers] Malam itu, Aldi menyorot kolam dengan senter. [pause] [dramatically] Pelakunya ada di dalam kolam. … [pause] [sad] Paginya, beberapa lele mati. … [pause] [excited] Tiga bulan sejak bibit pertama, Aldi akhirnya panen! [pause] [excited] Lelenya gemuk, besarnya rata. … [pause] [excited] Aldi gagal lima kali. … [pause] [excited] Tapi dari setiap kegagalan, kolamnya jadi makin pintar. [pause] [excited] Kamu mau coba juga? Simpan video ini, dan mulai dari satu kolam kecil.
+```
+Aturan tag: `[excited]` di hampir semua baris (termasuk semua "Ternyata…" dan seluruh penutup), `[dramatically]` di baris gagal/tegang, `[whispers]` 2 baris misteri, `[sad]` 1 baris. Model eleven_v4, suara Gunawan, 1 versi.

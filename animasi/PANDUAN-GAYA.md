@@ -70,6 +70,14 @@ Nada: santai, lucu, sedikit dramatis; edukasinya jelas dan benar. Tokoh, nama, d
 
 ## 4. Gaya voice over
 
+> **ACUAN NARASI SEMANGAT (disukai pengguna, Nov 2026): `animasi/lele/suara/narasi.mp3`** ("Lele Aldi Hilang Satu per Satu").
+> Pengguna menilai narasi versi pertama "lemes"; versi ini dipuji "bagus". Pakai pola tag ini untuk video edukasi/usaha desa:
+> - Hampir semua kalimat diberi **`[excited]`** — pembuka, kalimat "Ternyata…" (solusi/kunci), panen, dan **seluruh penutup** (penutup tidak boleh `[softly]`/`[warmly]` yang lemas).
+> - **`[dramatically]`** hanya untuk momen gagal/tegang ("Mati.", "Lelenya hilang satu per satu.", "Pelakunya ada di dalam kolam.").
+> - **`[whispers]`** hanya untuk 1–2 kalimat misteri pendek; **`[sad]`** maksimal sekali.
+> - Pakai tanda seru di kalimat puncak ("Aldi akhirnya panen!").
+> - Prompt lengkapnya tersimpan di `animasi/lele/naskah-lele-aldi.md` (bagian "Prompt narasi semangat").
+
 - **Layanan**: ElevenLabs (konektor MCP di Claude).
 - **Suara**: **Gunawan – Warm Storyteller**, `voice_id: Bg6KNp66MkNAZdWJECjU` (pria, akhir 20-an, santai, hangat, seperti bercerita ke teman).
 - **Model**: `eleven_v4` (mendukung tag ekspresi).
