@@ -44,7 +44,34 @@ Rujukan: merkuri dilarang di kosmetik Indonesia; merkuri anorganik dipakai karen
 
 ---
 
-## Bagian 2 — "1 Tahun Infus Whitening, Ini yang Terjadi" (garis besar, naskah lengkap menyusul setelah Bagian 1 disetujui)
+## VERSI GABUNGAN (1 video) — "Dari Krim Kiloan sampai Infus Whitening"
+
+Hook & thumbnail: "KRIM KILOAN SAMPAI INFUS WHITENING… INI YANG TERJADI" (kata-sorot: INFUS WHITENING). ± 3:50.
+
+Susunan: baris 0 diganti (menyebut krim + infus) → baris 1–22 sama seperti Bagian 1 (krim, dokter, 4 ciri, cek BPOM) → **baris I0–I8 baru (infus)** → penutup baru. Baris 23–26 Bagian 1 (sehat, akhir6, lebih, teaser) diganti P1–P3.
+
+| # | Tag | Narasi | Adegan |
+|---|-----|--------|--------|
+| 0 | [excited] | Halo, penonton setia Kisah Nyempil! Hari ini kita belajar, apa yang terjadi kalau kamu pakai krim pemutih kiloan, sampai infus whitening. | Rara dengan toples krim, poster infus di belakang |
+| I0 | [dramatically] | Kapok pakai krim, Rara malah tergoda hal lain. Temannya ngajak infus whitening di klinik ruko. "Langsung dari dalam, Ra! Sepuluh kali, dijamin cerah!" | Ruko "KLINIK GLOWING", teman membujuk |
+| I1 | [excited] | Infus whitening biasanya berisi glutathione dan vitamin C dosis tinggi, yang dimasukkan lewat jarum ke pembuluh darah. | Kantong infus berlabel, selang ke lengan |
+| I2 | [excited] | Bulan-bulan pertama, kulit Rara terasa lebih cerah. Tapi begitu berhenti sebulan, cerahnya pelan-pelan hilang. Jadi harus infus terus, dan biayanya makin bengkak. | Meter putih naik lalu turun, tumpukan nota |
+| I3 | [excited] | Faktanya, BPOM menegaskan glutathione tidak boleh diklaim sebagai pemutih. Dan belum ada uji klinis yang membuktikan infus ini aman dan ampuh untuk memutihkan kulit. | Cap "TIDAK TERBUKTI" |
+| I4 | [dramatically] | Bulan kedelapan. Pinggang Rara nyeri hebat. Ternyata, vitamin C dosis tinggi bisa meningkatkan risiko batu ginjal. | Rara memegang pinggang, ikon ginjal + batu |
+| I5 | [dramatically] | Belum lagi kalau tempatnya tidak steril dan jarumnya tidak jelas. Bisa menularkan infeksi berbahaya, seperti hepatitis B, hepatitis C, sampai HIV. | Jarum, kuman, tanda bahaya |
+| I6 | [excited] | Ada juga laporan reaksi berat, seperti sindrom Stevens-Johnson, kulit melepuh dan mengelupas. Jarang, tapi bisa mengancam nyawa. | Ikon kulit melepuh, "JARANG TAPI FATAL" |
+| I7 | [sad] | Rara kembali ke dr. Lestari, kali ini dengan perasaan malu. | Klinik, Rara menunduk |
+| I8 | [excited] | Kata dokter: "Infus itu tindakan medis, Ra. Harus ada alasan medis, dilakukan tenaga kesehatan, di fasilitas yang berizin. Bukan buat mutihin kulit." | Dokter menjelaskan, ✔ fasilitas berizin |
+| P1 | [excited] | Yang bikin kulit sehat itu sederhana. Cuci muka lembut, pakai pelembap, dan tabir surya setiap hari. | Tiga ikon |
+| P2 | [excited] | Setahun kemudian, kulit Rara memang nggak seputih dulu. Tapi sehat, nggak perih, dan dia sudah nggak minder lagi. | Rara tersenyum di cermin |
+| P3 | [excited] | Karena putih bisa dibeli, tapi sehat nggak bisa diganti. Simpan video ini, dan kirim ke teman yang lagi tergoda pemutih instan! | "KULIT SEHAT > KULIT PUTIH" |
+
+Rujukan tambahan: BPOM (glutathione tidak boleh diklaim pemutih); FDA Filipina 2019 (belum ada uji klinis & panduan dosis infus glutathione untuk pemutih; risiko hati/ginjal/saraf, Stevens-Johnson, infeksi HIV/hepatitis bila tidak steril, batu ginjal dari vitamin C dosis tinggi); US FDA (tidak ada obat suntik pemutih yang disetujui); Alodokter, Alomedika.
+
+---
+
+## Bagian 2 (lama, tidak dipakai — digabung ke versi di atas)
+ — "1 Tahun Infus Whitening, Ini yang Terjadi" (garis besar, naskah lengkap menyusul setelah Bagian 1 disetujui)
 
 Hook: "1 TAHUN INFUS WHITENING… INI YANG TERJADI".
 
