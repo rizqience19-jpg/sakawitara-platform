@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#15221d">
-<title>Seri Pemutih 1</title>
+<title>Seri Pemutih</title>
 <style>
 :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#15221d;color:#fdfbef}
 *{box-sizing:border-box}
@@ -20,15 +20,15 @@ button:focus-visible,input:focus-visible{outline:3px solid #edc86b;outline-offse
 </style>
 </head>
 <body>
-<main aria-label="Pemutar animasi Seri Pemutih 1">
-<figure><canvas id="screen" width="450" height="800" role="img" aria-label="Animasi kartun edukasi: Seri Pemutih 1"></canvas></figure>
+<main aria-label="Pemutar animasi Seri Pemutih">
+<figure><canvas id="screen" width="450" height="800" role="img" aria-label="Animasi kartun edukasi: Seri Pemutih"></canvas></figure>
 <div class="controls"><button id="play" type="button" aria-label="Putar">▶</button><input id="seek" type="range" min="0" max="100" step=".05" value="0" aria-label="Posisi pemutaran dalam detik"></div>
 <div class="meta"><span id="section">—</span><span><span id="now">0:00</span> / <span id="end">0:00</span></span></div>
 <audio id="voice" preload="auto" src="output/tiket-kereta-pagi-audio.wav"></audio>
 </main>
 <script>
 'use strict';
-// "Seri Pemutih 1" — gaya Mbah Darmi: satu narator, caption satu kata, tokoh kepala bulat.
+// "Seri Pemutih" — gaya Mbah Darmi: satu narator, caption satu kata, tokoh kepala bulat.
 const W=450,H=800;
 const canvas=document.querySelector('#screen'),g=canvas.getContext('2d');
 const $=s=>document.querySelector(s);
@@ -386,7 +386,7 @@ const MOON={x:330,y:120,r:220,col:'rgba(120,150,230,.22)'};
 function lampLight(x){return {x:x+31,y:640-200*1.1,r:260,col:'rgba(255,230,160,.45)'}}
 function ghostGlow(x,y,s){return {x,y:y-120*s,r:120*s,col:'rgba(200,220,255,.25)'}}
 
-// ---------- Tokoh "Seri Pemutih 1" ----------
+// ---------- Tokoh "Seri Pemutih" ----------
 Object.assign(people,{
   laras:{skin:['#e6b48c','#c08862','#946446'],shirt:['#f4f2ec','#dedad0','#b4ae9e'],pants:'#9a3a3a',kind:'hair',hair:'#1e1612',long:true},
   larasK:{skin:['#e6b48c','#c08862','#946446'],shirt:['#f4f2ec','#dedad0','#b4ae9e'],pants:'#9a3a3a',kind:'hair',hair:'#1e1612',long:true},
@@ -472,7 +472,7 @@ function hongkong(t){g.fillStyle=gradient(0,0,0,800,[[0,'#0a1030'],[1,'#2a2050']
 function zz(x,y,t){const f=(t*.8)%1;g.save();g.globalAlpha=1-f;label('z',x+f*10,y-f*30,16,'#fff','center',900);g.restore()}
 
 
-// ---------- Tokoh "Seri Pemutih 1" ----------
+// ---------- Tokoh "Seri Pemutih" ----------
 Object.assign(people,{
   angga:{skin:['#d9a47a','#b27852','#845438'],shirt:['#8a8f98','#6e737c','#50545c'],pants:'#2f3540',kind:'hair',hair:'#1a1612'},
   anggaK:{skin:['#d9a47a','#b27852','#845438'],shirt:['#f4f2ec','#dedad0','#b4ae9e'],pants:'#9a3a3a',kind:'hair',hair:'#1a1612'},
@@ -533,7 +533,7 @@ function corridor(t){g.fillStyle='#e4ecee';g.fillRect(-300,-300,1100,860);box(-3
   line([[0,0],[450,0]],'#ccc',2);for(const x of [80,225,370])box(x-30,40,60,10,4,'#fffff0');
   g.fillStyle='#b8c4c8';g.fillRect(-300,556,1100,400);for(let k=-8;k<16;k++)line([[k*50,560],[k*80-200,900]],'rgba(120,140,150,.35)',1.2)}
 
-// ---------- Tokoh "Seri Pemutih 1" ----------
+// ---------- Tokoh "Seri Pemutih" ----------
 Object.assign(people,{
   suryo:{skin:['#c8946a','#a06a46','#74482e'],shirt:['#9a6a3a','#7a5028','#55361a'],pants:'#3a3a3a',kind:'elder',cap:['#2a2a2e','#1a1a1e','#0e0e12']},
   suryoMuda:{skin:['#d0a074','#a8724e','#7a5034'],shirt:['#9a6a3a','#7a5028','#55361a'],pants:'#3a3a3a',kind:'hair',hair:'#1a1612'},
@@ -571,7 +571,7 @@ function shareCount(t,p){g.fillStyle='#14141c';g.fillRect(-300,-300,1100,1400);b
   const n=Math.floor(mix(120,348000,ease(clamp(p*1.2))));label('↻ '+n.toLocaleString('id-ID')+' dibagikan',225,430,15,'#e8402a','center',900);label('♥ '+Math.floor(n*2.3).toLocaleString('id-ID'),225,460,13,'#555','center',800)}
 
 
-// ---------- Tokoh "Seri Pemutih 1" ----------
+// ---------- Tokoh "Seri Pemutih" ----------
 Object.assign(people,{
   wardi:{skin:['#c8946a','#a06a46','#74482e'],shirt:['#f2f0ea','#d8d4c8','#aaa498'],pants:'#3a6a5a',kind:'elder',cap:['#5a4a3a','#3e3222','#2a2016']},
   sinta:{skin:['#e4b189','#b98262','#8a5c49'],shirt:['#e8803a','#c8642a','#984818'],pants:'#3a3a4a',kind:'scarf',scarf:['#3a8a7a','#2a6a5a','#1a4a3a']},
@@ -637,7 +637,7 @@ function crossOut(x0,y0,x1,y1,w=12){g.save();g.globalAlpha=.88;line([[x0,y0],[x1
 
 
 // ---------- "Pacarmu Hari Pertama Haid" — gaya pastel romcom + chat & isi kepala ----------
-const HOOK=['6 BULAN PAKAI','KRIM KILOAN…','INI YANG TERJADI'],HOOK_HL='KRIM KILOAN…',EP_TITLE='Seri Pemutih #1';
+const HOOK=['DARI KRIM KILOAN','SAMPAI INFUS','WHITENING…'],HOOK_HL='WHITENING',EP_TITLE='Seri Pemutih';
 const FT='system-ui, sans-serif';
 const tx=(s,x,y,size,c,wt=800,al='center')=>{g.font=`${wt} ${size}px ${FT}`;g.fillStyle=c;g.textAlign=al;g.textBaseline='middle';g.fillText(s,x,y)};
 const rr=(x,y,w,h,r,c)=>{g.beginPath();g.roundRect(x,y,w,h,r);g.fillStyle=c;g.fill()};
@@ -649,6 +649,7 @@ function heart(x,y,s,c){g.save();g.translate(x,y);g.scale(s,s);g.beginPath();g.m
 
 const CPAL={
   rara:{female:true,clip:'#ffd24a',skin:'#c98b5e',top:'#ff7a5a',topD:'#d85a3a',hair:'#1a120c',leg:'#3a4a6a',logo:'#2a6ad8'},
+  teman:{female:true,clip:'#9a6ad8',skin:'#e4a87c',top:'#9a6ad8',topD:'#7a4ab8',hair:'#6a3a1a',leg:'#3a3a4a'},
   dokter:{female:true,hijab:'#5ab0a0',skin:'#eab48c',top:'#ffffff',topD:'#d8e0e8',hair:'#2a1a12',leg:'#4a5a7a',coat:true},
   fery:{skin:'#e0a77c',top:'#2f4a7a',topD:'#25395e',hair:'#1d1712',leg:'#3a3a48'},
   irma:{female:true,skin:'#f0c29c',top:'#f4a6c0',topD:'#e08aa8',hair:'#5a3422',leg:'#6a5a8a'}};
@@ -764,11 +765,11 @@ function kartuTips(items,p,y0=150){items.forEach((s,i)=>{const k=clamp((p-.05-i*
 function meterKulit(putih,sehat,y=118){const x=34,w=150;rr(x-12,y-30,w+24+60,76,14,'rgba(255,255,255,.78)');tx('KULIT RARA',x+w/2+30,y-16,12,'#7a4a3a',900);
   const bar=(yy,v,lbl,c1,c2)=>{tx(lbl,x,yy+6,11,'#7a4a3a',900,'left');const bx=x+54;rr(bx,yy,w,12,6,'rgba(0,0,0,.12)');const gr=g.createLinearGradient(bx,0,bx+w,0);gr.addColorStop(0,c1);gr.addColorStop(1,c2);rr(bx+2,yy+2,Math.max(8,(w-4)*v),8,4,gr)};
   bar(y-2,putih,'PUTIH','#f0d8c0','#fff6ee');bar(y+18,sehat,'SEHAT','#ff5a5a','#5ad08a')}
-const KUL={bulan1:[.92,.72],merkuri:[.92,.65],bulan2:[.9,.5],steroid:[.88,.45],bulan3:[.8,.38],jebakan:[.8,.35],bulan4:[.7,.28],hidro:[.7,.25],bulan5:[.66,.17],tipis:[.66,.15],bulan6:[.62,.08],dokter:[.6,.08],kata:[.6,.08],rawat:[.4,.5],akhir6:[.35,.92]};
+const KUL={bulan1:[.92,.72],merkuri:[.92,.65],bulan2:[.9,.5],steroid:[.88,.45],bulan3:[.8,.38],jebakan:[.8,.35],bulan4:[.7,.28],hidro:[.7,.25],bulan5:[.66,.17],tipis:[.66,.15],bulan6:[.62,.08],dokter:[.6,.08],kata:[.6,.08],rawat:[.4,.5],bengkak:[.45,.5],ginjal:[.42,.3],malu:[.4,.3],tindakan:[.4,.45],akhir6:[.35,.92]};
 function kulPrev(key){let i=KI(key)-1;while(i>=0&&KUL[SCRIPT[i][1]]==null)i--;return i<0?[.3,.8]:KUL[SCRIPT[i][1]]}
-const BULAN={bulan1:1,merkuri:1,bulan2:2,steroid:2,bulan3:3,jebakan:3,bulan4:4,hidro:4,bulan5:5,tipis:5,bulan6:6};
+const BULAN={ginjal:'INFUS · BULAN 8',bengkak:'INFUS · BULAN 1–3',bulan1:1,merkuri:1,bulan2:2,steroid:2,bulan3:3,jebakan:3,bulan4:4,hidro:4,bulan5:5,tipis:5,bulan6:6};
 const FX={bulan1:{putih:1},merkuri:{putih:1},bulan2:{putih:.8,merah:.8,jerawat:.6},steroid:{putih:.8,merah:.6,jerawat:1},bulan3:{putih:.55,merah:.9,jerawat:.6},jebakan:{putih:.7,merah:.6,jerawat:.5},
-  bulan4:{putih:.6,flek:1,merah:.3},hidro:{putih:.6,flek:1},bulan5:{putih:.5,flek:1,urat:1,merah:.4},tipis:{putih:.5,flek:1,urat:1,merah:.4},bulan6:{putih:.45,flek:1,urat:.8,merah:.3},dokter:{putih:.4,flek:1,urat:.6},kata:{putih:.4,flek:1,urat:.6},rawat:{flek:.6,urat:.2}};
+  bulan4:{putih:.6,flek:1,merah:.3},hidro:{putih:.6,flek:1},bulan5:{putih:.5,flek:1,urat:1,merah:.4},tipis:{putih:.5,flek:1,urat:1,merah:.4},bulan6:{putih:.45,flek:1,urat:.8,merah:.3},dokter:{putih:.4,flek:1,urat:.6},kata:{putih:.4,flek:1,urat:.6},rawat:{flek:.6,urat:.2},ajakan:{flek:.6},isiinfus:{flek:.5},bengkak:{flek:.4},ginjal:{flek:.4},malu:{flek:.35},tindakan:{flek:.3}};
 
 // ---------- benda ----------
 function toples(x,y,s,t,o={}){at(x,y,s,()=>{rr(-34,-30,68,58,12,'#f4f0e8');rr(-38,-42,76,16,6,o.tutup||'#ff9ab8');g.globalAlpha=.5;rr(-26,-22,10,40,5,'#fff');g.globalAlpha=1;
@@ -799,9 +800,20 @@ function kartuCiri(items,p,y0=150){items.forEach((s,i)=>{const k=clamp((p-.05-i*
 function hpLayar(t,fn){rr(85,90,280,440,30,'#0d1117');rr(97,108,256,404,20,'#fff');g.save();g.beginPath();g.roundRect(97,108,256,404,20);g.clip();fn();g.restore()}
 function bintang(x,y,n=5,s=1){for(let i=0;i<n;i++)tx('★',x+i*18*s,y,16*s,'#ffb82a',900)}
 
+
+function tiangInfus(x,y,s,t,o={}){at(x,y,s,()=>{ln([[0,-170],[0,60]],'#9aa8b8',5);ln([[-24,60],[24,60]],'#9aa8b8',5);ln([[-20,-170],[20,-170]],'#9aa8b8',4);
+  rr(-24,-166,48,70,14,'rgba(220,240,255,.9)');g.strokeStyle='#9ab8d8';g.lineWidth=2;g.beginPath();g.roundRect(-24,-166,48,70,14);g.stroke();rr(-18,-130,36,30,8,o.isi||'#fff4b0');tx(o.label||'GLUTA',0,-148,9,'#3a5a7a',900);
+  ln([[0,-96],[0,-80]],'#9ab8d8',3);const d=(t*1.5)%1;el(0,-92+d*10,2.5,3.5,'#cfe8ff');if(o.selang)ln([[0,-80],[o.selang[0],o.selang[1]]],'#b8d0e8',2.5)})}
+function rukoKlinik(t){const gr=g.createLinearGradient(0,0,0,600);gr.addColorStop(0,'#ffe8f2');gr.addColorStop(1,'#fff4e0');g.fillStyle=gr;g.fillRect(-300,-300,1100,900);
+  rr(30,90,390,70,12,'#ff6aa8');tx('KLINIK GLOWING ✨',225,125,26,'#fff',900);rr(40,170,370,420,6,'#fff6fa');rr(160,300,130,290,6,'#bfe3ff');ln([[225,300],[225,590]],'#fff',4);
+  rr(55,200,90,70,6,'#ffd0e4');tx('PROMO',100,225,13,'#d8306a',900);tx('10x',100,250,22,'#d8306a',900);rr(305,200,90,70,6,'#ffd0e4');tx('✨💉',350,235,22,'#000',400);
+  g.fillStyle='#e8d0c8';g.fillRect(-300,600,1100,400)}
+function nota(x,y,s,i){at(x,y,s,()=>{g.rotate((random(i)-.5)*.5);rr(-26,-34,52,68,4,'#fff');g.strokeStyle='#ddd';g.lineWidth=1;g.beginPath();g.roundRect(-26,-34,52,68,4);g.stroke();for(let k=0;k<4;k++)ln([[-18,-20+k*10],[18,-20+k*10]],'#ccc',2);tx('Rp',-6,22,10,'#e0302a',900)})}
+function kuman(x,y,s,t,c='#7ac04a'){at(x,y,s,()=>{g.rotate(t*.8);el(0,0,14,14,c);for(let i=0;i<8;i++){const a=i/8*TAU;ln([[Math.cos(a)*14,Math.sin(a)*14],[Math.cos(a)*22,Math.sin(a)*22]],c,3);el(Math.cos(a)*23,Math.sin(a)*23,3,3,c)}el(-4,-3,3,3,'#fff');el(5,-3,3,3,'#fff')})}
+function jarum(x,y,s){at(x,y,s,()=>{g.rotate(-.6);rr(-50,-8,70,16,4,'#e8f0f8');rr(20,-3,46,6,2,'#b8c0c8');rr(-60,-12,12,24,3,'#9ab8d8');g.globalAlpha=.6;rr(-40,-5,40,10,3,'#ffd0d8');g.globalAlpha=1})}
 // ---------- naskah ----------
 const SCRIPT=[
-  ['Halo, penonton setia Kisah Nyempil! Hari ini kita belajar, apa yang terjadi kalau kamu pakai krim pemutih kiloan selama enam bulan.','halo',1.0,1.04,225,430],
+  ['Halo, penonton setia Kisah Nyempil! Hari ini kita belajar, apa yang terjadi kalau kamu pakai krim pemutih kiloan, sampai infus whitening.','halo',1.0,1.04,225,430],
   ['Kenalin, ini Rara. Dari Ngawi, Jawa Timur. Kerjanya jaga konter HP, dan dia minder sama kulitnya yang sawo matang.','kenal',1.0,1.04,225,450],
   ['Suatu malam, Rara lihat iklan: "Krim racikan, dua minggu langsung putih! Cuma lima puluh ribu, sekilo!"','iklan',1.0,1.03,225,330],
   ['Tanpa merek, tanpa nomor BPOM. Tapi testimoninya banyak banget.','polos',1.0,1.1,225,380],
@@ -824,12 +836,20 @@ const SCRIPT=[
   ['Keempat, harganya jauh lebih murah dari wajar. Dan hati-hati dengan label "racikan dokter" yang dijual bebas.','ciri4',1.0,1.02,225,400],
   ['Krim racikan yang benar itu dibuat dokter, setelah kulitmu diperiksa, dan hanya untuk kamu. Bukan dijual kiloan ke semua orang.','racikan',1.0,1.04,225,450],
   ['Sebelum beli, cek dulu nomornya di situs atau aplikasi Cek BPOM. Cuma butuh satu menit.','cekbpom',1.0,1.03,225,330],
+  ['Kapok pakai krim, Rara malah tergoda hal lain. Temannya ngajak infus whitening di klinik ruko. "Langsung dari dalam, Ra! Sepuluh kali, dijamin cerah!"','ajakan',1.0,1.04,225,450],
+  ['Infus whitening biasanya berisi glutathione dan vitamin C dosis tinggi, yang dimasukkan lewat jarum ke pembuluh darah.','isiinfus',1.0,1.04,225,420],
+  ['Bulan-bulan pertama, kulit Rara terasa lebih cerah. Tapi begitu berhenti sebulan, cerahnya pelan-pelan hilang. Jadi harus infus terus, dan biayanya makin bengkak.','bengkak',1.0,1.04,225,450],
+  ['Faktanya, BPOM menegaskan glutathione tidak boleh diklaim sebagai pemutih. Dan belum ada uji klinis yang membuktikan infus ini aman dan ampuh untuk memutihkan kulit.','fakta',1.0,1.03,225,400],
+  ['Bulan kedelapan. Pinggang Rara nyeri hebat. Ternyata, vitamin C dosis tinggi bisa meningkatkan risiko batu ginjal.','ginjal',1.0,1.06,225,450],
+  ['Belum lagi kalau tempatnya tidak steril dan jarumnya tidak jelas. Bisa menularkan infeksi berbahaya, seperti hepatitis B, hepatitis C, sampai HIV.','steril',1.0,1.04,225,400],
+  ['Ada juga laporan reaksi berat, seperti sindrom Stevens-Johnson, kulit melepuh dan mengelupas. Jarang, tapi bisa mengancam nyawa.','sjs',1.0,1.04,225,400],
+  ['Rara kembali ke dr. Lestari, kali ini dengan perasaan malu.','malu',1.0,1.06,225,450],
+  ['Kata dokter: "Infus itu tindakan medis, Ra. Harus ada alasan medis, dilakukan tenaga kesehatan, di fasilitas yang berizin. Bukan buat mutihin kulit."','tindakan',1.0,1.04,225,430],
   ['Yang bikin kulit sehat itu sederhana. Cuci muka lembut, pakai pelembap, dan tabir surya setiap hari.','sehat',1.0,1.03,225,400],
-  ['Enam bulan kemudian, kulit Rara memang nggak seputih dulu. Tapi sehat, nggak perih, dan dia sudah nggak minder lagi.','akhir6',1.0,1.06,225,450],
-  ['Karena kulit sehat itu lebih penting daripada kulit putih.','lebih',1.0,1.06,225,400],
-  ['Tapi cerita Rara belum selesai. Setelah kapok krim, Rara tergoda infus whitening. Apa yang terjadi kalau infus setahun? Tonton bagian keduanya!','teaser',1.0,1.05,225,450]
+  ['Setahun kemudian, kulit Rara memang nggak seputih dulu. Tapi sehat, nggak perih, dan dia sudah nggak minder lagi.','akhir6',1.0,1.06,225,450],
+  ['Karena putih bisa dibeli, tapi sehat nggak bisa diganti. Simpan video ini, dan kirim ke teman yang lagi tergoda pemutih instan!','lebih',1.0,1.04,225,400]
 ];
-const TIMES=[[0.08,8.35],[9.18,16.51],[17.27,23.84],[24.35,28.88],[29.35,36.28],[36.55,46],[46.08,52.8],[53.02,60],[60.08,67.52],[67.74,74.88],[74.95,80.72],[80.8,87.52],[87.6,94.08],[94.3,99.28],[99.36,105.76],[105.91,109.28],[109.35,117.2],[117.27,125.92],[126,132.88],[133.03,140.96],[141.26,147.93],[147.99,155.13],[155.27,160.72],[160.87,166.72],[166.79,173.44],[173.51,176.72],[176.79,185.28]],WORDS=[[0.08,0.72,1.12,1.4,1.68,2.64,3.04,3.28,3.52,4.24,4.56,4.76,5.2,5.56,5.92,6.16,6.37,6.72,7.2,7.76,7.92],[9.18,9.88,10.04,10.72,10.96,11.4,11.72,12.32,12.92,13.2,13.52,14.16,14.32,14.56,15,15.28,15.64,15.76,16],[17.27,17.52,18.16,18.48,18.72,19.48,19.68,20.44,20.64,21.04,21.52,22.12,22.4,22.56,22.8,23.32],[24.35,24.56,25.32,25.6,25.84,26.88,27.28,28.03,28.32],[29.35,29.68,30.48,30.96,31.84,32.08,32.69,33,33.32,33.6,34,34.28,34.88,35.36,35.6],[36.55,36.8,37,37.36,38.08,38.32,38.64,38.96,39.28,39.72,40.48,40.76,40.88,41.28,41.6,41.88,42.24,42.64,43.2,43.96,44.36,44.67,45,45.12],[46.08,46.48,47.2,47.44,47.92,48.6,49.16,49.44,49.84,50,50.56,50.88,51.44,51.76],[53.02,53.28,53.52,54.08,54.84,55.04,55.6,55.84,56.16,56.64,57.08,57.44,57.92,58.08,58.4,58.8,59.2],[60.08,60.48,61.24,61.6,61.84,62.24,62.92,63.44,63.84,64.2,64.32,65,65.44,65.6,65.96,66.44,66.72],[67.74,68.08,68.92,69.36,69.6,69.88,70.96,71.28,72.08,72.4,72.8,73.36,73.84,74.24],[74.95,75.28,75.96,76.32,76.64,76.88,77.56,77.68,78.2,78.48,78.88,79.4,79.76,80.08],[80.8,81.12,81.48,81.76,82.4,82.72,83.36,84.12,84.4,84.8,85.04,85.28,85.92,86.16,86.64,86.88],[87.6,88,88.64,88.96,89.28,89.6,90.4,90.88,91.2,91.76,92.64,92.8,93.12,93.36],[94.3,94.56,94.84,94.96,95.36,96.24,96.56,96.88,97.28,97.52,98,98.16,98.64],[99.36,99.76,100.51,100.8,100.96,101.2,101.48,101.88,102.16,102.96,103.36,103.68,104.4,104.72,105],[105.91,106.4,106.68,106.8,107.12,107.68,108.16,108.52],[109.35,109.52,109.8,110.51,111.12,111.28,111.6,112.16,112.4,112.75,113.04,113.44,114.04,114.48,114.64,115.2,115.44,115.88,116.24,116.4],[117.27,117.6,117.84,118.24,118.88,119.68,119.88,120.32,121.07,121.44,121.68,122.35,122.64,122.96,123.92,124.08,124.64,125.04,125.28],[126,126.6,127.04,127.28,127.68,127.88,128.24,129.12,129.84,130.08,130.32,130.64,131.6,131.84,132.28],[133.03,133.68,134.32,134.72,135.44,135.76,136,136.32,137.04,137.76,138.16,138.72,138.96,139.28,139.6,139.92,140.32],[141.26,141.84,142.48,142.84,143.12,143.33,143.48,144.27,144.4,145.04,145.28,145.68,146.24,146.64,146.85,147.2],[147.99,148.16,148.56,148.72,148.96,149.28,149.64,150.35,150.64,150.92,151.76,151.92,152.32,152.52,153.2,153.41,153.72,154.08,154.16,154.48],[155.27,155.56,156,156.24,156.48,156.96,157.17,157.52,157.68,158.4,158.68,159.48,159.76,159.97,160.16],[160.87,160.92,161.2,161.44,161.84,162.04,163.09,163.28,163.52,164.16,164.4,165.04,165.2,165.52,165.95,166.28],[166.79,166.96,167.2,168,168.2,168.56,168.76,168.96,169.32,170,170.28,170.84,171.04,171.6,171.84,172.16,172.37,172.56,172.92],[173.51,173.76,174,174.44,174.72,175.16,175.44,175.84,176.08],[176.79,177.2,177.56,177.84,178.04,178.88,179.24,179.52,180,180.32,180.84,181.12,181.96,182.2,182.32,182.72,182.88,183.2,183.92,184.24,184.56]],AUDIO_END=185.281;
+const TIMES=[[0.08,9.28],[9.39,16.72],[17.48,24.05],[24.57,29.09],[29.57,36.49],[36.77,46.21],[46.29,53.01],[53.23,60.21],[60.29,67.73],[67.95,75.09],[75.17,80.94],[81.02,87.74],[87.82,94.3],[94.51,99.5],[99.58,105.98],[106.12,109.5],[109.57,117.42],[117.49,126.14],[126.22,133.1],[133.25,141.18],[141.48,148.14],[148.21,155.35],[155.48,160.94],[161.62,171.15],[171.69,177.79],[178.18,188.27],[188.58,198.51],[198.58,205.95],[206.03,215.23],[215.45,223.23],[223.3,227.39],[227.76,236.83],[236.98,242.67],[242.89,249.47],[249.78,257.55]],WORDS=[[0.08,0.72,1.12,1.4,1.68,2.64,2.88,3.2,3.44,4.16,4.48,4.68,5.2,5.48,5.84,6.08,6.37,6.72,7.6,7.92,8.36],[9.39,10.09,10.25,10.93,11.17,11.61,11.93,12.53,13.13,13.41,13.73,14.37,14.53,14.77,15.21,15.49,15.85,15.97,16.21],[17.48,17.73,18.37,18.69,18.93,19.69,19.89,20.65,20.85,21.25,21.73,22.33,22.61,22.77,23.01,23.53],[24.57,24.77,25.53,25.81,26.05,27.09,27.49,28.24,28.53],[29.57,29.89,30.69,31.17,32.05,32.29,32.91,33.21,33.53,33.81,34.21,34.49,35.09,35.57,35.81],[36.77,37.01,37.21,37.57,38.29,38.53,38.85,39.17,39.49,39.93,40.69,40.97,41.09,41.49,41.81,42.09,42.45,42.85,43.41,44.17,44.57,44.88,45.21,45.33],[46.29,46.69,47.41,47.65,48.13,48.81,49.37,49.65,50.05,50.21,50.77,51.09,51.65,51.97],[53.23,53.49,53.73,54.29,55.05,55.25,55.81,56.05,56.37,56.85,57.29,57.65,58.13,58.29,58.61,59.01,59.41],[60.29,60.69,61.45,61.81,62.05,62.45,63.13,63.65,64.05,64.41,64.53,65.21,65.65,65.81,66.17,66.65,66.93],[67.95,68.29,69.13,69.57,69.81,70.09,71.17,71.49,72.29,72.61,73.01,73.57,74.05,74.45],[75.17,75.5,76.18,76.54,76.86,77.1,77.78,77.9,78.42,78.7,79.1,79.62,79.98,80.3],[81.02,81.34,81.7,81.98,82.62,82.94,83.58,84.34,84.62,85.02,85.26,85.5,86.14,86.38,86.86,87.1],[87.82,88.22,88.86,89.18,89.5,89.82,90.62,91.1,91.42,91.98,92.86,93.02,93.34,93.58],[94.51,94.78,95.06,95.18,95.58,96.46,96.78,97.1,97.5,97.74,98.22,98.38,98.86],[99.58,99.98,100.72,101.02,101.18,101.42,101.7,102.1,102.38,103.18,103.58,103.9,104.62,104.94,105.22],[106.12,106.62,106.9,107.02,107.34,107.9,108.38,108.74],[109.57,109.74,110.02,110.72,111.34,111.5,111.82,112.38,112.62,112.96,113.26,113.66,114.26,114.7,114.86,115.42,115.66,116.1,116.46,116.62],[117.49,117.82,118.06,118.46,119.1,119.9,120.1,120.54,121.28,121.66,121.9,122.56,122.86,123.18,124.14,124.3,124.86,125.26,125.5],[126.22,126.82,127.26,127.5,127.9,128.1,128.46,129.34,130.06,130.3,130.54,130.86,131.82,132.06,132.5],[133.25,133.9,134.54,134.94,135.66,135.98,136.22,136.54,137.26,137.98,138.38,138.94,139.18,139.5,139.82,140.14,140.54],[141.48,142.06,142.7,143.06,143.34,143.55,143.7,144.48,144.62,145.26,145.5,145.9,146.46,146.86,147.07,147.42],[148.21,148.38,148.78,148.94,149.18,149.5,149.86,150.56,150.86,151.14,151.98,152.14,152.54,152.74,153.42,153.63,153.94,154.3,154.38,154.7],[155.48,155.78,156.22,156.46,156.7,157.18,157.39,157.74,157.9,158.62,158.9,159.7,159.98,160.19,160.38],[161.62,162.03,162.27,162.99,163.39,163.63,164.27,164.51,165.07,165.43,165.79,166.03,166.47,166.59,166.95,167.63,168,168.19,168.59,169.15,169.47,170.14,170.75],[171.69,171.87,172.43,172.91,173.19,173.87,174.03,174.43,174.59,174.91,175.55,175.71,176.23,176.51,176.87,176.99,177.31],[178.18,178.71,179.31,179.59,179.95,180.23,180.51,181.23,181.71,182.03,182.35,183.07,183.63,184.11,184.91,185.31,185.55,185.91,186.51,186.67,187.39,187.87],[188.58,189.39,189.95,190.67,191.39,191.71,191.95,192.35,192.71,193.47,193.63,193.87,194.19,194.43,194.79,194.91,195.55,195.87,196.11,196.51,196.75,197.15,197.39,197.87],[198.58,198.99,199.95,200.23,200.59,200.95,201.63,202.35,202.75,202.87,203.23,203.71,204.03,204.59,204.91,205.27],[206.03,206.27,206.67,206.95,207.31,207.55,208.03,208.19,208.59,208.83,209.51,209.87,210.43,210.75,211.63,211.95,212.51,212.99,213.55,214.11,214.51],[215.45,215.55,215.87,216.19,216.51,217.07,217.39,217.75,218.83,219.07,219.55,219.67,220.75,221.45,221.87,222.19,222.63],[223.3,223.79,224.19,224.27,224.55,225.35,225.63,226.19,226.43,226.91],[227.76,227.87,228.51,228.91,229.23,229.63,230.19,230.59,230.83,231.07,231.39,231.99,232.51,232.79,233.59,233.71,234.31,234.47,235.23,235.63,235.87,236.19],[236.98,237.03,237.31,237.55,237.87,238.15,239.07,239.35,239.63,240.19,240.39,241.03,241.15,241.47,241.87,242.27],[242.89,243.15,243.95,244.19,244.51,244.71,244.91,245.31,245.95,246.23,246.79,246.99,247.63,247.79,248.27,248.55,248.78,249.11],[249.78,250.03,250.31,250.55,251.19,251.59,252.03,252.35,252.67,253.51,253.79,254.11,254.59,254.83,255.11,255.23,255.55,255.79,256.11,256.47,256.83]],AUDIO_END=257.5522267573696;
 const LINES=[];{
   let T=.5;
   SCRIPT.forEach(([text],i)=>{
@@ -845,7 +865,7 @@ function audioEvents(){
   const ev=[['suara/narasi.mp3',0,1]];
   const S=k=>LINES[KI(k)].start,add=(f,t,v)=>ev.push(['sfx/'+f+'.wav',t,v]);
   add('notif',S('iklan')+.3,.08);
-  for(const k of ['bulan2','bulan4','bulan6'])add('gagal',S(k)+.2,.05);
+  for(const k of ['bulan2','bulan4','bulan6','ginjal'])add('gagal',S(k)+.2,.05);
   for(const k of ['ciri1','ciri23','ciri4'])add('ting',S(k)+.2,.07);add('ting',S('cekbpom')+2,.08);
   return ev
 }
@@ -857,7 +877,7 @@ function paintScene(key,t,dt,len){
   const rara=(x,fy,s,mood,o={})=>chibi('rara',x,fy,s,t,mood,Object.assign({fx},o));
   switch(key){
     case 'halo':{
-      if(window.THUMB){kamar(t,{kasur:false});cermin(330,330,1.1);chibi('rara',190,690,1.45,t,'shock',{fx:{flek:1,jerawat:1,merah:.6,urat:.6},hand:'give'});toples(310,600,1.3,t,{label:'KRIM KILOAN',tutup:'#ff7a9a'});
+      if(window.THUMB){kamar(t,{kasur:false});cermin(330,330,1.1);chibi('rara',190,690,1.45,t,'shock',{fx:{flek:1,jerawat:1,merah:.6,urat:.6},hand:'give'});toples(310,600,1.3,t,{label:'KRIM KILOAN',tutup:'#ff7a9a'});tiangInfus(395,620,.9,t,{});
         g.save();g.translate(375,400);rr(-46,-46,92,92,20,'#ffd24a');tx('⚠️',0,4,52,'#000',400);g.restore();break}
       kamar(t,{kasur:false});cermin(340,360,1);rara(170,690,1.3,'happy',{hand:'wave'});toples(300,640,1,t,{tanya:true});break}
     case 'kenal':konter(t);rara(225,690,1.3,'worried',{look:-1});kartuProfil('RARA','Ngawi, Jawa Timur',dt/.6);break;
@@ -910,15 +930,32 @@ function paintScene(key,t,dt,len){
         const code='NA18…';const n=Math.floor(clamp((dt-.6)/1.2)*code.length);rr(115,190,220,44,12,'#fff');g.strokeStyle='#9ab8d8';g.lineWidth=2;g.beginPath();g.roundRect(115,190,220,44,12);g.stroke();tx(code.slice(0,n)+(Math.sin(t*8)>0?'|':''),130,212,17,'#2a2a3a',700,'left');
         if(dt>2){const k=clamp((dt-2)/.4);g.save();g.globalAlpha=k;rr(115,260,220,90,14,'#e6f8ee');el(150,305,20,20,'#2aa04a');ln([[140,305],[148,313],[162,297]],'#fff',4);tx('TERDAFTAR',245,295,18,'#1a7a3a',900);tx('nama & isi cocok',245,320,12,'#3a5a4a',700);g.restore()}
         tx('± 1 menit',225,470,16,'#5a6a8a',800)});chibi('rara',225,800,.85,t,'happy',{hand:'phone'});break}
+    case 'ajakan':{rukoKlinik(t);rara(140,690,1.25,'worried',{look:1});chibi('teman',320,690,1.25,t,'grin',{talk:p>.4,hand:'point'});
+      if(p>.45){g.save();g.translate(310,300);rr(-120,-34,240,68,14,'#fff');tx('"Langsung dari dalam, Ra!"',0,-10,15,'#3a2a3a',900);tx('10x dijamin cerah ✨',0,14,14,'#d8306a',800);g.restore()}break}
+    case 'isiinfus':{g.fillStyle='#dcebfa';g.fillRect(-300,-300,1100,1400);tiangInfus(130,460,1.5,t,{});
+      const it=[['GLUTATHIONE','#7a6ad8'],['VITAMIN C DOSIS TINGGI','#ff8a2a'],['lewat jarum ke pembuluh darah','#3a5a7a']];it.forEach(([s0,c],i)=>{const k=clamp((p-.1-i*.22)*5);if(k<=0)return;g.save();g.globalAlpha=k;rr(220,190+i*80,210,60,14,'#fff');rr(220,190+i*80,8,60,4,c);tx(s0,328,220+i*80,i==2?12:15,c,900);g.restore()});break}
+    case 'bengkak':{klinik(t);const up=p<.45;chibi('rara',140,690,1.25,t,up?'happy':'worried',{fx:{putih:up?ease(clamp(p*2.5)):mix(1,.2,clamp((p-.45)*2)),flek:.4}});
+      const n=Math.floor(clamp((p-.4)*1.8)*9);for(let i=0;i<n;i++)nota(300+(i%3)*30,560-Math.floor(i/3)*30,1,i);if(n>3){rr(250,330,170,40,20,'#e0302a');tx('BIAYA 📈',335,350,18,'#fff',900)}break}
+    case 'fakta':{g.fillStyle='#fff4ec';g.fillRect(-300,-300,1100,1400);tiangInfus(225,440,1.4,t,{});
+      const k1=clamp((p-.1)*4),k2=clamp((p-.5)*4);if(k1>0){g.save();g.globalAlpha=k1;rr(40,120,370,56,14,'#fff');tx('BPOM: glutathione ≠ pemutih',225,148,17,'#2a5a8a',900);g.restore()}
+      if(k2>0){g.save();g.translate(225,500);g.rotate(-.08);g.scale(popS(k2),popS(k2));g.strokeStyle='#e0302a';g.lineWidth=5;g.strokeRect(-140,-28,280,56);tx('BELUM TERBUKTI',0,2,24,'#e0302a',900);g.restore()}break}
+    case 'ginjal':{kamar(t,{malam:true});rara(150,690,1.3,'pain',{hand:'belly',shake:.3});for(let i=0;i<3;i++){const d=(t*1.4+i/3)%1;g.globalAlpha=1-d;ln([[200+d*20,560-i*14],[214+d*20,566-i*14]],'#ff4a6a',4)}g.globalAlpha=1;
+      const k=clamp((p-.4)*4);if(k>0){g.save();g.globalAlpha=k;rr(250,220,170,150,18,'#fff');ikonGinjal(335,280,1.2);for(let i=0;i<3;i++)el(318+i*14,300+Math.sin(i)*6,5,4,'#8a8a7a');tx('batu ginjal',335,350,15,'#c8505a',900);g.restore()}break}
+    case 'steril':{g.fillStyle='#fff0f0';g.fillRect(-300,-300,1100,1400);jarum(225,300,2);for(let i=0;i<6;i++)kuman(80+random(i+3)*290,200+random(i+8)*220,1+random(i)*.4,t+i,['#7ac04a','#e0a030','#d85a8a'][i%3]);
+      const it=['Hepatitis B','Hepatitis C','HIV'];it.forEach((s0,i)=>{const k=clamp((p-.35-i*.15)*5);if(k<=0)return;g.save();g.globalAlpha=k;rr(60+i*115,450,105,44,22,'#e0302a');tx(s0,112+i*115,472,14,'#fff',900);g.restore()});break}
+    case 'sjs':{g.fillStyle='#fff4ec';g.fillRect(-300,-300,1100,1400);lapisKulit(45,220,360,200,{pigmen:'#a06a4a'});for(let i=0;i<5;i++){const x=80+i*68,k=clamp(p*2-i*.15);el(x,226-k*16,22,10+k*12,'rgba(255,240,220,.9)');g.strokeStyle='#e8a088';g.lineWidth=2;g.beginPath();g.ellipse(x,226-k*16,22,10+k*12,0,0,TAU);g.stroke()}
+      tx('STEVENS-JOHNSON',225,150,24,'#c8304a',900);if(p>.55){rr(110,460,230,44,22,'#2a2a3a');tx('JARANG, TAPI FATAL',225,482,16,'#ffd24a',900)}break}
+    case 'malu':klinik(t);chibi('dokter',330,690,1.3,t,'soft',{});rara(140,690,1.25,'sad',{look:1});tiangInfus(40,560,.6,t,{});break;
+    case 'tindakan':{klinik(t);chibi('dokter',320,690,1.3,t,'worried',{talk:true,hand:'point'});rara(130,690,1.2,'worried',{});
+      const it=['alasan medis','tenaga kesehatan','fasilitas berizin'];it.forEach((s0,i)=>{const k=clamp((p-.3-i*.15)*5);if(k<=0)return;g.save();g.globalAlpha=k;rr(40+i*130,200,120,44,22,'#fff');tx('✔ '+s0,100+i*130,222,12,'#2a7a4a',900);g.restore()});
+      if(p>.8){rr(110,270,230,40,20,'#e0302a');tx('BUKAN BUAT MUTIHIN',225,290,15,'#fff',900)}break}
     case 'sehat':{g.fillStyle='#effaf4';g.fillRect(-300,-300,1100,1400);const it=[['🧼','cuci muka lembut'],['🧴','pelembap'],['☀️','tabir surya']];
       it.forEach(([ic,s],i)=>{const k=clamp((p-.1-i*.22)*5);if(k<=0)return;g.save();g.globalAlpha=k;const y=150+i*120;rr(60,y,330,96,20,'#fff');tx(ic,115,y+48,44,'#000',400);tx(s,160,y+48,20,'#2a5a4a',900,'left');g.restore()});break}
     case 'akhir6':{kamar(t,{kasur:false});cermin(340,360,1);chibi('rara',170,690,1.35,t,'happy',{hand:'wave',fx:{flek:.15}});for(let i=0;i<4;i++){const d=(t*.4+i/4)%1;g.globalAlpha=(1-d)*.8;heart(140+i*30,460-d*100,1,'#ffb0c8')}g.globalAlpha=1;break}
-    case 'lebih':{g.fillStyle='#fff0f6';g.fillRect(-300,-300,1100,1400);const k=popS(clamp(p*2.5));g.save();g.translate(225,300);g.scale(k,k);rr(-180,-90,360,180,24,'#fff');tx('KULIT SEHAT',0,-40,34,'#2aa04a',900);tx('>',0,4,34,'#3a3a4a',900);tx('KULIT PUTIH',0,48,34,'#b0a0a8',900);g.restore();chibi('rara',225,800,.8,t,'happy',{});break}
-    case 'teaser':{teras(t);rara(140,690,1.3,'shock',{look:1});at(330,320,1,()=>{rr(-80,-110,160,220,10,'#fff');tx('INFUS',0,-80,22,'#2a6ab8',900);tx('WHITENING',0,-54,18,'#2a6ab8',900);rr(-14,-30,28,46,8,'#cfe8ff');ln([[0,16],[0,70]],'#9ab8d8',3);tx('✨',30,-20,20,'#000',400)});
-      if(p>.6){const k=clamp((p-.6)*4);g.save();g.globalAlpha=k;rr(115,150,220,48,24,'#e0305a');tx('BERSAMBUNG…',225,174,22,'#fff',900);g.restore()}break}
+    case 'lebih':{g.fillStyle='#fff0f6';g.fillRect(-300,-300,1100,1400);const k=popS(clamp(p*2.5));g.save();g.translate(225,300);g.scale(k,k);rr(-180,-90,360,180,24,'#fff');tx('PUTIH bisa dibeli,',0,-34,28,'#b0a0a8',900);tx('SEHAT nggak bisa',0,12,30,'#2aa04a',900);tx('diganti.',0,52,30,'#2aa04a',900);g.restore();chibi('rara',225,800,.8,t,'happy',{});break}
   }
   if(!window.THUMB&&KUL[key]&&!['merkuri','steroid','jebakan','hidro','tipis'].includes(key)){const [a,b]=KUL[key],[pa,pb]=kulPrev(key),k=ease(clamp(dt/.9));meterKulit(mix(pa,a,k),mix(pb,b,k))}
-  if(!window.THUMB&&BULAN[key]){const k=popS(clamp(dt/.4));g.save();g.translate(360,108);g.scale(k,k);rr(-58,-20,116,40,20,'#2a2a3a');tx('BULAN '+BULAN[key],0,1,18,'#ffd24a',900);g.restore()}
+  if(!window.THUMB&&BULAN[key]){const k=popS(clamp(dt/.4));g.save();g.translate(typeof BULAN[key]==='string'?320:360,108);g.scale(k,k);{const lb=typeof BULAN[key]==='string'?BULAN[key]:'BULAN '+BULAN[key];g.font='900 18px system-ui, sans-serif';const ww=Math.max(116,g.measureText(lb).width+30);rr(-ww/2,-20,ww,40,20,'#2a2a3a');tx(lb,0,1,18,'#ffd24a',900)};g.restore()}
 }
 function camOverride(key,p){return null}
 const GRADE={saturate:1.08,contrast:1.12,brightness:1.0,vignette:.45};
