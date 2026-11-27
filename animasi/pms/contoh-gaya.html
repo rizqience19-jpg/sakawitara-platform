@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Contoh Gaya — Fery & Irma</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#111}canvas{display:block}</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Contoh 3 gaya visual untuk seri psikologi hubungan (Fery & Irma).
+// ?s=A pastel romcom | B chat & isi kepala | C doodle buku catatan ; &f=0..2 bingkai contoh
+const P=new URLSearchParams(location.search),STY=P.get('s')||'A',FR=+(P.get('f')||0);
+const cv=document.getElementById('c'),g=cv.getContext('2d');const W=450,H=800;g.scale(1080/W,1920/H);
+const TAU=Math.PI*2;
+const el=(x,y,rx,ry,c,rot=0)=>{g.beginPath();g.ellipse(x,y,rx,ry,rot,0,TAU);g.fillStyle=c;g.fill()};
+const rr=(x,y,w,h,r,c)=>{g.beginPath();g.roundRect(x,y,w,h,r);g.fillStyle=c;g.fill()};
+const ln=(pts,c,w)=>{g.beginPath();g.moveTo(...pts[0]);for(const p of pts.slice(1))g.lineTo(...p);g.strokeStyle=c;g.lineWidth=w;g.lineCap='round';g.lineJoin='round';g.stroke()};
+const txt=(s,x,y,size,c,font='Baloo 2',wt=800,al='center')=>{g.font=`${wt} ${size}px "${font}"`;g.fillStyle=c;g.textAlign=al;g.textBaseline='middle';g.fillText(s,x,y)};
+const heart=(x,y,s,c)=>{g.save();g.translate(x,y);g.scale(s,s);g.beginPath();g.moveTo(0,6);g.bezierCurveTo(-14,-4,-8,-16,0,-8);g.bezierCurveTo(8,-16,14,-4,0,6);g.fillStyle=c;g.fill();g.restore()};
+// garis sketsa (gaya C): tiap garis digambar dua kali sedikit bergeser
+let SK=false;const sk=(fn)=>{if(!SK){fn();return}g.save();fn();g.translate(1.2,-.8);g.globalAlpha=.5;fn();g.restore()};
+
+// ---------- tokoh chibi (kepala besar) ----------
+// mood: happy | pain | annoyed | grin | worried | soft
+function tokoh(id,x,y,s,mood,o={}){g.save();g.translate(x,y);g.scale(s,s);
+  const F=id==='fery',skin=F?'#e0a77c':'#f0c29c',skinD=F?'#c08560':'#d6a07a';
+  const top=F?(o.top||'#2f4a7a'):(o.top||'#f4a6c0'),hair=F?'#1d1712':'#4a2c1e';
+  const ink=SK?'#2a2a2a':null,lw=SK?2.2:0;
+  const fillS=(fn,c)=>{fn();g.fillStyle=c;g.fill();if(ink){g.strokeStyle=ink;g.lineWidth=lw;g.stroke()}};
+  // badan
+  if(o.sit){fillS(()=>{g.beginPath();g.roundRect(-34,-10,68,70,22)},top);fillS(()=>{g.beginPath();g.roundRect(-36,50,72,26,12)},F?'#3a3a48':'#6a5a8a')}
+  else{fillS(()=>{g.beginPath();g.roundRect(-14,62,12,40,6)},F?'#3a3a48':'#6a5a8a');fillS(()=>{g.beginPath();g.roundRect(2,62,12,40,6)},F?'#3a3a48':'#6a5a8a');
+    fillS(()=>{g.beginPath();g.roundRect(-32,-10,64,80,22)},top)}
+  // tangan
+  const hand=o.hand||'down';
+  if(hand==='belly'){fillS(()=>{g.beginPath();g.ellipse(-10,34,10,8,0,0,TAU)},skin);fillS(()=>{g.beginPath();g.ellipse(10,38,10,8,0,0,TAU)},skin)}
+  else if(hand==='give'){fillS(()=>{g.beginPath();g.ellipse(34,20,9,8,0,0,TAU)},skin);fillS(()=>{g.beginPath();g.ellipse(-30,40,9,8,0,0,TAU)},skin)}
+  else if(hand==='point'){fillS(()=>{g.beginPath();g.ellipse(40,6,9,8,0,0,TAU)},skin);fillS(()=>{g.beginPath();g.ellipse(-30,40,9,8,0,0,TAU)},skin)}
+  else{fillS(()=>{g.beginPath();g.ellipse(-34,44,9,8,0,0,TAU)},skin);fillS(()=>{g.beginPath();g.ellipse(34,44,9,8,0,0,TAU)},skin)}
+  // rambut belakang (Irma panjang bergelombang)
+  if(!F)fillS(()=>{g.beginPath();g.moveTo(-50,-60);g.quadraticCurveTo(-62,10,-44,30);g.quadraticCurveTo(-30,40,-20,20);g.lineTo(20,20);g.quadraticCurveTo(30,40,44,30);g.quadraticCurveTo(62,10,50,-60);g.closePath()},hair);
+  // kepala
+  fillS(()=>{g.beginPath();g.ellipse(0,-58,48,46,0,0,TAU)},skin);
+  // rambut depan
+  if(F)fillS(()=>{g.beginPath();g.moveTo(-48,-62);g.quadraticCurveTo(-44,-112,0,-108);g.quadraticCurveTo(44,-112,48,-62);g.quadraticCurveTo(30,-84,8,-80);g.quadraticCurveTo(-10,-90,-24,-78);g.quadraticCurveTo(-38,-80,-48,-62)},hair);
+  else fillS(()=>{g.beginPath();g.moveTo(-50,-50);g.quadraticCurveTo(-50,-110,0,-106);g.quadraticCurveTo(50,-110,50,-50);g.quadraticCurveTo(40,-78,14,-84);g.quadraticCurveTo(-6,-70,-30,-74);g.quadraticCurveTo(-44,-66,-50,-50)},hair);
+  // wajah
+  const ey=-54,ex=17,eye=(cx)=>{
+    if(mood==='happy'||mood==='soft'){ln([[cx-7,ey+2],[cx,ey-4],[cx+7,ey+2]],'#2a1d14',3.2)}
+    else if(mood==='pain'){ln([[cx-7,ey-4],[cx+6,ey+1],[cx-7,ey+5]].map(p=>[cx<0?p[0]:2*cx-p[0],p[1]]),'#2a1d14',3.2)}
+    else{el(cx,ey,6,7,'#2a1d14');el(cx+2,ey-2,2,2,'#fff')}};
+  eye(-ex);eye(ex);
+  if(mood==='annoyed'){ln([[-26,-68],[-10,-63]],'#2a1d14',3.2);ln([[26,-68],[10,-63]],'#2a1d14',3.2)}
+  if(mood==='worried'){ln([[-26,-64],[-10,-69]],'#2a1d14',3);ln([[26,-64],[10,-69]],'#2a1d14',3)}
+  if(!SK||true){g.globalAlpha=SK?.0:.55;el(-28,-40,9,5,'#ff8a9a');el(28,-40,9,5,'#ff8a9a');g.globalAlpha=1}
+  if(SK){g.globalAlpha=.6;for(const sx of [-30,26])for(let k=0;k<3;k++)ln([[sx+k*4,-36],[sx+k*4+3,-43]],'#e8507a',1.6);g.globalAlpha=1}
+  const m=-32;
+  if(mood==='happy'||mood==='grin'){g.beginPath();g.arc(0,m-4,10,.1*Math.PI,.9*Math.PI);g.fillStyle='#8a2a2a';g.fill()}
+  else if(mood==='soft'){g.beginPath();g.arc(0,m-6,7,.15*Math.PI,.85*Math.PI);g.strokeStyle='#2a1d14';g.lineWidth=3;g.stroke()}
+  else if(mood==='pain'){ln([[-8,m],[-3,m-3],[2,m],[7,m-3]],'#2a1d14',3)}
+  else if(mood==='annoyed'){ln([[-8,m-2],[8,m-2]],'#2a1d14',3.2)}
+  else if(mood==='worried'){g.beginPath();g.arc(0,m+2,7,1.15*Math.PI,1.85*Math.PI);g.strokeStyle='#2a1d14';g.lineWidth=3;g.stroke()}
+  if(mood==='pain'){el(40,-80,5,7,'#8ad0f0');g.globalAlpha=.7;el(39,-82,1.6,2.4,'#fff');g.globalAlpha=1}
+  g.restore()}
+
+// ---------- ikon kecil ----------
+function botolAir(x,y,s){g.save();g.translate(x,y);g.scale(s,s);rr(-16,-22,32,40,10,'#ff7a5a');rr(-6,-30,12,10,3,'#c85a3a');ln([[-8,-6],[8,-6]],'rgba(255,255,255,.5)',3);ln([[-8,4],[8,4]],'rgba(255,255,255,.5)',3);
+  for(let i=0;i<3;i++){g.globalAlpha=.6;ln([[-8+i*8,-38],[-5+i*8,-48],[-8+i*8,-58]],'#ffb8a0',2.4)}g.globalAlpha=1;g.restore()}
+function cangkir(x,y,s){g.save();g.translate(x,y);g.scale(s,s);rr(-14,-14,28,26,6,'#fff');g.beginPath();g.arc(15,-1,7,-1.4,1.4);g.strokeStyle='#fff';g.lineWidth=4;g.stroke();el(0,-12,12,3,'#8a5a3a');for(let i=0;i<2;i++){g.globalAlpha=.6;ln([[-4+i*8,-20],[-1+i*8,-28],[-4+i*8,-36]],'#ddd',2)}g.globalAlpha=1;g.restore()}
+function awanBadai(x,y,s){g.save();g.translate(x,y);g.scale(s,s);for(const [dx,dy,r] of [[-16,0,14],[0,-8,18],[18,0,14]])el(dx,dy,r,r*.85,'#7a7a92');ln([[0,10],[-6,22],[4,22],[-2,34]],'#ffd24a',4);g.restore()}
+function meterMood(x,y,w,v,label){rr(x,y,w,16,8,'rgba(0,0,0,.18)');const gr=g.createLinearGradient(x,0,x+w,0);gr.addColorStop(0,'#5ad08a');gr.addColorStop(.5,'#ffd24a');gr.addColorStop(1,'#ff5a5a');rr(x+2,y+2,(w-4)*v,12,6,gr);txt(label,x+w/2,y-12,13,'#5a3a4a')}
+
+// ================= GAYA A: Pastel romcom =================
+function gayaA(){
+  const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#ffe3ee');gr.addColorStop(1,'#efe1ff');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  // kamar kos: jendela, lampu tumblr, poster
+  rr(270,90,140,110,10,'#bfe3ff');ln([[340,90],[340,200]],'#fff',5);ln([[270,145],[410,145]],'#fff',5);
+  for(let i=0;i<9;i++){const x=30+i*26,y=70+Math.sin(i*.9)*10;el(x,y,4,4,'#ffe08a');g.globalAlpha=.35;el(x,y,10,10,'#ffe08a');g.globalAlpha=1}
+  ln([[20,66],[60,78],[110,66],[160,80],[240,66]],'#b08a9a',1.5);
+  rr(40,120,90,110,6,'#ffd0e0');heart(85,165,1.6,'#ff6a9a');
+  // lantai & kasur
+  g.fillStyle='#f6d8c8';g.fillRect(0,560,W,240);rr(-20,470,300,110,26,'#c8b8f0');rr(-20,450,120,50,20,'#fff');
+  if(FR===0){
+    tokoh('irma',150,470,1.15,'pain',{sit:true,hand:'belly',top:'#f4a6c0'});botolAir(220,540,.9);
+    tokoh('fery',330,520,1.15,'worried',{hand:'give'});cangkir(372,535,1);
+    meterMood(60,250,150,.85,'MOOD IRMA');txt('HARI PERTAMA HAID',225,330,30,'#d8407a');
+    awanBadai(140,330-60+0,0);
+  } else {
+    tokoh('irma',150,470,1.15,'soft',{sit:true,hand:'belly'});botolAir(150,500,.8);
+    tokoh('fery',330,520,1.15,'happy',{hand:'down'});
+    for(let i=0;i<6;i++)heart(120+i*40,300+Math.sin(i)*20,1+(i%2)*.4,i%2?'#ff8ab0':'#ffb0c8');
+    meterMood(60,250,150,.25,'MOOD IRMA');
+  }
+}
+// ================= GAYA B: Chat & isi kepala =================
+function gayaB(){
+  g.fillStyle='#1e2433';g.fillRect(0,0,W,H);
+  // dua panel: atas = HP chat, bawah = isi kepala
+  // HP
+  rr(60,40,330,300,26,'#0d1117');rr(70,60,310,262,16,'#ece5dd');rr(70,60,310,40,16,'#128c7e');txt('Irma 💗',150,80,18,'#fff','Baloo 2',800,'left');
+  const bub=(s,x,y,me)=>{g.font='600 15px "Baloo 2"';const w=g.measureText(s).width+24;rr(me?380-w-10:80,y,w,30,12,me?'#dcf8c6':'#fff');txt(s,me?380-w-10+12:92,y+16,15,'#222','Baloo 2',600,'left')};
+  bub('Perutku sakit banget 😣',0,115,false);bub('Ah, lebay kamu 😅',0,155,true);
+  if(FR===0){g.fillStyle='rgba(255,60,60,.15)';g.fillRect(70,190,310,40);txt('❌ SALAH',225,210,20,'#e83a3a');bub('...',0,240,false)}
+  else{bub('Mau aku bawain air hangat? 🫖',0,195,true);bub('Mau 🥺 makasih',0,240,false);txt('✅ BENAR',225,290,20,'#2aa04a')}
+  // isi kepala: siluet dua kepala dengan gelembung pikiran
+  const kepala=(x,c)=>{el(x,560,70,64,c);el(x,640,90,40,c)};
+  kepala(120,'#2f3a52');kepala(330,'#3a2f52');
+  txt('ISI KEPALA FERY',120,470,14,'#9ab0d8');txt('ISI KEPALA IRMA',330,470,14,'#d0a0d8');
+  // Fery: roda gigi "SOLUSI"
+  g.save();g.translate(120,555);for(let i=0;i<8;i++){g.rotate(TAU/8);rr(-5,-36,10,12,2,'#9ab0d8')}el(0,0,28,28,'#9ab0d8');el(0,0,12,12,'#2f3a52');g.restore();txt('"Cari solusi!"',120,615,14,'#cfe0ff');
+  // Irma: kram + capek
+  g.save();g.translate(330,550);ln([[-30,0],[-15,-14],[0,4],[15,-14],[30,0]],'#ff7aa0',5);g.restore();botolAir(330,600,.7);txt('"Pengen dipeluk aja"',330,630,14,'#ffd0e8');
+  ln([[225,500],[225,690]],'rgba(255,255,255,.15)',2);
+  // tokoh kecil di bawah
+  tokoh('fery',140,742,.55,FR===0?'grin':'soft');tokoh('irma',310,742,.55,FR===0?'annoyed':'happy');
+}
+// ================= GAYA C: Doodle buku catatan =================
+function gayaC(){SK=true;
+  g.fillStyle='#fffdf4';g.fillRect(0,0,W,H);for(let y=60;y<H;y+=28)ln([[0,y],[W,y]],'#cfe0f0',1);ln([[46,0],[46,H]],'#f0a0a0',1.5);
+  // lubang spiral
+  for(let y=40;y<H;y+=60)el(18,y,7,7,'#e8e2d4');
+  txt('Catatan Fery:',70,70,30,'#2a2a2a','Caveat',700,'left');
+  txt('Pacar hari pertama haid',70,104,26,'#e8507a','Caveat',700,'left');
+  if(FR===0){
+    tokoh('irma',150,470,1.1,'pain',{sit:true,hand:'belly',top:'#ffffff'});tokoh('fery',320,520,1.1,'grin',{hand:'point',top:'#ffffff'});
+    // coretan "lebay"
+    g.save();g.translate(330,300);g.rotate(-.06);rr(-80,-28,160,56,14,'#fff');g.strokeStyle='#2a2a2a';g.lineWidth=2;g.stroke();txt('"Ah, lebay!"',0,0,30,'#2a2a2a','Caveat',700);g.restore();
+    ln([[250,280],[410,320]],'#e83a3a',5);ln([[250,320],[410,280]],'#e83a3a',5);
+    txt('❌ jangan bilang ini',300,350,26,'#e83a3a','Caveat',700);
+    for(let k=0;k<3;k++)ln([[120+k*20,380],[130+k*20,395]],'#2a2a2a',2);
+  } else {
+    tokoh('irma',150,470,1.1,'soft',{sit:true,hand:'belly',top:'#ffffff'});tokoh('fery',320,520,1.1,'happy',{hand:'give',top:'#ffffff'});
+    g.save();g.translate(355,540);g.globalAlpha=1;botolAir(0,0,.8);g.restore();
+    const items=['✔ tanya: "kamu butuh apa?"','✔ air hangat / kompres','✔ biarin istirahat','✔ jangan banyak debat'];
+    items.forEach((s,i)=>txt(s,70,160+i*34,26,i%2?'#2a2a2a':'#2a6a3a','Caveat',700,'left'));
+    heart(395,170,1.4,'#e8507a');
+  }
+  // stabilo di judul
+  g.globalAlpha=.35;rr(66,90,252,26,6,'#ffe14a');g.globalAlpha=1;txt('Pacar hari pertama haid',70,104,26,'#e8507a','Caveat',700,'left');
+  SK=false}
+
+document.fonts.load('800 20px "Baloo 2"').then(()=>document.fonts.load('700 20px Caveat')).finally(()=>{
+  ({A:gayaA,B:gayaB,C:gayaC})[STY]();window.SIAP=true});
+</script></body></html>
