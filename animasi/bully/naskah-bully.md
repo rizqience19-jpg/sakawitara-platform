@@ -1,10 +1,10 @@
 # Naskah: "Setiap Pagi Wati Sakit Perut… Ternyata Ini Penyebabnya" (Kisah Nyempil — seri psikologi)
 
-Fokus: tanda-tanda anak korban perundungan yang sering dikira malas/manja; jenis perundungan (verbal, fisik, sosial, siber); peran saksi yang diam; cara orang tua menanggapi; ke mana melapor. Tokoh fiksi **Wati** (13 th, kelas 8 SMP) dari Malang, Jawa Timur; **Bu Ratna** (ibunya, penjual nasi pecel); **Nisa** (teman sebangku yang selama ini diam); **Bu Endah** (guru BK); tiga teman sekelas pelaku (tanpa nama). Pola: tanda kecil → orang tua salah sangka → "Ternyata…" → saksi berani bicara → cara menolong. Gaya visual pastel chibi (mesin `pms/`/`pemutih/`), judul hook gaya papan. Narasi semangat tapi hangat; momen sedih secukupnya. ± 2:40, 27 baris.
+Fokus: tanda-tanda anak korban perundungan yang sering dikira malas/manja; jenis perundungan (verbal, fisik, sosial, siber); peran saksi yang diam; cara orang tua menanggapi. Tokoh fiksi **Wati** (13 th, kelas 8 SMP) dari Malang, Jawa Timur; **Bu Ratna** (ibunya, penjual nasi pecel); **Nisa** (teman sebangku yang selama ini diam); **Bu Endah** (guru BK); tiga teman sekelas pelaku (tanpa nama). Pola: tanda kecil → orang tua salah sangka → "Ternyata…" → saksi berani bicara → cara menolong. Gaya visual pastel chibi (mesin `pms/`/`pemutih/`), judul hook gaya papan. Narasi semangat tapi hangat; momen sedih secukupnya. ± 2:30, 25 baris.
 
 Hook & thumbnail (gaya papan): "SETIAP PAGI SAKIT PERUT…" / "TERNYATA" / "INI PENYEBABNYA 😢" (kata-sorot: TERNYATA).
 
-Rujukan: keluhan fisik tanpa sebab jelas (sakit perut/kepala) sebelum sekolah, enggan sekolah, barang hilang/rusak, luka yang tak mau dijelaskan, menarik diri (Hello Sehat, detikHealth, Bangkok Hospital, UNICEF Indonesia); orang tua: ajak bicara dengan pertanyaan terbuka, yakinkan anak boleh cerita kapan saja, jangan menyalahkan ("kenapa nggak melawan?"), tanyakan kebijakan anti-perundungan sekolah (UNICEF Indonesia); layanan SAPA 129 KemenPPPA: telepon 129, WhatsApp 08111-129-129; sebagian besar laporan perundungan anak ke SAPA 129 terjadi di sekolah (KemenPPPA, 2025).
+Rujukan: keluhan fisik tanpa sebab jelas (sakit perut/kepala) sebelum sekolah, enggan sekolah, barang hilang/rusak, luka yang tak mau dijelaskan, menarik diri (Hello Sehat, detikHealth, Bangkok Hospital, UNICEF Indonesia); orang tua: ajak bicara dengan pertanyaan terbuka, yakinkan anak boleh cerita kapan saja, jangan menyalahkan ("kenapa nggak melawan?"), tanyakan kebijakan anti-perundungan sekolah (UNICEF Indonesia).
 
 | # | Tag | Narasi | Adegan |
 |---|-----|--------|--------|
@@ -30,7 +30,6 @@ Rujukan: keluhan fisik tanpa sebab jelas (sakit perut/kepala) sebelum sekolah, e
 | 19 | [excited] | Untuk orang tua: dengarkan dulu tanpa menyalahkan. Jangan tanya "kenapa nggak melawan?". Katakan, "Ibu percaya kamu, ini bukan salahmu." | Kartu tips orang tua |
 | 20 | [excited] | Untuk kamu yang dirundung: cerita ke orang dewasa yang kamu percaya, dan simpan buktinya, misalnya tangkapan layar chat. | Kartu tips korban |
 | 21 | [excited] | Untuk kamu yang melihat: jangan ikut tertawa, temani korbannya, dan laporkan ke guru. Kamu nggak harus jadi pahlawan, cukup jangan diam. | Kartu tips saksi |
-| 22 | [excited] | Kalau di sekolah tidak ditangani, kamu bisa melapor ke layanan SAPA seratus dua puluh sembilan dari KemenPPPA. Telepon seratus dua puluh sembilan, atau WhatsApp nol delapan satu satu satu, seratus dua puluh sembilan, seratus dua puluh sembilan. | Angka besar "129" + WA 08111-129-129 |
-| 23 | [excited] | Beberapa minggu kemudian, Wati mulai tersenyum lagi. Dan sekarang, dia nggak pernah sendirian. Ada Nisa di sebelahnya. | Wati & Nisa tertawa di kantin |
-| 24 | [excited] | Kadang, yang dibutuhkan korban cuma satu orang yang berani bilang: "Aku di pihakmu." | Teks besar, hati |
-| 25 | [excited] | Kalau kamu pernah jadi Wati, atau pernah jadi Nisa, ceritakan di komentar. Dan kirim video ini ke orang tua dan temanmu. | Wati & Nisa melambai |
+| 22 | [excited] | Beberapa minggu kemudian, Wati mulai tersenyum lagi. Dan sekarang, dia nggak pernah sendirian. Ada Nisa di sebelahnya. | Wati & Nisa tertawa di kantin |
+| 23 | [excited] | Kadang, yang dibutuhkan korban cuma satu orang yang berani bilang: "Aku di pihakmu." | Teks besar, hati |
+| 24 | [excited] | Kalau kamu pernah jadi Wati, atau pernah jadi Nisa, ceritakan di komentar. Dan kirim video ini ke orang tua dan temanmu. | Wati & Nisa melambai |
