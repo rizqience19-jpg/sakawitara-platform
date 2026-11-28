@@ -50,6 +50,8 @@ Patokan untuk setiap cerita baru. Contoh lengkapnya: `sumur-mbah-darmi.html` + `
 - **Jalur subtitle (y ± 545–615 dari 800) harus kosong**: label/teks adegan ditaruh di atas 530 atau di bawah 630, supaya tidak bertumpuk dengan caption kata.
 - **Gerakan harus hidup**: ikan/hewan berenang di jalur acak (gabungan beberapa sinus + variasi kecepatan), arah badan mengikuti arah gerak, kibasan ekor sesuai kecepatan, berkerumun saat diberi pakan; tangan tokoh bergerak berulang saat menabur/menyiram; objek di air naik-turun pelan.
 
+- **Judul hook gaya papan (lebih menarik, mulai Seri Pemutih):** tiap baris di atas papan miring (putih teks hitam; baris kunci = papan merah teks kuning, lebih besar, berdenyut), muncul satu per satu memantul, sedikit bergoyang. Kalimat pendek + emoji (✨ 😱). Video: definisikan ulang `hookTitle` dengan `HOOK_SLAB` (lihat `pemutih`). Thumbnail: `node animasi/thumb.js <html> <detik> "BARIS|BARIS|BARIS" <keluaran> "<baris kunci>" slab`.
+
 ## 2. Pola cerita
 
 Misteri desa → digosipkan warga → tokoh muda penasaran menyelidiki diam-diam (biasanya malam hari) → ketahuan → **"Ternyata..."** → penjelasan ilmiah (adegan *zoom* ke dalam: tanah, akar, sel, dsb.) → warga ikut mencontoh → kalimat penutup yang menyimpulkan.

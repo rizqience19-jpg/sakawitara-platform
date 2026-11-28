@@ -8,7 +8,7 @@ const path = require('path');
 const fs = require('fs');
 
 (async () => {
-  const [html, tStr, hook, out, highlight = ''] = process.argv.slice(2);
+  const [html, tStr, hook, out, highlight = '', gaya = ''] = process.argv.slice(2);  // gaya 'slab' = tiap baris di atas papan miring berwarna
   if (!html || !tStr || !hook || !out) {
     console.error('Pemakaian: node animasi/thumb.js <html> <detik> "<HOOK|BARIS>" <keluaran> [kata-sorot]');
     process.exit(1);
@@ -17,7 +17,7 @@ const fs = require('fs');
   const page = await browser.newPage();
   await page.goto('file://' + path.join(__dirname, html));
   const lines = hook.split('|').map(s => s.trim()).filter(Boolean);
-  const res = await page.evaluate(([t, lines, hl]) => {
+  const res = await page.evaluate(([t, lines, hl, gaya]) => {
     // Bingkai tanpa caption & judul: pakai paintScene langsung lewat SAKA.frame lalu tutup caption dengan gambar ulang.
     window.caption = function () {};  // tanpa caption kata
     window.THUMB = true;  // adegan boleh menyembunyikan label (GAGAL/KUNCINYA)
@@ -47,6 +47,21 @@ const fs = require('fs');
           g.font = '900 ' + size + 'px system-ui, sans-serif'; g.textBaseline = 'middle'; g.lineJoin = 'round';
           const lh = size * 1.12, x0 = mode === 'v' ? W / 2 : 50, y0 = mode === 'v' ? 560 : H / 2 - (lines.length - 1) * lh / 2;
           g.textAlign = mode === 'v' ? 'center' : 'left';
+          if (gaya === 'slab') {
+            // Gaya papan: baris kata-sorot = papan merah, teks kuning, lebih besar; baris lain = papan putih, teks hitam.
+            const big = l => hl && l.toUpperCase().includes(hl.toUpperCase());
+            const sz = l => big(l) ? size * 1.35 : size;
+            const gap = size * .38; let tot = lines.reduce((a, l) => a + sz(l) * 1.25 + gap, -gap), y = (mode === 'v' ? 700 : H / 2 + 20) - tot / 2;
+            lines.forEach((l, i) => {
+              const S = sz(l); g.font = '900 ' + S + 'px system-ui, sans-serif';
+              const w = Math.min(g.measureText(l).width + S * .7, maxW + S * .5), h = S * 1.25, cx = mode === 'v' ? W / 2 : 40 + w / 2;
+              g.save(); g.translate(cx, y + h / 2); g.rotate((i % 2 ? 2.5 : -2.5) * Math.PI / 180);
+              g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 18; g.shadowOffsetY = 8;
+              g.fillStyle = big(l) ? '#e8302a' : '#ffffff'; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, S * .22); g.fill(); g.shadowColor = 'transparent';
+              g.textAlign = 'center'; g.fillStyle = big(l) ? '#ffe14a' : '#16161a'; g.fillText(l, 0, S * .04, maxW + S * .2); g.restore();
+              y += h + gap;
+            });
+          } else
           lines.forEach((l, i) => {
             const y = y0 + i * lh;
             g.lineWidth = size * .2; g.strokeStyle = '#000'; g.strokeText(l, x0, y);
@@ -63,7 +78,7 @@ const fs = require('fs');
       };
       img.src = src;
     });
-  }, [Number(tStr), lines, highlight]);
+  }, [Number(tStr), lines, highlight, gaya]);
   for (const [k, suf] of [['v', '-vertikal.png'], ['h', '-yt.png']]) {
     fs.writeFileSync(out + suf, Buffer.from(res[k].split(',')[1], 'base64'));
     console.log('Thumbnail:', out + suf);
