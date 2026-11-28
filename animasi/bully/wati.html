@@ -649,7 +649,7 @@ function heart(x,y,s,c){g.save();g.translate(x,y);g.scale(s,s);g.beginPath();g.m
 
 const CPAL={
   wati:{female:true,clip:'#ff6a8a',skin:'#d9a07a',top:'#ffffff',topD:'#d0d4e0',hair:'#1a120c',leg:'#2a4a8a',dasi:'#c8303a'},
-  nisa:{female:true,hijab:'#f2f2f6',skin:'#eab48c',top:'#ffffff',topD:'#d0d4e0',hair:'#2a1a12',leg:'#2a4a8a',dasi:'#c8303a'},
+  nisa:{female:true,hijab:'#9ac8ec',skin:'#eab48c',top:'#ffffff',topD:'#d0d4e0',hair:'#2a1a12',leg:'#2a4a8a',dasi:'#c8303a'},
   ratna:{female:true,hijab:'#c8604a',skin:'#d8a37a',top:'#e8a040',topD:'#c88020',hair:'#2a1a12',leg:'#5a3a2a'},
   endah:{female:true,hijab:'#7a6ad8',skin:'#e4b08a',top:'#5a8ac8',topD:'#3a6aa8',hair:'#2a1a12',leg:'#3a3a4a'},
   pelaku:{skin:'#3a3450',top:'#3a3450',topD:'#2e2842',hair:'#2e2842',leg:'#2e2842',siluet:true},
@@ -878,7 +878,7 @@ function paintScene(key,t,dt,len){
     case 'ternyata':{g.fillStyle='#1e1a2a';g.fillRect(-300,-300,1100,1400);const k=ease(clamp(p*1.5));g.save();g.globalAlpha=k*.9;kelas(t,{gelap:true,papan:''});g.restore();g.fillStyle='rgba(20,10,40,'+(.6-.3*k)+')';g.fillRect(-300,-300,1100,1400);
       tx('…',225,300,60,'#fff',900);break}
     case 'palak':{kelas(t,{gelap:true,papan:'Matematika'});C('wati',225,700,1.3,'sad',{sit:true,hand:'cross'});
-      C('pelaku',80,690,1.05,'grin',{hand:'point'});C('pelaku',370,690,1.05,'grin',{hand:'give',flip:true});C('pelaku',300,640,.85,'grin',{hand:'point',flip:true});
+      C('pelaku',80,690,1.05,'grin',{hand:'point'});C('pelaku',370,690,1.05,'grin',{hand:'give',flip:true});C('pelaku',435,650,.85,'grin',{hand:'point',flip:true});
       const lb=['"Mana uangmu!"','"Item banget sih"','tas disembunyikan'];lb.forEach((s,i)=>{const k=clamp((p-.1-i*.25)*5);if(k<=0)return;g.save();g.globalAlpha=k;const x=[110,330,225][i],y=[260,300,360][i];rr(x-80,y-20,160,40,12,'#fff');tx(s,x,y,14,'#c8302a',900);g.restore()});break}
     case 'grup':{gelap();hpChat([['😂😂😂',false,.4],['[foto Wati diedit] 🤣',false,1.2],['wkwkwk',false,2.2],['😂',false,2.8]],t,dt,{nama:'Grup 8B 😂'});chibi('wati',225,800,.9,t,'sad',{hand:'phone'});break}
     case 'jenis1':g.fillStyle='#f4f0ff';g.fillRect(-300,-300,1100,1400);tx('4 JENIS PERUNDUNGAN',225,110,22,'#5a4a8a',900);kartuInfo(['VERBAL|mengejek, menghina','FISIK|mendorong, merusak barang'],p,160,'#5a6ad8',['🗣️','✊']);break;
