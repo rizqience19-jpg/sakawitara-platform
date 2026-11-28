@@ -1,34 +1,20 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createClient } from "@/lib/supabase/server";
+
+async function logout() {
+  "use server";
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  redirect("/login");
+}
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll();
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
-            // Cookie ditangani oleh middleware.
-          }
-        },
-      },
-    }
-  );
+  const supabase = await createClient();
 
   const {
     data: { user },
@@ -39,16 +25,31 @@ export default async function DashboardLayout({
     redirect("/login");
   }
 
-  const { data: admin, error: adminError } =
-    await supabase
-      .from("admins")
-      .select("user_id")
-      .eq("user_id", user.id)
-      .maybeSingle();
+  const { data: admin, error: adminError } = await supabase
+    .from("admins")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
 
   if (adminError || !admin) {
     redirect("/login");
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <header className="dash-nav">
+        <Link className="brand" href="/dashboard">SAKAWITARA</Link>
+        <nav>
+          <Link href="/dashboard">Ringkasan</Link>
+          <Link href="/dashboard/undangan">Undangan</Link>
+          <form action={logout}>
+            <button className="btn btn-outline" type="submit" style={{ padding: "4px 16px" }}>Keluar</button>
+          </form>
+        </nav>
+      </header>
+      <main>
+        <div className="dash-wrap">{children}</div>
+      </main>
+    </>
+  );
 }
